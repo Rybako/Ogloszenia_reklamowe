@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\listing_item_controller;
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\listing_item_controller;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/map', [MapController::class, 'index']);
 //Route::get('/search', function () {
 //    return view('search');
 //});
