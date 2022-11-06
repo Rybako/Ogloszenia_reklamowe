@@ -22,6 +22,7 @@
 
     <script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
     <script>
+        
         let map, markers = [];
         /* ----------------------------- Initialize Map ----------------------------- */
         function initMap() {
@@ -81,6 +82,7 @@
             console.log(map);
             console.log($event.target.getLatLng());
         }
+        
     </script>
 </body>
 
