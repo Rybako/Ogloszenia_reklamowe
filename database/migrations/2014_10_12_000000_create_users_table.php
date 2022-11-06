@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role'); //user, mod, admin
+            $table->integer('phone_number');
+            $table->string('status'); //aktywne/zablokowane/niepotwierdzone
             $table->rememberToken();
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('listings', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->string('title');
             $table->string('owner'); //email autora ogłoszenia
             $table->integer('width');
