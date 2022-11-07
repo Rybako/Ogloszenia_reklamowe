@@ -1,0 +1,5 @@
+composer install --ignore-platform-reqs
+copy .env.example .env
+php artisan key:generate
+php artisan cache:clear
+php artisan config:clear
