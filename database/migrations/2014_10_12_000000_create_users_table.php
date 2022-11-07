@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role'); //user, mod, admin
+            $table->string('role')->nullable(); //user, mod, admin
             $table->integer('phone_number');
             $table->string('status'); //aktywne/zablokowane/niepotwierdzone
             $table->rememberToken();
