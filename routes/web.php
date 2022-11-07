@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\listing_item_controller;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/search', function () {
-//    return view('search');
-//});
+//rejestracja
+Route::get('/register', [UserController::class, 'create']);
+
+//stwórz usera
+Route::post('/users', [UserController::class, 'store']);
+
+//formularz logowania
+Route::get('/login', [UserController::class, 'login']);
+
+//logowanie
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+//wylogowanie
+Route::post('/logout', [UserController::class, 'logout']);
+
 Route::get('/search', [listing_item_controller::class,'index']);
