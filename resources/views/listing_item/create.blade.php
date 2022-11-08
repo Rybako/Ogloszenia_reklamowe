@@ -1,5 +1,5 @@
 <div>
-    <form  action="{{ route('listing_item.create_form') }}" method="post" >
+    <form action="{{ route('listing_item.create_form') }}" method="post" enctype="multipart/form-data">
         @csrf <!-- {{ csrf_field() }} -->
         Tytuł <input class='title' name='title' value=''>
         @error('title')<span>{{ $message }}</span>@enderror
@@ -13,11 +13,11 @@
         Szerokość <input class='width' name='width' value=''>
         @error('width')<span>{{ $message }}</span>@enderror
 
-        Kategoria <select class='category' name='category'><option value="Private">Prywatne</option><option value="Commercial">Komercyjne</option></select>
-        @error('category')<span>{{ $message }}</span>@enderror
-
         Adres <input class='address' name='address'>
         @error('address')<span>{{ $message }}</span>@enderror
+
+        <input type="file" class="form-control" name="image" />
+        @error('image')<span>{{ $message }}</span>@enderror
 
         <button type="submit">Dodaj</button>
     </form>
@@ -27,7 +27,7 @@
     </div>
     @endif
     @if(session()->has('success'))
-    <div>
+    <div>   
         {{ session()->get('success') }}
         Chcesz zobaczyć swoje ogłoszenie ? <a href="{{ route('listing_item.view',['id'=>session('id')]) }}">Poka</a>
     </div>

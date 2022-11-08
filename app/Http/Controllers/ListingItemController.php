@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\models\ListingItem;
+use App\models\ListingPictures;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use DateTime;
@@ -23,11 +24,10 @@ class ListingItemController extends Controller
         $price_maximum = $search_data->has('price_max') ? $search_data->get('price_max') : 999999;
         $height_minimum = $search_data->has('height_min') ? $search_data->get('height_min') : 0;
         $width_minimum = $search_data->has('width_min') ? $search_data->get('width_min') : 0;
-        $category = $search_data->has('category') ? $search_data->get('category') : 'Private';
         $sort = $search_data->has('sort') ? $search_data->get('sort') : 'new';
         
         $listing_items = ListingItem::where( [['price', '>=', (int)$price_minimum], ['price', '<=', (int)$price_maximum],
-        ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum], ['category','=',$category]]
+        ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum]]
                                             );
         //TO je console log list jakbym chciał sobie zobaczyć jak wygląda zapytanie w sql
         error_log($listing_items->toSql());
@@ -54,13 +54,13 @@ class ListingItemController extends Controller
         $height = $create_data->has('height') ? $create_data->get('height') : null;
         $width = $create_data->has('width') ? $create_data->get('width') : null;
         $address = $create_data->has('address') ? $create_data->get('address') : null;
-        $category = $create_data->has('category') ? $create_data->get('category') : null;
         $validator = Validator::make($create_data->all(), [
             'title'=>'required',
             'price'=>'required|numeric',
             'height'=>'required|numeric',
             'width'=>'required|numeric',
             'address'=>'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -69,7 +69,13 @@ class ListingItemController extends Controller
         $add_date =  $date->format('Y-m-d H:i:s');
         $date->add(new DateInterval('P10D')); 
         $expiration_date = $date->format('Y-m-d H:i:s');
-        $id = DB::table('listing_item')->insertGetId(
+
+        $imageName = time().'.'.$create_data->image->extension();
+        $create_data->image->move(public_path('images'), $imageName);
+
+        try{
+            DB::beginTransaction();
+        $id = ListingItem::insertGetId(
             [
             'title' => $title, 
             'price' => $price,
@@ -78,9 +84,24 @@ class ListingItemController extends Controller
             'address' => $address,
             'add_date' => $add_date,
             'expiration_date' =>  $expiration_date,
-            'category' => $category
+            'owner' => 'email@email.org',// in this place will be email taken from user.email field if logged in or from email given by user if not logged, remember to check if it doesnt exist as registered
+            'position_X' => '1234',// position x for map addon
+            'position_Y' => '543321' // position y for map addon
             ]
         );  
+        $id = ListingPictures::insertGetId(
+            [
+            'listing_item_id' => $id,
+            'order_position' => 0,
+            'src' => $imageName
+            ]    
+        );
+        DB::commit();
+        }catch(Exception $e){
+            DB::rollback();
+
+        }
+        
         if( empty($id) ){    
             redirect()->back()->with('error', 'Coś nie działa!');
          }
@@ -90,6 +111,7 @@ class ListingItemController extends Controller
     }
     function view($id){
         $item = ListingItem::where('id', $id)->first();
-        return view('listing_item/view',['item' => $item]);
+        $image = (ListingPictures::where('listing_item_id','=',$id)->first())['src'];
+        return view('listing_item/view',['item' => $item,'image' => $image]);
     }
 }

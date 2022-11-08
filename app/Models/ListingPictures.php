@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ListingItem extends Model
+class ListingPictures extends Model
 {
-    protected $table = 'listing_item';
+    protected $table = 'listing_pictures';
     use HasFactory;
 }
-
