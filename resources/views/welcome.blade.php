@@ -25,7 +25,7 @@
 
                 <div class="fixed top-0 right-0 px-6 py-4 sm:block">
 
-                    @auth
+                    @auth <!-- pokazuje się tylko kiedy użytkownik jest zalogowany -->
                         <p>Welcome {{auth()->user()->name}}</p>
                         
                         <form action="/logout" method="POST">
@@ -36,9 +36,13 @@
 
                     @endauth
 
-                    <p><a href="/login">Logowanie</a></p>
+                    @guest <!-- pokazuje się tylko kiedy użytkownik nie jest zalogowany -->
 
-                    <p><a href="/register">Rejestracja</a></p>
+                        <p><a href="/login">Logowanie</a></p>
+
+                        <p><a href="/register">Rejestracja</a></p>
+
+                    @endguest
 
                 </div>
 
