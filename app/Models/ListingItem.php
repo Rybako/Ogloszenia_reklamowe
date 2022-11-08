@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ListingItem extends Model
 {
-    protected $table = 'listing_item';
+    protected $table = 'listings';
     use HasFactory;
 }
