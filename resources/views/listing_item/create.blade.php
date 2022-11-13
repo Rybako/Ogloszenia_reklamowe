@@ -1,16 +1,16 @@
 <div>
     <form action="{{ route('listing_item.create_form') }}" method="post" enctype="multipart/form-data">
         @csrf <!-- {{ csrf_field() }} -->
-        Tytuł <input class='title' name='title' value=''>
+        Tytuł <input class='title' name='title' value="{{ old('title') }}">
         @error('title')<span>{{ $message }}</span>@enderror
 
-        Cena <input class='price' name='price' value=''>
+        Cena <input class='price' name='price' value="{{ old('price') }}">
         @error('price')<span>{{ $message }}</span>@enderror
 
-        Wysokość <input class='height' name='height' value=''>
+        Wysokość <input class='height' name='height' value="{{ old('height') }}">
         @error('height')<span>{{ $message }}</span>@enderror 
 
-        Szerokość <input class='width' name='width' value=''>
+        Szerokość <input class='width' name='width' value="{{ old('width') }}">
         @error('width')<span>{{ $message }}</span>@enderror
 
         Adres <input class='address' name='address'  value="{{ old('address') }}">
