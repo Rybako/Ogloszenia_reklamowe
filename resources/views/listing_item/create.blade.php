@@ -13,10 +13,10 @@
         Szerokość <input class='width' name='width' value=''>
         @error('width')<span>{{ $message }}</span>@enderror
 
-        Adres <input class='address' name='address'>
+        Adres <input class='address' name='address'  value="{{ old('address') }}">
         @error('address')<span>{{ $message }}</span>@enderror
 
-        <input type="file" class="form-control" name="image" />
+        <input type="file" class="form-control" name="image"  value="{{ old('image') }}"/>
         @error('image')<span>{{ $message }}</span>@enderror
 
         <button type="submit">Dodaj</button>

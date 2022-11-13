@@ -1,6 +1,6 @@
 
 <div>
-	{{json_encode($listing_items)}}
+
 	<form  action="{{ route('listing_item.search') }}" method="post" >
 		@csrf <!-- {{ csrf_field() }} -->
 		Cena od <input name='price_min' value='0'> Cena do <input name='price_max' value='99999'>
