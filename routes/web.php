@@ -26,7 +26,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+//testowa implementacja mailowania
+Route::get('/send',[MailController::class,'index']);
 
 //Ogloszenia
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
