@@ -21,20 +21,12 @@ Route::get('/', function () {
 });
 
 Route::get('/map', [MapController::class, 'index']);
-//rejestracja
-Route::get('/register', [UserController::class, 'create']);
 
-//stwórz usera
-Route::post('/users', [UserController::class, 'store']);
+Auth::routes();
 
-//formularz logowania
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//logowanie
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
-//wylogowanie
-Route::post('/logout', [UserController::class, 'logout']);
 
 //Ogloszenia
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
