@@ -18,17 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//rejestracja
-Route::get('/register', [UserController::class, 'create']);
 
-//stwórz usera
-Route::post('/users', [UserController::class, 'store']);
+Auth::routes();
 
-//formularz logowania
-Route::get('/login', [UserController::class, 'login']);
-
-//logowanie
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-
-//wylogowanie
-Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role')->nullable(); //user, mod, admin
-            $table->integer('phone_number')->nullable();
-            $table->string('status')->nullable(); //aktywne/zablokowane/niepotwierdzone
+            $table->string('role')->nullable()->default("user"); //user, admin
+            $table->string('phone_number');
+            $table->boolean('confirmed')->nullable()->default(false); //konto domyślnie nie jest potwierdzone
+            $table->boolean('blocked')->nullable()->default(false); //konto domyślnie nie jest zablokowane
             $table->rememberToken();
             $table->timestamps();
         });

@@ -23,28 +23,16 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
 
-                <div class="fixed top-0 right-0 px-6 py-4 sm:block">
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                @auth
+                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                @else
 
-                    @auth <!-- pokazuje się tylko kiedy użytkownik jest zalogowany -->
-                        <p>Welcome {{auth()->user()->name}}</p>
-                        
-                        <form action="/logout" method="POST">
-                            @csrf
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
 
-                            <button type="submit">Wyloguj</button>
-                        </form>
-
-                    @endauth
-
-                    @guest <!-- pokazuje się tylko kiedy użytkownik nie jest zalogowany -->
-
-                        <p><a href="/login">Logowanie</a></p>
-
-                        <p><a href="/register">Rejestracja</a></p>
-
-                    @endguest
-
-                </div>
+                @endauth
+            </div>
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
