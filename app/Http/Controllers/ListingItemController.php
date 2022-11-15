@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use DateTime;
+use Exception;
+use DatePeriod;
+use DateInterval;
 use App\models\ListingItem;
+use Illuminate\Http\Request;
 use App\models\ListingPictures;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use DateTime;
-use DatePeriod;
-use DateInterval;
+
 class ListingItemController extends Controller
 {
     //
