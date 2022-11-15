@@ -1,3 +1,8 @@
+<head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
+</head>
+
 <div>
     <form action="{{ route('listing_item.create_form') }}" method="post" enctype="multipart/form-data">
         @csrf <!-- {{ csrf_field() }} -->
@@ -16,8 +21,8 @@
         Adres <input class='address' name='address'  value="{{ old('address') }}">
         @error('address')<span>{{ $message }}</span>@enderror
 
-        <input type="file" class="form-control" name="image"  value="{{ old('image') }}"/>
-        @error('image')<span>{{ $message }}</span>@enderror
+        <input type="file" class="form-control" name="images[]"  value="{{ old('images') }}" multiple/>
+        @error('images')<span>{{ $message }}</span>@enderror
 
         <button type="submit">Dodaj</button>
     </form>
@@ -32,4 +37,5 @@
         Chcesz zobaczyć swoje ogłoszenie ? <a href="{{ route('listing_item.view',['id'=>session('id')]) }}">Poka</a>
     </div>
     @endif
+    
 </div>

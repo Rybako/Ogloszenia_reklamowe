@@ -17,7 +17,7 @@ class ListingItemController extends Controller
     function index(){ // Domyślny widok ogłoszeń wyswietla określoną liczbę ostatnio dodanych
         $listing_items = ListingItem::orderBy('add_date', 'desc')->paginate(8);
         foreach($listing_items as $key=>$item){
-            $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->first())['src'];;
+            $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
         
         return view('listing_item/search',['listing_items' => $listing_items]);
@@ -58,25 +58,30 @@ class ListingItemController extends Controller
         $height = $create_data->has('height') ? $create_data->get('height') : null;
         $width = $create_data->has('width') ? $create_data->get('width') : null;
         $address = $create_data->has('address') ? $create_data->get('address') : null;
+
         $validator = Validator::make($create_data->all(), [
             'title'=>'required',
             'price'=>'required|numeric',
             'height'=>'required|numeric',
             'width'=>'required|numeric',
             'address'=>'required',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'images' => 'required',
+            'images.*' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        $images=[];
         $date = new DateTime();
         $add_date =  $date->format('Y-m-d H:i:s');
         $date->add(new DateInterval('P10D')); 
         $expiration_date = $date->format('Y-m-d H:i:s');
-
-        $imageName = time().'.'.$create_data->image->extension();
-        $create_data->image->move(public_path('images'), $imageName);
-
+        error_log(json_encode($images));
+        foreach($create_data->images as $key => $image){
+            $imageName = time().'_'.$key.'.'.$image->extension();
+            $images[$key]=$imageName;
+            $create_data->images[$key]->move(public_path('images'), $imageName);
+        }
         try{
             DB::beginTransaction();
         $id = ListingItem::insertGetId(
@@ -93,13 +98,15 @@ class ListingItemController extends Controller
             'position_Y' => '543321' // position y for map addon
             ]
         );  
-        $id = ListingPictures::insertGetId(
+        foreach($images as $key => $imageName){
+        ListingPictures::insertGetId(
             [
             'listing_item_id' => $id,
-            'order_position' => 0,
+            'order_position' => $key,
             'src' => $imageName
             ]    
         );
+        }
         DB::commit();
         }catch(Exception $e){
             DB::rollback();
@@ -115,7 +122,9 @@ class ListingItemController extends Controller
     }
     function view($id){
         $item = ListingItem::where('id', $id)->first();
-        $image = (ListingPictures::where('listing_item_id','=',$id)->first())['src'];
-        return view('listing_item/view',['item' => $item,'image' => $image]);
+        $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
+        return view('listing_item/view',['item' => $item,'images' => $images]);
     }
+    
+
 }
