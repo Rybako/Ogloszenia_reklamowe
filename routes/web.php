@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ListingItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MailController;
 
 
 /*
@@ -22,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/map', [MapController::class, 'index']);
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
