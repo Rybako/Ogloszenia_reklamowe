@@ -19,7 +19,7 @@ class ListingItemController extends Controller
     //
 
     function index(){ // Domyślny widok ogłoszeń wyswietla określoną liczbę ostatnio dodanych
-        $listing_items = ListingItem::orderBy('add_date', 'desc')->paginate(8);
+        $listing_items = ListingItem::orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         foreach($listing_items as $key=>$item){
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
@@ -45,9 +45,9 @@ class ListingItemController extends Controller
         error_log((string)$listing_items->getBindings()[1]);
         error_log((string)$listing_items->getBindings()[2]);
         error_log((string)$listing_items->getBindings()[3]);
-        if($sort == 'new') $listing_items= $listing_items ->orderBy('add_date', 'desc')->paginate(8);
-        if($sort == 'cheap') $listing_items= $listing_items ->orderBy('price', 'asc')->paginate(8);
-        if($sort == 'expensive') $listing_items= $listing_items ->orderBy('price', 'desc')->paginate(8);
+        if($sort == 'new') $listing_items= $listing_items ->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
+        if($sort == 'cheap') $listing_items= $listing_items ->orderBy('price', 'asc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
+        if($sort == 'expensive') $listing_items= $listing_items ->orderBy('price', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         
         foreach($listing_items as $key=>$item){
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];

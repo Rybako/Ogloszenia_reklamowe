@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
@@ -70,7 +71,7 @@ class UserController extends Controller
 
     //widok
     public function view($id){
-        $listing_items = ListingItem::where('user_id', $id)->orderBy('add_date', 'desc')->paginate(8);
+        $listing_items = ListingItem::where('user_id', $id)->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         $user = User::where('id', $id)->first();
 
         foreach($listing_items as $key=>$item){

@@ -10,9 +10,9 @@
 
 		<button type="submit">Szukaj</button>
 	</form>
+	
+	{{$listing_items->links()}}
 
-	<a href="{{ $listing_items->nextPageUrl() }}">Następna Strona</a>
-	<a href="{{ $listing_items->previousPageUrl() }}">Poprzednia Strona</a>
 
 </div>
 

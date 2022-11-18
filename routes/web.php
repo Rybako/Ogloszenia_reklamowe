@@ -18,7 +18,7 @@ use App\Http\Controllers\MailController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('listing_item.index'));
 });
 
 Route::get('/map', [MapController::class, 'index']);
@@ -31,7 +31,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/send',[MailController::class,'index']);
 
 //użykownicy by o120d6
-Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view'); // tu trzeba będzie zmienić kontroler potem
+Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view'); // nie wiem czy dobrze tu jest kontroler
+
+//Panel użytkownika
+Route::get('/userpanel', [UserPanel::class,'index'])->name('userpanel.view'); // tu trzeba będzie zmienić kontroler potem, albo dodać nowy
 
 //Ogloszenia
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
