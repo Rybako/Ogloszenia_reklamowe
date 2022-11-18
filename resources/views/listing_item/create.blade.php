@@ -1,7 +1,5 @@
-<head>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
-</head>
+@extends('layouts.app')
+@section('content')
 
 <div>
     <form action="{{ route('listing_item.create_form') }}" method="post" enctype="multipart/form-data">
@@ -21,11 +19,12 @@
         Adres <input class='address' name='address'  value="{{ old('address') }}">
         @error('address')<span>{{ $message }}</span>@enderror
 
-        <input type="file" class="form-control" name="images[]"  value="{{ old('images') }}" multiple/>
+        <input type="file" class="form-control" name="images[]"  value="{{ old('images') }}" multiple >
         @error('images')<span>{{ $message }}</span>@enderror
 
         <button type="submit">Dodaj</button>
     </form>
+    
     @if(session()->has('error'))
     <div>
         {{ session()->get('error') }}
@@ -39,3 +38,5 @@
     @endif
     
 </div>
+
+@endsection

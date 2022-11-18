@@ -1,4 +1,5 @@
-
+@extends('layouts.app')
+@section('content')
 		<img src=" {{ asset('images/'.$images[0]['src']) }}">
 		
 		<div>
@@ -14,3 +15,4 @@
 		<img src=" {{ asset('images/'.$image['src']) }}">
 		@endif
 		@endforeach
+@endsection

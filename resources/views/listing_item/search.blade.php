@@ -1,4 +1,5 @@
-
+@extends('layouts.app')
+@section('content')
 <div>
 
 	<form  action="{{ route('listing_item.search') }}" method="post" >
@@ -18,6 +19,6 @@
 <hr>
 
 @include('components.foreach_listing_items')
-
+@endsection
 
 
