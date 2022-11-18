@@ -70,12 +70,13 @@ class UserController extends Controller
 
     //widok
     public function view($id){
-        $listing_items = ListingItem::where('id', $id)->orderBy('add_date', 'desc')->paginate(8);
+        $listing_items = ListingItem::where('user_id', $id)->orderBy('add_date', 'desc')->paginate(8);
         $user = User::where('id', $id)->first();
 
         foreach($listing_items as $key=>$item){
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
+
         return view('user/view',['listing_items' => $listing_items,'user' => $user]);
     }
  
