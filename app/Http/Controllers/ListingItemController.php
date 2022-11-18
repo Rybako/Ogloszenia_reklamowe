@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use DateTime;
 use Exception;
 use DatePeriod;
 use DateInterval;
 use App\Models\ListingItem;
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\ListingPictures;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -35,6 +37,8 @@ class ListingItemController extends Controller
         $listing_items = ListingItem::where( [['price', '>=', (int)$price_minimum], ['price', '<=', (int)$price_maximum],
         ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum]]
                                             );
+
+        
         //TO je console log list jakbym chciał sobie zobaczyć jak wygląda zapytanie w sql
         error_log($listing_items->toSql());
         error_log((string)$listing_items->getBindings()[0]);
@@ -44,7 +48,10 @@ class ListingItemController extends Controller
         if($sort == 'new') $listing_items= $listing_items ->orderBy('add_date', 'desc')->paginate(8);
         if($sort == 'cheap') $listing_items= $listing_items ->orderBy('price', 'asc')->paginate(8);
         if($sort == 'expensive') $listing_items= $listing_items ->orderBy('price', 'desc')->paginate(8);
-
+        
+        foreach($listing_items as $key=>$item){
+            $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
+            }
 
 
 
@@ -95,7 +102,7 @@ class ListingItemController extends Controller
             'address' => $address,
             'add_date' => $add_date,
             'expiration_date' =>  $expiration_date,
-            'owner' => 'email@email.org',// in this place will be email taken from user.email field if logged in or from email given by user if not logged, remember to check if it doesnt exist as registered
+            'user_id' => Auth::id(),// in this place will be email taken from user.email field if logged in or from email given by user if not logged, remember to check if it doesnt exist as registered
             'position_X' => '1234',// position x for map addon
             'position_Y' => '543321' // position y for map addon
             ]
@@ -125,8 +132,8 @@ class ListingItemController extends Controller
     function view($id){
         $item = ListingItem::where('id', $id)->first();
         $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
-        return view('listing_item/view',['item' => $item,'images' => $images]);
+        $user = User::where('id', $id)->first();
+        return view('listing_item/view',['item' => $item,'images' => $images, 'user' => $user]);
     }
-
 
 }

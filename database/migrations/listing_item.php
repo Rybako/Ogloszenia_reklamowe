@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('listing_item', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('title');
-            $table->string('owner'); //email autora ogłoszenia
+            $table->integer('user_id'); //id uzytkownika ktory wystawil ogloszenie
             $table->integer('width');
             $table->integer('height');
             $table->integer('price');

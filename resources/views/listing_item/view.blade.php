@@ -7,6 +7,7 @@
 			<span>{{$item['address']}}</span>
 			<span>{{$item['add_date']}}</span>
 			<span>{{$item['price']}}</span>
+			<a href="{{route('user.view',$item['user_id'])}}">{{$user['name']}}</a>
 		</div>
 		@foreach($images as $key=>$image)
 		@if($key!=0)
