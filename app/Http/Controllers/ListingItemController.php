@@ -132,7 +132,7 @@ class ListingItemController extends Controller
     function view($id){
         $item = ListingItem::where('id', $id)->first();
         $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
-        $user = User::where('id', $id)->first();
+        $user = User::where('id',$item['user_id'])->first();
         return view('listing_item/view',['item' => $item,'images' => $images, 'user' => $user]);
     }
 
