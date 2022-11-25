@@ -5,7 +5,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\ListingItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MailController;
-
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,12 @@ Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view
 //Panel użytkownika
 Route::get('/userpanel', [UserPanel::class,'index'])->name('userpanel.view'); // tu trzeba będzie zmienić kontroler potem, albo dodać nowy
 
+Route::get('/image/delete/{id}', [ImageController::class,'delete'])->name('image.delete');
+Route::get('/image/set_main/{id}', [ImageController::class,'set_main'])->name('image.set_main');
 //Ogloszenia
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
 Route::any('/ogloszenia/szukaj', [ListingItemController::class,'search'])->name('listing_item.search');
 Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create');
+Route::get('/ogloszenia/edytuj', [ListingItemController::class,'create'])->name('listing_item.edit');
 Route::any('/ogloszenia/dodaj_formularz', [ListingItemController::class,'create_form'])->name('listing_item.create_form');
 Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
