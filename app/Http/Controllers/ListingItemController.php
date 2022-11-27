@@ -135,5 +135,43 @@ class ListingItemController extends Controller
         $user = User::where('id',$item['user_id'])->first();
         return view('listing_item/view',['item' => $item,'images' => $images, 'user' => $user]);
     }
+    function edit($id){
+        $item = ListingItem::where('id', $id)->first();
+        $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
+        $user = User::where('id',$item['user_id'])->first();
+        return view('listing_item/edit',['item' => $item,'images' => $images, 'user' => $user]);
+    }
+    function edit_form(Request $create_data,$id){
+        $title = $create_data->has('title') ? $create_data->get('title') : null;
+        $price = $create_data->has('price') ? $create_data->get('price') : null;
+        $height = $create_data->has('height') ? $create_data->get('height') : null;
+        $width = $create_data->has('width') ? $create_data->get('width') : null;
+        $address = $create_data->has('address') ? $create_data->get('address') : null;
+        $id = $create_data->has('id') ? $create_data->get('id') : null;
+        $validator = Validator::make($create_data->all(), [
+            'title'=>'required',
+            'price'=>'required|numeric',
+            'height'=>'required|numeric',
+            'width'=>'required|numeric',
+            'address'=>'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        
+        if(ListingItem::find($id)['user_id']==Auth::id()){
+        $id = ListingItem::where('id',$id)->update(
+            [
+            'title' => $title,
+            'price' => $price,
+            'height' => $height,
+            'width' => $width,
+            'address' => $address
+            ]
+        );
+    }
+    return redirect()->back();
+    }
 
 }

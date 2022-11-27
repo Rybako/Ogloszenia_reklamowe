@@ -16,6 +16,7 @@ use App\Http\Controllers\ImageController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+|--------------------------------------------------------------------------
 */
 Route::get('/', function () {
     return redirect(route('listing_item.index'));
@@ -38,10 +39,12 @@ Route::get('/userpanel', [UserPanel::class,'index'])->name('userpanel.view'); //
 
 Route::get('/image/delete/{id}', [ImageController::class,'delete'])->name('image.delete');
 Route::get('/image/set_main/{id}', [ImageController::class,'set_main'])->name('image.set_main');
+
 //Ogloszenia
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
 Route::any('/ogloszenia/szukaj', [ListingItemController::class,'search'])->name('listing_item.search');
 Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create');
-Route::get('/ogloszenia/edytuj', [ListingItemController::class,'create'])->name('listing_item.edit');
+Route::get('/ogloszenia/edytuj/{id}', [ListingItemController::class,'edit'])->name('listing_item.edit');
+Route::any('/ogloszenia/edytuj_formularz/{id}', [ListingItemController::class,'edit_form'])->name('listing_item.edit_form');
 Route::any('/ogloszenia/dodaj_formularz', [ListingItemController::class,'create_form'])->name('listing_item.create_form');
 Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');

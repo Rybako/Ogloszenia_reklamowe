@@ -17,10 +17,11 @@ class ImageController extends Controller
     }
     function move_rigth(){
 
-    }*/
+    }*/ 
     function set_main($id){
         $image = ListingPictures::find($id);
-        if($image['user_id']==Auth::id()){
+        $listing_item= ListingItem::find($image['listing_item_id']);
+        if(  $listing_item['user_id']==Auth::id()){
             /////////////////////////////////////////////////////
             
             $images = ListingPictures::where('listing_item_id','=',$image['listing_item_id'])->orderBy('order_position', 'asc')->get();
@@ -33,6 +34,7 @@ class ImageController extends Controller
                         $image->update(['order_position' => 0]);
 
                         DB::commit();
+                        return redirect()->back()->with('success', 'Udało się zmienić obrazek.');
                     }
                     catch(Exception $e){
                         DB::rollback();
@@ -40,15 +42,15 @@ class ImageController extends Controller
                     /////////////////////////////
                 }
                 else{
-                    redirect()->back()->with('error', 'Masz tylko 1 obrazek.');
+                    return redirect()->back()->with('error', 'Masz tylko 1 obrazek.');
                 }
             }
     }
     
     function delete($id){
         $image = ListingPictures::find($id);
-        
-        if($image['user_id']==Auth::id()){
+        $listing_item= ListingItem::find($image['listing_item_id']);
+        if(  $listing_item['user_id']==Auth::id()){
             /////////////////////////////////////////////////////
             if($image['order_position']!=0){
             ListingPictures::destroy($image['id']);
@@ -63,6 +65,7 @@ class ImageController extends Controller
                         $images->skip(1)->first()->update(['order_position' => 0]);
                         ListingPictures::destroy($image['id']);
                         DB::commit();
+
                     }
                     catch(Exception $e){
                         DB::rollback();
@@ -70,8 +73,9 @@ class ImageController extends Controller
                     /////////////////////////////
                 }
                 else{
-                    redirect()->back()->with('error', 'Nie można skasować ostatniego obrazka.');
+                    return redirect()->back()->with('error', 'Nie można skasować ostatniego obrazka.');
                 }
+                return redirect()->back();
             }
 
             /////////////////////////////////////////////////////
