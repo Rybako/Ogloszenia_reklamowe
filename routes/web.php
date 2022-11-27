@@ -43,7 +43,7 @@ Route::get('/image/set_main/{id}', [ImageController::class,'set_main'])->name('i
 //Ogloszenia
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
 Route::any('/ogloszenia/szukaj', [ListingItemController::class,'search'])->name('listing_item.search');
-Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create');
+Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create')->middleware('auth');
 Route::get('/ogloszenia/edytuj/{id}', [ListingItemController::class,'edit'])->name('listing_item.edit');
 Route::any('/ogloszenia/edytuj_formularz/{id}', [ListingItemController::class,'edit_form'])->name('listing_item.edit_form');
 Route::any('/ogloszenia/dodaj_formularz', [ListingItemController::class,'create_form'])->name('listing_item.create_form');
