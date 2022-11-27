@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\ListingItem;
 use App\Models\User;
 use App\Models\ListingPictures;
+use Illuminate\Support\Facades\File;
 
 class ImageController extends Controller
 {
@@ -54,6 +55,7 @@ class ImageController extends Controller
             /////////////////////////////////////////////////////
             if($image['order_position']!=0){
             ListingPictures::destroy($image['id']);
+            File::delete(public_path('images').'/'.$image['src']);
             }
             else{
                 $images = ListingPictures::where('listing_item_id','=',$image['listing_item_id'])->orderBy('order_position', 'asc')->get();
@@ -63,23 +65,27 @@ class ImageController extends Controller
                     try{
                         DB::beginTransaction();
                         $images->skip(1)->first()->update(['order_position' => 0]);
+                        $imageName=$image['src'];
                         ListingPictures::destroy($image['id']);
                         DB::commit();
+                        File::delete(public_path('images').'/'.$imageName);
 
                     }
                     catch(Exception $e){
                         DB::rollback();
+                        return redirect()->back()->with('error', 'Coś się nie udało');
                     }
                     /////////////////////////////
                 }
                 else{
                     return redirect()->back()->with('error', 'Nie można skasować ostatniego obrazka.');
                 }
-                return redirect()->back();
+                
             }
+            return redirect()->back()->with('success', 'Skasowano');
 
             /////////////////////////////////////////////////////
-            redirect()->back()->with('success', 'Skasowano');
+            
         }
         else redirect()->back()->with('error', 'Brak zgodności id!');
     }
