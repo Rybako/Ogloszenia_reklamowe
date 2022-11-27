@@ -71,7 +71,7 @@ class ImageController extends Controller
                         File::delete(public_path('images').'/'.$imageName);
 
                     }
-                    catch(Exception $e){
+                    catch(Exception $e){    
                         DB::rollback();
                         return redirect()->back()->with('error', 'Coś się nie udało');
                     }
