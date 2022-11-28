@@ -34,8 +34,34 @@
 					<span>{{$item['address']}}</span>
 					<span>{{$item['price']}} zł/ms</span>
 				</div>
+				 <div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" ></div>
+
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+
+
+<script>
+
+
+console.log(document.getElementById("map").getAttribute("x"))
+const map = L.map('map', {
+  center: [document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")],
+  zoom: 15
+});
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+var marker = L.marker([document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")]);
+
+marker.addTo(map);
+
+    </script>
 			</div>
 		</div>
 	</div>
-		
+
+
 @endsection
+
+
+

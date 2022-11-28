@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+
+   <style type="text/css">
+      body{
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        width: 40vw;
+        height: 40vh;
+      }
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -67,7 +81,7 @@
                                     <a class="dropdown-item" href="{{ route('listing_item.create') }}">                                       Dodaj Ogłoszenie
                                     </a>
                                     <h6 class="dropdown-header">Profil</h6>
-                                    <a class="dropdown-item" href="{{ route('listing_item.create') }}">    
+                                    <a class="dropdown-item" href="{{ route('listing_item.create') }}">
                                     Panel Użytkownika
                                     </a>
                                 </div>

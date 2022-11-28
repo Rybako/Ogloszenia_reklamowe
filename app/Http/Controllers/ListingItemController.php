@@ -38,7 +38,7 @@ class ListingItemController extends Controller
         ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum]]
                                             );
 
-        
+
         //TO je console log list jakbym chciał sobie zobaczyć jak wygląda zapytanie w sql
         error_log($listing_items->toSql());
         error_log((string)$listing_items->getBindings()[0]);
@@ -48,7 +48,7 @@ class ListingItemController extends Controller
         if($sort == 'new') $listing_items= $listing_items ->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         if($sort == 'cheap') $listing_items= $listing_items ->orderBy('price', 'asc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         if($sort == 'expensive') $listing_items= $listing_items ->orderBy('price', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
-        
+
         foreach($listing_items as $key=>$item){
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
@@ -103,8 +103,8 @@ class ListingItemController extends Controller
             'add_date' => $add_date,
             'expiration_date' =>  $expiration_date,
             'user_id' => Auth::id(),// in this place will be email taken from user.email field if logged in or from email given by user if not logged, remember to check if it doesnt exist as registered
-            'position_X' => '1234',// position x for map addon
-            'position_Y' => '543321' // position y for map addon
+            'position_X' => 54, // position x for map addon
+            'position_Y' => 29, // position y for map addon
             ]
         );
         foreach($images as $key => $imageName){
@@ -159,7 +159,7 @@ class ListingItemController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        
+
         if(ListingItem::find($id)['user_id']==Auth::id()){
         $id = ListingItem::where('id',$id)->update(
             [
