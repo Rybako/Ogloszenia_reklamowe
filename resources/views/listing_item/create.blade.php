@@ -114,6 +114,8 @@
                                 </div>
                             @endif
                         </div>
+                        <input type="hidden"  name="lat" id="lat"> </input>
+                        <input type="hidden"  name="lng" id="lng"> </input>
 
                     </form>
                     <div id="map" ></div>
@@ -135,10 +137,31 @@ const map = L.map('map', {
   zoom: 5
 });
 
+var marker = L.marker();
+
+function onMapClick(e) {
+    marker
+        .setLatLng(e.latlng)
+        .addTo(map);
+        console.log(marker.getLatLng())
+        const {lat,lng} = marker.getLatLng()
+        document.getElementById("lat").value=lat
+        document.getElementById("lng").value=lng
+
+
+}
+
+
+map.on('click', onMapClick);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+
 L.Control.geocoder().addTo(map);
 L.control.locate().addTo(map);
+
+
+
+
 
 
 
