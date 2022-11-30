@@ -67,6 +67,9 @@ class ListingItemController extends Controller
         $height = $create_data->has('height') ? $create_data->get('height') : null;
         $width = $create_data->has('width') ? $create_data->get('width') : null;
         $address = $create_data->has('address') ? $create_data->get('address') : null;
+        $lat = $create_data->has('lat') ? $create_data->get('lat') : null;
+        $lng = $create_data->has('lng') ? $create_data->get('lng') : null;
+
 
         $validator = Validator::make($create_data->all(), [
             'title'=>'required',
@@ -75,7 +78,10 @@ class ListingItemController extends Controller
             'width'=>'required|numeric',
             'address'=>'required',
             'images' => 'required',
-            'images.*' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'images.*' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'lat'=>'required',
+            'lng'=>'required'
+
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -103,8 +109,8 @@ class ListingItemController extends Controller
             'add_date' => $add_date,
             'expiration_date' =>  $expiration_date,
             'user_id' => Auth::id(),// in this place will be email taken from user.email field if logged in or from email given by user if not logged, remember to check if it doesnt exist as registered
-            'position_X' => 54, // position x for map addon
-            'position_Y' => 29, // position y for map addon
+            'position_X' => floatval($lat), // position x for map addon
+            'position_Y' => floatval($lng), // position y for map addon
             ]
         );
         foreach($images as $key => $imageName){
@@ -119,6 +125,7 @@ class ListingItemController extends Controller
         DB::commit();
         }catch(Exception $e){
             DB::rollback();
+            var_dump($e); die(); //jakby sie wyjebalo to bd wiadomo co
 
         }
 
