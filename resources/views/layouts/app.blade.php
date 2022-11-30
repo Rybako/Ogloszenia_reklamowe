@@ -15,6 +15,18 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        .thumb-post img {
+            object-fit: cover; /* Do not scale the image */
+            object-position: center; /* Center the image within the element */
+            width: 400px;
+            height: 300px;
+            max-height: 250px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
