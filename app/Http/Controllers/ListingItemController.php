@@ -95,7 +95,6 @@ class ListingItemController extends Controller
         foreach($create_data->images as $key => $image){
             $imageName = time().'_'.$key.'.'.$image->extension();
             $images[$key]=$imageName;
-            $create_data->images[$key]->move(public_path('images'), $imageName);
         }
         try{
             DB::beginTransaction();
@@ -121,6 +120,9 @@ class ListingItemController extends Controller
             'src' => $imageName
             ]
         );
+        if($id!= null){
+            $create_data->images[$key]->move(public_path('images'), $images[$key]);
+        }
         }
         DB::commit();
         }catch(Exception $e){
@@ -154,7 +156,7 @@ class ListingItemController extends Controller
         $height = $create_data->has('height') ? $create_data->get('height') : null;
         $width = $create_data->has('width') ? $create_data->get('width') : null;
         $address = $create_data->has('address') ? $create_data->get('address') : null;
-        $id = $create_data->has('id') ? $create_data->get('id') : null;
+        
         $validator = Validator::make($create_data->all(), [
             'title'=>'required',
             'price'=>'required|numeric',
@@ -168,7 +170,8 @@ class ListingItemController extends Controller
 
 
         if(ListingItem::find($id)['user_id']==Auth::id()){
-        $id = ListingItem::where('id',$id)->update(
+            
+        ListingItem::where('id',$id)->update(
             [
             'title' => $title,
             'price' => $price,
@@ -177,6 +180,36 @@ class ListingItemController extends Controller
             'address' => $address
             ]
         );
+
+        $images=[];
+        if($create_data->images!=null)
+        foreach($create_data->images as $key => $image){
+            $imageName = time().'_'.$key.'.'.$image->extension();
+            $images[$key]=$imageName;
+
+        }
+        try{
+            DB::beginTransaction();
+            $position=ListingPictures::where('listing_item_id',$id)->max('order_position');
+            foreach($images as $key => $imageName){
+                ListingPictures::insertGetId(
+                    [
+                    'listing_item_id' => $id,
+                    'order_position' => (int)$position+(int)$key+1,
+                    'src' => $imageName
+                    ]
+                );
+            if($id!= null){
+                $create_data->images[$key]->move(public_path('images'), $images[$key]);
+            }
+            }
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollback();
+            var_dump($e); die(); //jakby sie wyjebalo to bd wiadomo co
+
+        }   
     }
     return redirect()->back();
     }

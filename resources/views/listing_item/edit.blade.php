@@ -115,10 +115,8 @@
                                                             @endif
                                                             @if($image['order_position']!=0)
                                                                 <a href="{{ route('image.set_main',$image['id']) }}" class="btn btn-success">Ustaw jako zdjęcie główne</a>
-                                                            @endif
-                                                            @if($image['order_position']==0)
-                                                                <div class="btn btn-secondary">Ustaw jako zdjęcie główne</div>
-                                                            @endif
+                                                            @endif  
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -142,9 +140,7 @@
                                 @endif
 
                                 @if(session()->has('success'))
-                                    <div class="col-md-6 offset-md-4"><br>
-                                        <a href="{{ route('listing_item.view',['id'=>session('id')]) }}" class="btn btn-success form-control">Kilknij aby przejść do utworzonego ogłoszenia</a>
-                                    </div>
+                                {{ session()->get('success') }}
                                 @endif
                             </div>
                             
