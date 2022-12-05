@@ -44,11 +44,17 @@
         }
 
         .carousel {
-            width:640px;
-            height:70vh;
+            height:50vh;
+            overflow: hidden;
         }
 
-        .carousel-img {
+        .carousel-hud {
+            opacity: 1;
+        }
+
+        .carousel:hover .carousel-hud {
+            background: rgb(255, 255, 255);
+            opacity: 0.7;
         }
 
     </style>
