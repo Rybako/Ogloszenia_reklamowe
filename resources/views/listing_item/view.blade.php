@@ -3,7 +3,7 @@
 
 	<div class="containter" style="">
 		<div class="row">
-			<div id="carouselExampleControls" class="carousel carousel-dark col-xl-6 d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
+			<div id="carouselExampleControls" class="carousel carousel-dark col-xl-8 d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
 				<div class="carousel-indicators" >
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 					
@@ -35,7 +35,31 @@
 				</button>
 			</div>
 
-			<div class="col-xl-6">
+			<div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" class="col-xl-4"></div>
+
+				<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+				integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+				crossorigin=""></script>
+
+				<script>
+
+					console.log(document.getElementById("map").getAttribute("x"))
+					const map = L.map('map', {
+					center: [document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")],
+					zoom: 15
+					});
+
+					L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+					var marker = L.marker([document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")]);
+
+					marker.addTo(map);
+
+				</script>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xl-8">
 				<h1>{{$item['title']}}</h3>
 				<span class="text-muted">Dodano: {{$item['add_date']}}</span>
 				<h3><span>Wymiary: {{$item['width']}}x{{$item['height']}}m</span></h1>
@@ -43,39 +67,6 @@
 					<span>{{$item['address']}}</span>
 					<span>{{$item['price']}} zł/ms</span>
 				</div>
-
-				
-				
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-4">
-				<div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" ></div>
-
-					<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-					integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-					crossorigin=""></script>
-
-					<script>
-
-						console.log(document.getElementById("map").getAttribute("x"))
-						const map = L.map('map', {
-						center: [document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")],
-						zoom: 15
-						});
-
-						L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-						var marker = L.marker([document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")]);
-
-						marker.addTo(map);
-
-					</script>
-				</div>
-			</div>
-
-			<div class="col-8" style="background-color: black;">
-				test
 			</div>
 		</div>
 	</div>

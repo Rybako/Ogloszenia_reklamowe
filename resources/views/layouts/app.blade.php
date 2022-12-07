@@ -12,10 +12,7 @@
         margin: 0;
         padding: 0;
       }
-      #map {
-        width: 40vw;
-        height: 40vh;
-      }
+      
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

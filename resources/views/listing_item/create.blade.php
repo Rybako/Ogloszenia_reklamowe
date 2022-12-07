@@ -98,7 +98,7 @@
                         <!-- MAPA -->
                         <div class="row">
                             <div class="col">
-                                <div id="map"></div>
+                                <div id="map" style="width: 50vw; height: 50vh"></div>
                             </div>
                         </div>
 
@@ -122,8 +122,8 @@
                             @endif
                         </div>
 
-                        <input type="hidden"  name="lat" id="lat"> </input>
-                        <input type="hidden"  name="lng" id="lng"> </input>
+                        <input type="hidden"  name="lat" id="lat">
+                        <input type="hidden"  name="lng" id="lng">
 
                     </form>
 
