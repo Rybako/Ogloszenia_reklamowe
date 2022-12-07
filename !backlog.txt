@@ -10,7 +10,8 @@ większe funkcjonalności:
 
 mniejsze funkcjonalności:
 
-- nazwa użytkownika, numer telefonu i email użytkownika powinien wyświetlać się w ogłoszeniu
+- do przestawienia przycisk "przejdź do utworzonego ogłoszenia" (np. wyskakujące okno)
+- do sprawdzenia wszystkie treści błędó w formularzach
 - pole adres z wyszukiwaniem konkretnego adresu zamiast wpisywania stringa
 - pole wyszukaj w odległości od adresu
 - duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu

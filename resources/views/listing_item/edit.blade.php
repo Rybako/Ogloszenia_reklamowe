@@ -6,14 +6,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Edytuj ogłoszenie') }}</div>
+                    <div class="card-header">Edytuj ogłoszenie</div>
 
                     <div class="card-body">
                         <form action="{{ route('listing_item.edit_form', $item['id']) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('Tytuł') }}</label>
+                                <label for="title" class="col-md-4 col-form-label text-md-end">Tytuł</label>
 
                                 <div class="col-md-6">
                                     <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$item['title']}}" required autocomplete="title" autofocus>
@@ -27,7 +27,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="price" class="col-md-4 col-form-label text-md-end">{{ __('Cena') }}</label>
+                                <label for="price" class="col-md-4 col-form-label text-md-end">Cena</label>
 
                                 <div class="col-md-6">
                                     <input id="price" type="number" min="0" step="0.1" class="form-control @error('price') is-invalid @enderror" name="price" value="{{$item['price']}}" required autocomplete="price">
@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="height" class="col-md-4 col-form-label text-md-end">{{ __('Wysokość') }}</label>
+                                <label for="height" class="col-md-4 col-form-label text-md-end">Wysokość</label>
 
                                 <div class="col-md-6">
                                     <input id="height" type="number" min="1" class="form-control @error('height') is-invalid @enderror" name="height" value="{{$item['height']}}" required autocomplete="height" autofocus>
@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="width" class="col-md-4 col-form-label text-md-end">{{ __('Szerokość') }}</label>
+                                <label for="width" class="col-md-4 col-form-label text-md-end">Szerokość</label>
 
                                 <div class="col-md-6">
                                     <input id="width" type="number" min="1" class="form-control @error('width') is-invalid @enderror" name="width" value="{{$item['width']}}" required autocomplete="width" autofocus>
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Adres') }}</label>
+                                <label for="address" class="col-md-4 col-form-label text-md-end">Adres</label>
 
                                 <div class="col-md-6">
                                     <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{$item['address']}}" required autocomplete="address" autofocus>
@@ -94,7 +94,7 @@
                                 </textarea>
 
                             <div class="row mb-3">
-                                <label for="images[]" class="col-md-4 col-form-label text-md-end">{{ __('Zdjęcia') }}</label>
+                                <label for="images[]" class="col-md-4 col-form-label text-md-end">Zdjęcia</label>
 
                                 <div class="col-md-6">
                                     <input id="images[]" type="file" class="form-control @error('images[]') is-invalid @enderror" name="images[]" autofocus multiple>

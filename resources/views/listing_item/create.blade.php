@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dodaj ogłoszenie') }}</div>
+                <div class="card-header">Dodaj ogłoszenie</div>
 
                 <div class="card-body">
                     <form action="{{ route('listing_item.create_form') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('Tytuł') }}</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-end">Tytuł</label>
 
                             <div class="col-md-6">
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
@@ -26,10 +26,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="price" class="col-md-4 col-form-label text-md-end">{{ __('Cena') }}</label>
+                            <label for="price" class="col-md-4 col-form-label text-md-end">Cena</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" min="0" step="0.1" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price">
+                                <input id="price" type="number" min="0" step="0.1" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required>
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -40,10 +40,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="height" class="col-md-4 col-form-label text-md-end">{{ __('Wysokość') }}</label>
+                            <label for="height" class="col-md-4 col-form-label text-md-end">Wysokość</label>
 
                             <div class="col-md-6">
-                                <input id="height" type="number" min="1" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') }}" required autocomplete="height" autofocus>
+                                <input id="height" type="number" min="1" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') }}" required>
 
                                 @error('height')
                                     <span class="invalid-feedback" role="alert">
@@ -54,10 +54,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="width" class="col-md-4 col-form-label text-md-end">{{ __('Szerokość') }}</label>
+                            <label for="width" class="col-md-4 col-form-label text-md-end">Szerokość</label>
 
                             <div class="col-md-6">
-                                <input id="width" type="number" min="1" class="form-control @error('width') is-invalid @enderror" name="width" value="{{ old('width') }}" required autocomplete="width" autofocus>
+                                <input id="width" type="number" min="1" class="form-control @error('width') is-invalid @enderror" name="width" value="{{ old('width') }}" required>
 
                                 @error('width')
                                     <span class="invalid-feedback" role="alert">
@@ -68,10 +68,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Adres') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-end">Adres</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -80,33 +80,45 @@
                                 @enderror
                             </div>
                         </div>
-                        
-
-                        <select id="category" name="category" value="{{old('category')}}">
-                            <option value="Kategoria1">Kategoria1</option>
-                            <option value="Kategoria2">Kategoria2</option>
-                            <option value="Kategoria3">Kategoria3</option>
-                            <option value="Kategoria4">Kategoria4</option>
-                        </select>
-                        @error('category')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        <textarea id="content" name="content" rows="4" cols="50" class="form-control @error('content') is-invalid @enderror"  value="{{ old('content') }}" required>
-                            Text Ogłoszenia
-                            </textarea>
-                            @error('content')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
 
                         <div class="row mb-3">
-                            <label for="images[]" class="col-md-4 col-form-label text-md-end">{{ __('Zdjęcia') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-end">Typ</label>
 
                             <div class="col-md-6">
-                                <input id="images[]" type="file" class="form-control @error('images[]') is-invalid @enderror" name="images[]" value="{{ old('images[]') }}" required autocomplete="images[]" autofocus multiple>
+                                <select id="category" class="form-control @error('content') is-invalid @enderror" name="category" value="{{old('category')}}" required>
+                                    <option value="Kategoria1">Kategoria1</option>
+                                    <option value="Kategoria2">Kategoria2</option>
+                                    <option value="Kategoria3">Kategoria3</option>
+                                    <option value="Kategoria4">Kategoria4</option>
+                                </select>
+                                @error('category')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="address" class="col-md-4 col-form-label text-md-end">Opis</label>
+
+                            <div class="col-md-6">
+                                
+                                <textarea id="content" name="content" rows="4" cols="50" class="form-control @error('content') is-invalid @enderror"  value="{{ old('content') }}" placeholder="Opis ogłoszenia" required></textarea>
+
+                                @error('content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="images[]" class="col-md-4 col-form-label text-md-end">Zdjęcia</label>
+
+                            <div class="col-md-6">
+                                <input id="images[]" type="file" class="form-control @error('images[]') is-invalid @enderror" name="images[]" value="{{ old('images[]') }}" required multiple>
 
                                 @error('images[]')
                                     <span class="invalid-feedback" role="alert">
