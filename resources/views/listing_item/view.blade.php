@@ -42,13 +42,15 @@
 				<div class="align-text-bottom">
 					<span>{{$item['address']}}</span>
 					<span>{{$item['price']}} zł/ms</span>
-					
+					{{$item['content']}}
+					{{$item['category']}}
 				</div>
 
 				
 				{{$user['name']}}
 				{{$user['email']}}
 				{{$user['phone_number']}}
+				
 				<a href="{{route('user.view', $user['id'])}}">Link do user ogłoszenia nwm czy działa</a>
 
 
