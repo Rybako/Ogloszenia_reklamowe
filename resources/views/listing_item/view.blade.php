@@ -3,14 +3,23 @@
 
 	<div class="containter">
 		<div class="row">
-			<div id="carouselExampleControls" class="carousel col-6" data-bs-ride="carousel">
+			<div id="carouselExampleControls" class="carousel carousel-dark col-6 d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					
+					@foreach($images as $key=>$image)
+						@if($key!=0)
+							<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$key}}"></button>
+						@endif
+					@endforeach
+				  </div>
 				<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img src=" {{ asset('images/'.$images[0]['src']) }}" class="d-block w-100" alt="...">
 				</div>
 				@foreach($images as $key=>$image)
 					@if($key!=0)
-						<div class="carousel-item">
+						<div class="carousel-item" >
 							<img src=" {{ asset('images/'.$image['src']) }}" class="d-block w-100" alt="...">
 						</div>
 					@endif
@@ -45,26 +54,25 @@
 
 				 <div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" ></div>
 
- <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-     crossorigin=""></script>
+				<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+				integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+				crossorigin=""></script>
 
+				<script>
 
-<script>
+					console.log(document.getElementById("map").getAttribute("x"))
+					const map = L.map('map', {
+					center: [document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")],
+					zoom: 15
+					});
 
+					L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+					var marker = L.marker([document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")]);
 
-console.log(document.getElementById("map").getAttribute("x"))
-const map = L.map('map', {
-  center: [document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")],
-  zoom: 15
-});
+					marker.addTo(map);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-var marker = L.marker([document.getElementById("map").getAttribute("x"), document.getElementById("map").getAttribute("y")]);
-
-marker.addTo(map);
-
-    </script>
+				</script>
+				
 			</div>
 		</div>
 	</div>

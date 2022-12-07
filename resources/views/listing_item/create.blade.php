@@ -116,6 +116,13 @@
                             </div>
                         </div>
 
+                        <!-- MAPA -->
+                        <div class="row">
+                            <div class="col">
+                                <div id="map"></div>
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -141,26 +148,23 @@
                         <input type="hidden"  name="position_Y" id="position_Y" value="12"> 
 
                     </form>
-                    <div id="map" ></div>
 
- <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-     crossorigin=""></script>
+                    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+                        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+                        crossorigin=""></script>
 
-<script src="https://cdn.jsdelivr.net/npm/leaflet-search@3.0.5/dist/leaflet-search.src.js" integrity="sha256-iMrQwQNA33R07kJCTZcXDL3+RUJe0j9W9mY+RZEbUe4=" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/leaflet-search@3.0.5/dist/leaflet-search.src.js" integrity="sha256-iMrQwQNA33R07kJCTZcXDL3+RUJe0j9W9mY+RZEbUe4=" crossorigin="anonymous"></script>
+                    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js"></script>
 
-<script>
+                    <script>
 
+                        const map = L.map('map', {
+                        center: [52, 17],
+                        zoom: 6
+                        });
 
-
-const map = L.map('map', {
-  center: [29.50, 22.40],
-  zoom: 5
-});
-
-var marker = L.marker();
+                        var marker = L.marker();
 
 function onMapClick(e) {
     marker
@@ -172,23 +176,16 @@ function onMapClick(e) {
         document.getElementById("position_Y").value=lng
 
 
-}
+                        }
 
+                        map.on('click', onMapClick);
 
-map.on('click', onMapClick);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+                        L.Control.geocoder().addTo(map);
+                        L.control.locate().addTo(map);
 
-L.Control.geocoder().addTo(map);
-L.control.locate().addTo(map);
-
-
-
-
-
-
-
-</script>
+                    </script>
                 </div>
             </div>
         </div>

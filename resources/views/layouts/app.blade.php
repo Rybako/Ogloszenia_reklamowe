@@ -42,6 +42,15 @@
             overflow: hidden;
             margin-bottom: 1rem;
         }
+
+        .carousel {
+            width:640px;
+            height:70vh;
+        }
+
+        .carousel-img {
+        }
+
     </style>
 </head>
 <body>

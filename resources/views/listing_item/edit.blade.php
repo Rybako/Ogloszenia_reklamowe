@@ -126,8 +126,10 @@
                                                             @endif
                                                             @if($image['order_position']!=0)
                                                                 <a href="{{ route('image.set_main',$image['id']) }}" class="btn btn-success">Ustaw jako zdjęcie główne</a>
-                                                            @endif  
-
+                                                            @endif
+                                                            @if($image['order_position']==0)
+                                                                <div class="btn btn-secondary" style="pointer-events: none"><i>Ustawiono jako zdjęcie główne</i></div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
