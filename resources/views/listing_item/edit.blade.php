@@ -82,6 +82,17 @@
                                 </div>
                             </div>
 
+                            <select id="category" name="category">
+                                <option @if($item['category']=="Kategoria1") selected @endif value="Kategoria1">Kategoria1</option>
+                                <option @if($item['category']=="Kategoria2") selected @endif value="Kategoria2">Kategoria2</option>
+                                <option @if($item['category']=="Kategoria3") selected @endif value="Kategoria3">Kategoria3</option>
+                                <option @if($item['category']=="Kategoria4") selected @endif value="Kategoria4">Kategoria4</option>
+                            </select>
+                            
+                            <textarea id="content" name="content" rows="4" cols="50" class="form-control @error('content') is-invalid @enderror"  value="{{ old('content') }}" required>
+                                Text Ogłoszenia
+                                </textarea>
+
                             <div class="row mb-3">
                                 <label for="images[]" class="col-md-4 col-form-label text-md-end">{{ __('Zdjęcia') }}</label>
 

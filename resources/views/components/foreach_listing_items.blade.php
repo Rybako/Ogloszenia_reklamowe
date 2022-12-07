@@ -11,9 +11,10 @@
 				<div class="card-body">
 					<h3 class="card-title">{{$item['title']}}</h3>
 					<p class="card-text"><small class="text-muted">{{$item['add_date']}}</small></p>
+					{{$item['category']}}
 				</div>
 				<div class="">
-					<p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+					<p>Tu był jakiś długi tekst ale jnie wiem po co ony był wieć wppisuje poodbąną długą linijke tesktu.</p>
 				</div>
 			</div>
 			</div>

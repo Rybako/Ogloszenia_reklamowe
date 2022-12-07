@@ -80,6 +80,27 @@
                                 @enderror
                             </div>
                         </div>
+                        
+
+                        <select id="category" name="category" value="{{old('category')}}">
+                            <option value="Kategoria1">Kategoria1</option>
+                            <option value="Kategoria2">Kategoria2</option>
+                            <option value="Kategoria3">Kategoria3</option>
+                            <option value="Kategoria4">Kategoria4</option>
+                        </select>
+                        @error('category')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        <textarea id="content" name="content" rows="4" cols="50" class="form-control @error('content') is-invalid @enderror"  value="{{ old('content') }}" required>
+                            Text Ogłoszenia
+                            </textarea>
+                            @error('content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
 
                         <div class="row mb-3">
                             <label for="images[]" class="col-md-4 col-form-label text-md-end">{{ __('Zdjęcia') }}</label>
@@ -105,7 +126,9 @@
 
                         <div class="row mb-0">
                             @if(session()->has('error'))
+                            <div class="col-md-6 offset-md-4"><br>
                                     {{ session()->get('error') }}
+                            </div>
                             @endif
 
                             @if(session()->has('success'))
@@ -114,8 +137,8 @@
                                 </div>
                             @endif
                         </div>
-                        <input type="hidden"  name="lat" id="lat"> </input>
-                        <input type="hidden"  name="lng" id="lng"> </input>
+                        <input type="hidden"  name="position_X" id="position_X" value="12">
+                        <input type="hidden"  name="position_Y" id="position_Y" value="12"> 
 
                     </form>
                     <div id="map" ></div>
@@ -145,8 +168,8 @@ function onMapClick(e) {
         .addTo(map);
         console.log(marker.getLatLng())
         const {lat,lng} = marker.getLatLng()
-        document.getElementById("lat").value=lat
-        document.getElementById("lng").value=lng
+        document.getElementById("position_X").value=lat
+        document.getElementById("position_Y").value=lng
 
 
 }
