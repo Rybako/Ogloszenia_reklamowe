@@ -19,7 +19,7 @@ class ListingItemController extends Controller
     //
 
     function index(){ // Domyślny widok ogłoszeń wyswietla określoną liczbę ostatnio dodanych
-        $listing_items = ListingItem::where('category','=','Kategoria1')->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
+        $listing_items = ListingItem::orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         foreach($listing_items as $key=>$item){
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
@@ -34,10 +34,12 @@ class ListingItemController extends Controller
         $width_minimum = $search_data->has('width_min') ? $search_data->get('width_min') : 0;
         $category = $search_data->has('category') ? $search_data->get('category') : 0;
         $sort = $search_data->has('sort') ? $search_data->get('sort') : 'new';
+        //$category ='Wszystkie Kategorie';
 
         $listing_items = ListingItem::where( [['price', '>=', (int)$price_minimum], ['price', '<=', (int)$price_maximum],
-        ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum], ['category','=', $category]]
+        ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum]]
                                             );
+        if($category!='Wszystkie Kategorie') $listing_items= $listing_items->where('category','=', $category);
 
 
         //TO je console log list jakbym chciał sobie zobaczyć jak wygląda zapytanie w sql
