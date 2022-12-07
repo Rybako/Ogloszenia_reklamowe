@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id()->unique();
             $table->string('title');
             $table->string('address');
-            $table->string('content');
+            $table->string('content', 600);
             $table->string('category');
             $table->integer('user_id'); //id uzytkownika ktory wystawil ogloszenie
             $table->integer('width');
