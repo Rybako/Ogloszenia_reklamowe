@@ -68,6 +68,12 @@
 					<span>{{$item['price']}} zł/ms</span>
 				</div>
 			</div>
+
+			<div class="col-xl-4">
+				<a href="{{route('user.view', $user['id'])}}">{{$user['name']}}</a>
+				{{$user['email']}}
+				{{$user['phone_number']}}
+			</div>
 		</div>
 	</div>
 
