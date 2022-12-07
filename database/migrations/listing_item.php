@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('listing_item', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('title');
+            $table->string('address');
+            $table->string('content');
+            $table->string('category');
             $table->integer('user_id'); //id uzytkownika ktory wystawil ogloszenie
             $table->integer('width');
             $table->integer('height');
             $table->integer('price');
-            $table->string('address');
             $table->double('position_X'); //do znaczników
             $table->double('position_Y');
             $table->date('add_date');

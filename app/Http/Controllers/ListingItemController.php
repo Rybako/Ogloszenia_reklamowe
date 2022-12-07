@@ -19,7 +19,7 @@ class ListingItemController extends Controller
     //
 
     function index(){ // Domyślny widok ogłoszeń wyswietla określoną liczbę ostatnio dodanych
-        $listing_items = ListingItem::orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
+        $listing_items = ListingItem::where('category','=','Kategoria1')->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         foreach($listing_items as $key=>$item){
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
@@ -32,10 +32,11 @@ class ListingItemController extends Controller
         $price_maximum = $search_data->has('price_max') ? $search_data->get('price_max') : 999999;
         $height_minimum = $search_data->has('height_min') ? $search_data->get('height_min') : 0;
         $width_minimum = $search_data->has('width_min') ? $search_data->get('width_min') : 0;
+        $category = $search_data->has('category') ? $search_data->get('category') : 0;
         $sort = $search_data->has('sort') ? $search_data->get('sort') : 'new';
 
         $listing_items = ListingItem::where( [['price', '>=', (int)$price_minimum], ['price', '<=', (int)$price_maximum],
-        ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum]]
+        ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum], ['category','=', $category]]
                                             );
 
 
@@ -67,10 +68,10 @@ class ListingItemController extends Controller
         $height = $create_data->has('height') ? $create_data->get('height') : null;
         $width = $create_data->has('width') ? $create_data->get('width') : null;
         $address = $create_data->has('address') ? $create_data->get('address') : null;
-        $lat = $create_data->has('lat') ? $create_data->get('lat') : null;
-        $lng = $create_data->has('lng') ? $create_data->get('lng') : null;
-
-
+        $position_X = $create_data->has('position_X') ? $create_data->get('position_X') : null;
+        $position_Y = $create_data->has('position_Y') ? $create_data->get('position_Y') : null;
+        $category = $create_data->has('category') ? $create_data->get('category') : null;
+        $content = $create_data->has('content') ? $create_data->get('content') : null;
         $validator = Validator::make($create_data->all(), [
             'title'=>'required',
             'price'=>'required|numeric',
@@ -79,11 +80,16 @@ class ListingItemController extends Controller
             'address'=>'required',
             'images' => 'required',
             'images.*' => 'required|image|mimes:png,jpg,jpeg|max:2048',
-            'lat'=>'required',
-            'lng'=>'required'
+            'position_X'=>'required',
+            'position_Y'=>'required',
+            'category'=>'required',
+            'content' => 'required'
 
         ]);
+
         if ($validator->fails()) {
+
+            error_log(json_encode($create_data->all()));
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $images=[];
@@ -108,8 +114,10 @@ class ListingItemController extends Controller
             'add_date' => $add_date,
             'expiration_date' =>  $expiration_date,
             'user_id' => Auth::id(),// in this place will be email taken from user.email field if logged in or from email given by user if not logged, remember to check if it doesnt exist as registered
-            'position_X' => floatval($lat), // position x for map addon
-            'position_Y' => floatval($lng), // position y for map addon
+            'position_X' => floatval($position_X), // position x for map addon
+            'position_Y' => floatval($position_Y), // position y for map addon,
+            'content' => $content,
+            'category' => $category
             ]
         );
         foreach($images as $key => $imageName){
@@ -141,7 +149,8 @@ class ListingItemController extends Controller
     function view($id){
         $item = ListingItem::where('id', $id)->first();
         $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
-        $user = User::where('id',$item['user_id'])->first();
+        $user = User::select('id','name','email','phone_number')->where('id',$item['user_id'])->first();
+        
         return view('listing_item/view',['item' => $item,'images' => $images, 'user' => $user]);
     }
     function edit($id){
@@ -156,13 +165,17 @@ class ListingItemController extends Controller
         $height = $create_data->has('height') ? $create_data->get('height') : null;
         $width = $create_data->has('width') ? $create_data->get('width') : null;
         $address = $create_data->has('address') ? $create_data->get('address') : null;
-        
+        $category = $create_data->has('category') ? $create_data->get('category') : null;
+        $content = $create_data->has('content') ? $create_data->get('content') : null;
+
         $validator = Validator::make($create_data->all(), [
             'title'=>'required',
             'price'=>'required|numeric',
             'height'=>'required|numeric',
             'width'=>'required|numeric',
-            'address'=>'required'
+            'address'=>'required',
+            'category'=>'required',
+            'content' => 'required'
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -177,7 +190,9 @@ class ListingItemController extends Controller
             'price' => $price,
             'height' => $height,
             'width' => $width,
-            'address' => $address
+            'address' => $address,
+            'category' => $category,
+            'content' => $content
             ]
         );
 

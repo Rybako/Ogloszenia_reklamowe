@@ -42,9 +42,19 @@
 				<div class="align-text-bottom">
 					<span>{{$item['address']}}</span>
 					<span>{{$item['price']}} zł/ms</span>
+					{{$item['content']}}
+					{{$item['category']}}
 				</div>
 
-				<div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" ></div>
+				
+				{{$user['name']}}
+				{{$user['email']}}
+				{{$user['phone_number']}}
+				
+				<a href="{{route('user.view', $user['id'])}}">Link do user ogłoszenia nwm czy działa</a>
+
+
+				 <div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" ></div>
 
 				<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
 				integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
