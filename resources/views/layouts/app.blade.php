@@ -12,10 +12,7 @@
         margin: 0;
         padding: 0;
       }
-      #map {
-        width: 40vw;
-        height: 40vh;
-      }
+      
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,11 +41,17 @@
         }
 
         .carousel {
-            width:640px;
-            height:70vh;
+            height:50vh;
+            overflow: hidden;
         }
 
-        .carousel-img {
+        .carousel-hud {
+            opacity: 1;
+        }
+
+        .carousel:hover .carousel-hud {
+            background: rgb(255, 255, 255);
+            opacity: 0.7;
         }
 
     </style>

@@ -131,7 +131,7 @@
                         <!-- MAPA -->
                         <div class="row">
                             <div class="col">
-                                <div id="map"></div>
+                                <div id="map" style="width: 50vw; height: 50vh"></div>
                             </div>
                         </div>
 
