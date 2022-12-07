@@ -35,16 +35,7 @@
 				</button>
 			</div>
 
-			<div class="col-6">
-				<h1>{{$item['title']}}</h3>
-				<span class="text-muted">Dodano: {{$item['add_date']}}</span>
-				<h3><span>Wymiary: {{$item['width']}}x{{$item['height']}}m</span></h1>
-				<div class="align-text-bottom">
-					<span>{{$item['address']}}</span>
-					<span>{{$item['price']}} zł/ms</span>
-				</div>
-
-				<div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" class="col-xl-4"></div>
+			<div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" class="col-xl-4"></div>
 
 				<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
 				integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
