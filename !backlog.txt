@@ -11,7 +11,8 @@ większe funkcjonalności:
 mniejsze funkcjonalności:
 
 - do przestawienia przycisk "przejdź do utworzonego ogłoszenia" (np. wyskakujące okno)
-- do sprawdzenia wszystkie treści błędó w formularzach
+- do sprawdzenia wszystkie treści błędów w formularzach
+- do poprawy wyświetlanie różnych kształtów zdjęć
 - pole adres z wyszukiwaniem konkretnego adresu zamiast wpisywania stringa
 - pole wyszukaj w odległości od adresu
 - duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu
