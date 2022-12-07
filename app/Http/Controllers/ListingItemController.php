@@ -19,7 +19,7 @@ class ListingItemController extends Controller
     //
 
     function index(){ // Domyślny widok ogłoszeń wyswietla określoną liczbę ostatnio dodanych
-        $listing_items = ListingItem::where('category','=','Kategoria1')->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
+        $listing_items = ListingItem::orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         foreach($listing_items as $key=>$item){
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
