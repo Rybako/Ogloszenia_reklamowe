@@ -14,7 +14,7 @@
 					{{$item['category']}}
 				</div>
 				<div class="">
-					<p>Tu był jakiś długi tekst ale jnie wiem po co ony był wieć wppisuje poodbąną długą linijke tesktu.</p>
+					<p>{{$item['content']}}</p>
 				</div>
 			</div>
 			</div>

@@ -10,9 +10,12 @@ większe funkcjonalności:
 
 mniejsze funkcjonalności:
 
+- podgląd panelu użytkownika - lista własnych ogłoszeń
+- przyciski do edycji/usunięcia/przedłużenia ogłoszenia 
 - do przestawienia przycisk "przejdź do utworzonego ogłoszenia" (np. wyskakujące okno)
 - do sprawdzenia wszystkie treści błędów w formularzach
 - do poprawy wyświetlanie różnych kształtów zdjęć
+- powiększenie zdjęć po kliknięciu
 - pole adres z wyszukiwaniem konkretnego adresu zamiast wpisywania stringa
 - pole wyszukaj w odległości od adresu
 - duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu

@@ -97,7 +97,7 @@ class ListingItemController extends Controller
         $images=[];
         $date = new DateTime();
         $add_date =  $date->format('Y-m-d H:i:s');
-        $date->add(new DateInterval('P10D'));
+        $date->add(new DateInterval('P30D'));
         $expiration_date = $date->format('Y-m-d H:i:s');
         error_log(json_encode($images));
         foreach($create_data->images as $key => $image){
