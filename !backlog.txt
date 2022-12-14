@@ -1,30 +1,36 @@
 większe funkcjonalności:
-
-- panel administracyjny użytkowników/ogłoszeń z poziomu admina
-	- lista użytkowników, możliwość usuwania, blokowania i zmiany roli
-	- usuwanie/blokowanie ogłoszeń - komentarz dla usera i możliwość edycji ogłoszenia
-	- lista ogłoszeń per użytkownik
-- chat między użytkownikami
+	- panel administracyjny użytkowników/ogłoszeń z poziomu admina
+		- lista użytkowników, możliwość usuwania, blokowania i zmiany roli
+		- usuwanie/blokowanie ogłoszeń - komentarz dla usera i możliwość edycji ogłoszenia
+		- lista ogłoszeń per użytkownik
+	- chat między użytkownikami
 
 
 
 mniejsze funkcjonalności:
+	- do przestawienia przycisk "przejdź do utworzonego ogłoszenia" (np. wyskakujące okno)
+	- do sprawdzenia wszystkie treści błędów w formularzach
+	- do poprawy wyświetlanie różnych kształtów zdjęć
+	- powiększenie zdjęć po kliknięciu
+	- pole adres z wyszukiwaniem konkretnego adresu zamiast wpisywania stringa
+	- pole wyszukaj w odległości od adresu
+	- duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu
+	- kliknięcie znacznika na dużej mapie skutkuje czymś (do ustalenia)
+	- walidacja po strone front i back (formularz i zdjęcia - rozmiar zdjęć?)
+	- Auth: przyeciski, powiadomienia, przetłumaczyć na polski-- masa roboty, tu mamy praktycznie nietknięty szablon domyślny wrzucony
 
-- do przestawienia przycisk "przejdź do utworzonego ogłoszenia" (np. wyskakujące okno)
-- do sprawdzenia wszystkie treści błędów w formularzach
-- do poprawy wyświetlanie różnych kształtów zdjęć
-- powiększenie zdjęć po kliknięciu
-- pole adres z wyszukiwaniem konkretnego adresu zamiast wpisywania stringa
-- pole wyszukaj w odległości od adresu
-- duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu
-- kliknięcie znacznika na dużej mapie skutkuje czymś (do ustalenia)
-- walidacja po strone front i back (formularz i zdjęcia - rozmiar zdjęć?)
+do usunięcia?pliki tymczasowe:
+	kontrolery: MapController, HomeController, 
+	Mail: MailTest.php
+	views: emails/index.blade.php, home.blade.php, map.php, welcome.blade.php
 
 
+------------------Marcin------------------
 ja do zrobienia:
 	-kasowanie listing_items
 	-poprawić weryfikacje emaili linki
 	-panel użytkownika - dodać jakiś widok view, usunąć dane usera z userpanel.listing_items
 	-zapamiętywanie filtrów search
+
 ja do zrobienia później:
 	- gdzie hashuje się hasło? i jak jest zgodnie ze sztuką?
