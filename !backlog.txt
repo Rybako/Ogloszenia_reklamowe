@@ -10,8 +10,6 @@ większe funkcjonalności:
 
 mniejsze funkcjonalności:
 
-- podgląd panelu użytkownika - lista własnych ogłoszeń
-- przyciski do edycji/usunięcia/przedłużenia ogłoszenia 
 - do przestawienia przycisk "przejdź do utworzonego ogłoszenia" (np. wyskakujące okno)
 - do sprawdzenia wszystkie treści błędów w formularzach
 - do poprawy wyświetlanie różnych kształtów zdjęć
@@ -21,4 +19,12 @@ mniejsze funkcjonalności:
 - duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu
 - kliknięcie znacznika na dużej mapie skutkuje czymś (do ustalenia)
 - walidacja po strone front i back (formularz i zdjęcia - rozmiar zdjęć?)
-- gdzie hashuje się hasło? i jak jest zgodnie ze sztuką?
+
+
+ja do zrobienia:
+	-kasowanie listing_items
+	-poprawić weryfikacje emaili linki
+	-panel użytkownika - dodać jakiś widok view, usunąć dane usera z userpanel.listing_items
+	-zapamiętywanie filtrów search
+ja do zrobienia później:
+	- gdzie hashuje się hasło? i jak jest zgodnie ze sztuką?
