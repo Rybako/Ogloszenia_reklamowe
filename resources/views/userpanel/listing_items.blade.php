@@ -1,4 +1,15 @@
 
+@extends('layouts.app')
+
+@section('content')
+{{$user['email']}}
+{{$user['name']}}
+{{$user['phone_number']}}
+{{$user['created_at']}}
+
+<hr>
+
+@foreach($listing_items as $item)
 
 <a href="{{route('listing_item.view', $item['id'])}}">
     <div>
@@ -17,3 +28,15 @@
             <a href="{{route('listing_item.add_time', $item['id'])}}" href="">Przedłuż</a>
     </div>
     </a>
+
+    @if (session()->has('success'))
+        <h1>{{ session('success') }}</h1>
+    @endif
+    @if (session()->has('error'))
+        <h1>{{ session('error') }}</h1>
+    @endif
+
+@endforeach
+
+@endsection
+

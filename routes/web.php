@@ -38,7 +38,9 @@ Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view
 
 //Panel użytkownika
 
-Route::get('/userpanel', [UserPanelController::class,'view'])->name('userpanel.view')->middleware('auth'); // tu trzeba będzie zmienić kontroler potem, albo dodać nowy
+Route::get('/userpanel',  function () {
+    return redirect(route('userpanel.listing_items'));
+})->name('userpanel.view')->middleware('auth'); // tu trzeba będzie zmienić kontroler potem, albo dodać nowy
 Route::get('/userpanel/listing_items', [UserPanelController::class,'listing_items'])->name('userpanel.listing_items')->middleware('auth');
 
 //Obrazki

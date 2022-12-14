@@ -241,12 +241,13 @@ class ListingItemController extends Controller
 
         if(ListingItem::find($id)['user_id']==Auth::id()){
             
-           $item= ListingItem::where('id',$id);
-           $item->update(['expiration_date' => $expiration_date]);
+           $item= ListingItem::where('id',$id)->first();
+           $item->expiration_date=$expiration_date;
+           $item->save();
            if($item->wasChanged())
-           redirect()->back()>with('success', 'Poprawnie przedłużono ogłoszenie o id '.$id);
+           return redirect()->back()->with('success', 'Poprawnie przedłużono ogłoszenie o id '.$id);
         else{
-            redirect()->back()>with('error', 'Nie udało się przedłużyć ogłoszenia o id'.$id);
+            return redirect()->back()->with('error', 'Nie udało się przedłużyć ogłoszenia o id'.$id);
         }
             
 

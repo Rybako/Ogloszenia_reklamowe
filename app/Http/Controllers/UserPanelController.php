@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 
 class UserPanelController extends Controller
 {
-    public function view(){
+    public function listing_items(){
         $id = Auth::id();
         $listing_items = ListingItem::where('user_id', $id)->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         $user = User::select('email','name','phone_number','created_at')->where('id', $id)->first();
@@ -21,7 +21,7 @@ class UserPanelController extends Controller
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
 
-        return view('user/view',['listing_items' => $listing_items,'user' => $user]);
+        return view('userpanel/listing_items',['listing_items' => $listing_items,'user' => $user]);
     }
 
 
