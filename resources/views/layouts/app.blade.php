@@ -107,7 +107,7 @@
                                     <a class="dropdown-item" href="{{ route('listing_item.create') }}">                                       Dodaj Ogłoszenie
                                     </a>
                                     <h6 class="dropdown-header">Profil</h6>
-                                    <a class="dropdown-item" href="{{ route('listing_item.create') }}">
+                                    <a class="dropdown-item" href="{{ route('userpanel.view') }}">
                                     Panel Użytkownika
                                     </a>
                                 </div>

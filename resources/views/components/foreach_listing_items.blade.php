@@ -31,6 +31,8 @@
 			<span>{{$item['address']}}</span>
 			<span>{{$item['add_date']}}</span>
 			<span>{{$item['price']}}</span>
+			<span>{{$item['category']}}</span>
+			<span>{{$item['content']}}</span>
 		</div>
 </div>
 </a>

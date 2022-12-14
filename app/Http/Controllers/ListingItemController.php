@@ -230,5 +230,33 @@ class ListingItemController extends Controller
     }
     return redirect()->back();
     }
+    function delete($id){
+    return   redirect()->back();
+    }
+    function add_time($id){
+        $date = new DateTime();
+        $date->add(new DateInterval('P30D'));
+        $expiration_date = $date->format('Y-m-d H:i:s');
+
+
+        if(ListingItem::find($id)['user_id']==Auth::id()){
+            
+           $item= ListingItem::where('id',$id);
+           $item->update(['expiration_date' => $expiration_date]);
+           if($item->wasChanged())
+           redirect()->back()>with('success', 'Poprawnie przedłużono ogłoszenie o id '.$id);
+        else{
+            redirect()->back()>with('error', 'Nie udało się przedłużyć ogłoszenia o id'.$id);
+        }
+            
+
+        
+        }
+        else{
+            redirect()->back()>with('error', 'Niezgodność id użytkownika i edytowanego ogłsozenia');
+        }
+                 
+
+    }
 
 }

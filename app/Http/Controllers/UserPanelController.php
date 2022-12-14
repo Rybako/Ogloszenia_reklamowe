@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
+use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\Models\User;
 use App\Models\ListingItem;
+use App\Models\User;
 use App\Models\ListingPictures;
+use Illuminate\Support\Facades\File;
 
-class UserController extends Controller
+class UserPanelController extends Controller
 {
-    //widok ogłoszeń konkretnego użytkownika
-    public function view($id){
+    public function view(){
+        $id = Auth::id();
         $listing_items = ListingItem::where('user_id', $id)->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         $user = User::select('email','name','phone_number','created_at')->where('id', $id)->first();
 
@@ -22,5 +23,6 @@ class UserController extends Controller
 
         return view('user/view',['listing_items' => $listing_items,'user' => $user]);
     }
- 
+
+
 }
