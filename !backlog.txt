@@ -8,6 +8,9 @@ większe funkcjonalności:
 
 
 mniejsze funkcjonalności:
+	
+	- skalowanie zdjęć które wrzuca użytkownik (dopuszczalna rozdzielczość/waga)
+	- modal przy usuwaniu zdjęć z ogłoszenia
 	- do przestawienia przycisk "przejdź do utworzonego ogłoszenia" (np. wyskakujące okno)
 	- do sprawdzenia wszystkie treści błędów w formularzach
 	- do poprawy wyświetlanie różnych kształtów zdjęć
@@ -24,6 +27,24 @@ do usunięcia?pliki tymczasowe:
 	Mail: MailTest.php
 	views: emails/index.blade.php, home.blade.php, map.php, welcome.blade.php
 
+walidacja:
+ rejestracja:
+	- imię i nazwisko 20 znaków
+	- email 30 znaków
+	- telefon 9 znaków, tylko cyfry
+	- hasło min 8 znaków max 100 znaków, 1 duża, 1 mała, 1 znak specjalny/liczba
+	
+
+ dodawanie ogłoszenia:
+	- tytuł 30 znaków
+	- cena liczba długości 8 znaków, typ danych int
+	- wysokość/szerokość float 3 znaki przed przecinkiem, 2 znaki po przecinku
+	- adres 60 znaków - do ustalenia sposób wprowadzania
+	- opis 1000 znaków
+	- zdjęcia max 6, jpg, jpeg, png - do ustalenia sposób zmniejszania i docelowa rozdzielczość/waga pliku (3mb max)
+
+ edycja ogłoszenia:
+	- sprawdzenie ile zdjęć jest aktualnie wrzuconych - nie może przyjąć sumy większej niż 6
 
 ------------------Marcin------------------
 ja do zrobienia:
