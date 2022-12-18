@@ -138,8 +138,15 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Dodaj ogłoszenie') }}
+                                    Dodaj ogłoszenie
                                 </button>
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Launch demo modal
+                                </button>
+                                
+                                
                             </div>
                         </div>
 
@@ -151,9 +158,36 @@
                             @endif
 
                             @if(session()->has('success'))
-                                <div class="col-md-6 offset-md-4"><br>
+                                <!--<div class="col-md-6 offset-md-4"><br>
                                     <a href="{{ route('listing_item.view',['id'=>session('id')]) }}" class="btn btn-success form-control">Kilknij aby przejść do utworzonego ogłoszenia</a>
+                                </div>-->
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        ...
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </div>
+
+                                
+                                <script>
+                                    $(document).ready(function(){
+                                        $("#exampleModal").modal('show');
+                                    });
+                                </script>
                             @endif
                         </div>
                         <input type="hidden"  name="position_X" id="position_X" value="12">
@@ -178,14 +212,14 @@
 
                         var marker = L.marker();
 
-function onMapClick(e) {
-    marker
-        .setLatLng(e.latlng)
-        .addTo(map);
-        console.log(marker.getLatLng())
-        const {lat,lng} = marker.getLatLng()
-        document.getElementById("position_X").value=lat
-        document.getElementById("position_Y").value=lng
+                        function onMapClick(e) {
+                            marker
+                            .setLatLng(e.latlng)
+                            .addTo(map);
+                            console.log(marker.getLatLng())
+                            const {lat,lng} = marker.getLatLng()
+                            document.getElementById("position_X").value=lat
+                            document.getElementById("position_Y").value=lng
 
 
                         }

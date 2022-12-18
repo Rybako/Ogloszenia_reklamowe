@@ -3,7 +3,7 @@
 
 	<div class="containter" style="">
 		<div class="row">
-			<div id="carouselExampleControls" class="carousel carousel-dark col-xl-8 d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
+			<div id="carouselExampleControls" class="carousel carousel-dark col-xl-8 carousel-mini d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
 				<div class="carousel-indicators" >
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 					
@@ -12,19 +12,24 @@
 							<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$key}}"></button>
 						@endif
 					@endforeach
-				  </div>
-				<div class="carousel-inner" >
-				<div class="carousel-item active" >
-					<img src="{{ asset('images/'.$images[0]['src']) }}" class="d-block w-100" alt="...">
 				</div>
-				@foreach($images as $key=>$image)
-					@if($key!=0)
-						<div class="carousel-item" >
-							<img src=" {{ asset('images/'.$image['src']) }}" class="d-block w-100 " alt="..." >
-						</div>
-					@endif
-				@endforeach
-				</div>
+
+				<a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<div class="carousel-inner" >
+					<div class="carousel-item active">
+						<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+						<img id="Myimg" src="{{ asset('images/'.$images[0]['src']) }}" class="d-block w-100" alt="..." data-bs-toggle="modal" data-bs-target="#exampleModal">
+						</a>
+					</div>
+					@foreach($images as $key=>$image)
+						@if($key!=0)
+							<div class="carousel-item" >
+								<img src=" {{ asset('images/'.$image['src']) }}" class="d-block w-100 " alt="..." >
+							</div>
+						@endif
+					@endforeach
+					</div>
+				</a>
 				<button class="carousel-control-prev carousel-hud" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Previous</span>
@@ -34,6 +39,57 @@
 				<span class="visually-hidden">Next</span>
 				</button>
 			</div>
+
+			<!--Modal-->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-fullscreen">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+					  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<!--Carousel-->
+						<div id="carouselModalControls" class="carousel carousel-dark carousel-max d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
+							<div class="carousel-indicators" >
+								<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+								
+								@foreach($images as $key=>$image)
+									@if($key!=0)
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$key}}"></button>
+									@endif
+								@endforeach
+							</div>
+			
+							<div class="carousel-inner" >
+							<div class="carousel-item active">
+								<img id="Myimg" src="{{ asset('images/'.$images[0]['src']) }}" class="d-block w-100" alt="..." data-bs-toggle="modal" data-bs-target="#exampleModal">
+							</div>
+							@foreach($images as $key=>$image)
+								@if($key!=0)
+									<div class="carousel-item" >
+										<img src=" {{ asset('images/'.$image['src']) }}" class="d-block w-100 " alt="..." >
+									</div>
+								@endif
+							@endforeach
+							</div>
+							<button class="carousel-control-prev carousel-hud" type="button" data-bs-target="#carouselModalControls" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next carousel-hud" type="button" data-bs-target="#carouselModalControls" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					  <button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				  </div>
+				</div>
+			  </div>
 
 			<div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" class="col-xl-4"></div>
 
