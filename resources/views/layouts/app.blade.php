@@ -40,9 +40,26 @@
             margin-bottom: 1rem;
         }
 
-        .carousel {
+        .carousel-mini {
             height:50vh;
             overflow: hidden;
+        }
+
+        .carousel-mini img{
+            object-fit: cover;
+            width: 100%;
+            height: 250px;
+        }
+
+        .carousel-max {
+            object-fit: cover; /* Do not scale the image */
+            object-position: center; 
+            overflow: hidden;
+        }
+
+        .carousel-max img{
+            height: 90vh;
+            object-fit: cover;
         }
 
         .carousel-hud {
