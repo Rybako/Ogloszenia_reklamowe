@@ -129,23 +129,34 @@
                         </div>
 
                         <!-- MAPA -->
-                        <div class="row">
-                            <div class="col">
-                                <div id="map" style="width: 50vw; height: 50vh"></div>
+                        <!--<div class="row mb-3">
+                            <div class="col card">
+                                <div class="card-header">
+                                    Kliknij aby wybrać dokładną lokalizację reklamy:
+                                </div>
+                                        <div id="map" class="form-control" style="width: auto; height: 50vh;"></div>
+                            </div>
+                        </div>-->
+
+                        <!-- MAPA -->
+                        <div class="row mb-3">
+                            <div class="col ">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Kliknij, aby wybrać dokładną lokalizację reklamy:
+                                    </div>
+                                    <div class="">
+                                        <div id="map" class="form-control" style="width: auto; height: 50vh;"></div>
+                                    </div>
+                                <div>
                             </div>
                         </div>
 
-                        <div class="row mb-0">
+                        <div class="row mb-0 mt-3">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Dodaj ogłoszenie
                                 </button>
-
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Launch demo modal
-                                </button>
-                                
                                 
                             </div>
                         </div>
@@ -158,36 +169,31 @@
                             @endif
 
                             @if(session()->has('success'))
-                                <!--<div class="col-md-6 offset-md-4"><br>
-                                    <a href="{{ route('listing_item.view',['id'=>session('id')]) }}" class="btn btn-success form-control">Kilknij aby przejść do utworzonego ogłoszenia</a>
-                                </div>-->
+
+                                <script>
+                                    function closeModal() {
+                                        document.getElementById('exampleModal').style.display = "none";
+                                    }
+                                </script>
 
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: block;">
                                     <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ogłoszenie zostało poprawne</h1>
+                                        <button type="button" id="close" onclick="closeModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                        ...
+                                            <a href="{{ route('listing_item.view',['id'=>session('id')]) }}" class="btn btn-success form-control">
+                                                Przejdź do ogłoszenia
+                                            </a>
                                         </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </div>
                                     </div>
                                 </div>
-
-                                
-                                <script>
-                                    $(document).ready(function(){
-                                        $("#exampleModal").modal('show');
-                                    });
-                                </script>
                             @endif
                         </div>
                         <input type="hidden"  name="position_X" id="position_X" value="12">
@@ -206,7 +212,7 @@
                     <script>
 
                         const map = L.map('map', {
-                        center: [52, 17],
+                        center: [52, 19],
                         zoom: 6
                         });
 

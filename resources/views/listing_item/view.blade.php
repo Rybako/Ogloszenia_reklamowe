@@ -3,6 +3,7 @@
 
 	<div class="containter" style="">
 		<div class="row">
+			<!--CAROUSEL-->
 			<div id="carouselExampleControls" class="carousel carousel-dark col-xl-8 carousel-mini d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
 				<div class="carousel-indicators" >
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -24,7 +25,9 @@
 					@foreach($images as $key=>$image)
 						@if($key!=0)
 							<div class="carousel-item" >
+								<a data-bs-toggle="modal" data-bs-target="#exampleModal">
 								<img src=" {{ asset('images/'.$image['src']) }}" class="d-block w-100 " alt="..." >
+								</a>
 							</div>
 						@endif
 					@endforeach
@@ -40,16 +43,16 @@
 				</button>
 			</div>
 
-			<!--Modal-->
+			<!--Modal carousel max-->
 			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-fullscreen">
 				  <div class="modal-content">
 					<div class="modal-header">
-					  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+					  <h1 class="modal-title fs-5" id="exampleModalLabel">Galeria</h1>
 					  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<!--Carousel-->
+						<!--Carousel max-->
 						<div id="carouselModalControls" class="carousel carousel-dark carousel-max d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
 							<div class="carousel-indicators" >
 								<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -83,14 +86,11 @@
 							</button>
 						</div>
 					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					  <button type="button" class="btn btn-primary">Save changes</button>
-					</div>
 				  </div>
 				</div>
 			  </div>
-
+			
+			<!--MAPA-->
 			<div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" class="col-xl-4"></div>
 
 				<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
@@ -114,21 +114,38 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-xl-8">
-				<h1>{{$item['title']}}</h3>
-				<span class="text-muted">Dodano: {{$item['add_date']}}</span>
-				<h3><span>Wymiary: {{$item['width']}}x{{$item['height']}}m</span></h1>
-				<div class="">
-					<span>{{$item['address']}}</span>
-					<span>{{$item['price']}} zł/ms</span>
+		<div class="row mx-0 mt-3 me-2">
+
+			<div class="card col-xl-8">
+				<h3 class="card-header">{{$item['title']}}</h3>
+				<div class="card-body">
+
+					<h4>
+						<span>{{$item['price']}} zł/ms</span>
+						<span class="float-end"> {{$item['address']}}</span>
+					</h4>
+
+					<h4>
+						<span>{{$item['width']}}x{{$item['height']}}m</span>
+						<span class="float-end">Typ: {{$item['category']}}</span>
+						
+					</h4>
+
+				  <h5 class="card-title"></h5>
+				  <p class="card-text">{{$item['content']}}</p>
+				</div>
+				<div class="card-footer text-muted">
+					Dodano: {{$item['add_date']}}
 				</div>
 			</div>
 
 			<div class="col-xl-4">
-				<a href="{{route('user.view', $user['id'])}}">{{$user['name']}}</a>
-				{{$user['email']}}
-				{{$user['phone_number']}}
+				<h3>Autor</h3>
+				<h4>
+					<a href="{{route('user.view', $user['id'])}}">{{$user['name']}}</a>
+				</h4>
+				<span>{{$user['email']}}</span><br>
+				<span>tel. {{$user['phone_number']}}</span>
 			</div>
 		</div>
 	</div>

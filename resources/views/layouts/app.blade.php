@@ -48,7 +48,7 @@
         .carousel-mini img{
             object-fit: cover;
             width: 100%;
-            height: 250px;
+            height: auto;
         }
 
         .carousel-max {
@@ -69,6 +69,14 @@
         .carousel:hover .carousel-hud {
             background: rgb(255, 255, 255);
             opacity: 0.7;
+        }
+        
+        .listText {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1; /* ilość wyświetlanych linii */
+            -webkit-box-orient: vertical;
         }
 
     </style>
