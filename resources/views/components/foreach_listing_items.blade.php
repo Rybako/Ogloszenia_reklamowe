@@ -1,20 +1,26 @@
 @foreach($listing_items as $item)
 
-<div class="my-1" style=" overflow: hidden;">
+<div class="my-1" style="overflow: hidden;">
 	<a href="{{route('listing_item.view', $item['id'])}}" style="text-decoration:none; color:inherit; ">	
 		<div class="card mb-3">
 			<div class="row g-0">
-			<div class="col-md-3 thumb-post" style="height: 250px;">
-				<img src=" {{ asset('images/'.$item['src']) }}" class="img-fluid rounded-start height: 1px;">
-			</div>
-			<div class="col-md-8 row">
-				<div class="card-body">
-					<h3 class="card-title">{{$item['title']}}</h3>
-					<p class="card-text"><small class="text-muted">{{$item['add_date']}}</small></p>
-					{{$item['category']}}
+				<div class="col-md-3 thumb-post" style="height: 250px;">
+					<img src=" {{ asset('images/'.$item['src']) }}" class="img-fluid rounded-start">
 				</div>
-				<div class="listText">
-					<p>{{$item['content']}}</p>
+			<div class="col row" style="height: 250px;">
+				<div class="card-body cardList">
+					<h3 class="card-title">{{$item['title']}}</h3>
+					<h5>
+						<span>{{$item['price']}} zł/ms</span>
+						<span class="float-end"> {{$item['address']}}</span>
+					</h5>
+
+					<h5>
+						<span>{{$item['width']}}x{{$item['height']}}m</span>
+						<span class="float-end">Typ: {{$item['category']}}</span>
+					</h5>
+					<p class="listText">{{$item['content']}}</p>
+					<span class="text-muted date">Dodano: {{$item['add_date']}}</span>
 				</div>
 			</div>
 		</div>

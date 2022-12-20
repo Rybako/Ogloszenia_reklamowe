@@ -31,8 +31,8 @@
 
     <style>
         .thumb-post img {
-            object-fit: cover; /* Do not scale the image */
-            object-position: center; /* Center the image within the element */
+            object-fit: cover;
+            object-position: center;
             width: 400px;
             height: 300px;
             max-height: 250px;
@@ -52,7 +52,7 @@
         }
 
         .carousel-max {
-            object-fit: cover; /* Do not scale the image */
+            object-fit: cover;
             object-position: center; 
             overflow: hidden;
         }
@@ -75,8 +75,15 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 1; /* ilość wyświetlanych linii */
+            -webkit-line-clamp: 4; /* ilość wyświetlanych linii */
+                line-clamp: 2;
             -webkit-box-orient: vertical;
+        }
+
+        .cardList .date {
+            position: absolute;
+            bottom: 0;
+            left: 250;
         }
 
     </style>
