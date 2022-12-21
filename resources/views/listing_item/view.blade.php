@@ -140,7 +140,7 @@
 			</div>
 
 			<div class="col-xl-4">
-				<h3>Autor</h3>
+				<h3 class="text-muted">Autor:</h3>
 				<h4>
 					<a href="{{route('user.view', $user['id'])}}">{{$user['name']}}</a>
 				</h4>
