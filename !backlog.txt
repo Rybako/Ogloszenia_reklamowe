@@ -10,17 +10,14 @@ większe funkcjonalności:
 mniejsze funkcjonalności:
 	
 	- skalowanie zdjęć które wrzuca użytkownik (dopuszczalna rozdzielczość/waga)
-	- modal przy usuwaniu zdjęć z ogłoszenia
-	- do przestawienia przycisk "przejdź do utworzonego ogłoszenia" (np. wyskakujące okno)
 	- do sprawdzenia wszystkie treści błędów w formularzach
-	- do poprawy wyświetlanie różnych kształtów zdjęć
 	- powiększenie zdjęć po kliknięciu
 	- pole adres z wyszukiwaniem konkretnego adresu zamiast wpisywania stringa
 	- pole wyszukaj w odległości od adresu
 	- duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu
 	- kliknięcie znacznika na dużej mapie skutkuje czymś (do ustalenia)
 	- walidacja po strone front i back (formularz i zdjęcia - rozmiar zdjęć?)
-	- Auth: przyeciski, powiadomienia, przetłumaczyć na polski-- masa roboty, tu mamy praktycznie nietknięty szablon domyślny wrzucony
+	
 
 do usunięcia?pliki tymczasowe:
 	kontrolery: MapController, HomeController, 
@@ -45,6 +42,15 @@ walidacja:
 
  edycja ogłoszenia:
 	- sprawdzenie ile zdjęć jest aktualnie wrzuconych - nie może przyjąć sumy większej niż 6
+
+------------------Olgierd------------------
+
+- modal przy usuwaniu zdjęć z ogłoszenia
+- do poprawy wyświetlanie różnych kształtów zdjęć
+- Auth: przyeciski, powiadomienia, przetłumaczyć na polski-- masa roboty, tu mamy praktycznie nietknięty szablon domyślny wrzucony
+- ostylować edit.blade
+- ostylować searchbar
+
 
 ------------------Marcin------------------
 ja do zrobienia:
