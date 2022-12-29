@@ -23,4 +23,35 @@ class UserController extends Controller
         return view('user/view',['listing_items' => $listing_items,'user' => $user]);
     }
  
+
+    public function list(){
+
+        return view('user/list', [ 
+            'users' => User::paginate(10)
+        ]);
+    }
+
+    public function edit(User  $user)
+    {
+        return view("user/edit_form", [
+            'user' => $user,
+            
+        ]);
+        return redirect()->back();
+    }
+
+    public function update(Request $request, User  $user)
+    {
+        
+        $user->fill($request->all());
+        $user->save();
+        return redirect()->back();
+        
+    }
+
+    public function destroy(User  $user)
+    {
+        $user->delete();
+        return redirect()->back();
+    }
 }
