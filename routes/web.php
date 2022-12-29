@@ -58,3 +58,15 @@ Route::any('/ogloszenia/edytuj_formularz/{id}', [ListingItemController::class,'e
 Route::any('/ogloszenia/dodaj_formularz', [ListingItemController::class,'create_form'])->name('listing_item.create_form')->middleware('auth');
 Route::get('/ogloszenia/delete/{id}', [ListingItemController::class,'delete'])->name('listing_item.delete')->middleware('auth');
 Route::get('/ogloszenia/add_time/{id}', [ListingItemController::class,'add_time'])->name('listing_item.add_time')->middleware('auth');
+
+///////////////////////////////// new section// adminpanel users
+//TERA USERY
+Route::post('/użytkownik/delete/{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('checkRole:admin');
+Route::get('/użytkownik/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('checkRole:admin');
+Route::get('/adminpanel/userlist', [UserController::class, 'list'])->name('user.list')->middleware('auth')->middleware('checkRole:admin');
+//Updateuser form
+Route::post('/użytkownik/update/{user}', [UserController::class, 'update'])->name('user.update')->middleware('checkRole:admin');
+
+
+//Response
+Route::get('/response', function(){return view('response');})->name('response');
