@@ -25,7 +25,4 @@ class UserPanelController extends Controller
     }
 
 
-    
-
-
 }
