@@ -152,7 +152,7 @@ class ListingItemController extends Controller
         $item = ListingItem::where('id', $id)->first();
         $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
         $user = User::select('id','name','email','phone_number')->where('id',$item['user_id'])->first();
-        
+
         return view('listing_item/view',['item' => $item,'images' => $images, 'user' => $user]);
     }
     function edit($id){
@@ -169,6 +169,8 @@ class ListingItemController extends Controller
         $address = $create_data->has('address') ? $create_data->get('address') : null;
         $category = $create_data->has('category') ? $create_data->get('category') : null;
         $content = $create_data->has('content') ? $create_data->get('content') : null;
+        $position_X = $create_data->has('position_X') ? $create_data->get('position_X') : null;
+        $position_Y = $create_data->has('position_Y') ? $create_data->get('position_Y') : null;
 
         $validator = Validator::make($create_data->all(), [
             'title'=>'required',
@@ -176,6 +178,8 @@ class ListingItemController extends Controller
             'height'=>'required|numeric',
             'width'=>'required|numeric',
             'address'=>'required',
+            'position_X' => 'required|numeric',
+            'position_Y' => 'required|numeric',
             'category'=>'required',
             'content' => 'required'
         ]);
@@ -185,7 +189,7 @@ class ListingItemController extends Controller
 
 
         if(ListingItem::find($id)['user_id']==Auth::id()){
-            
+
         ListingItem::where('id',$id)->update(
             [
             'title' => $title,
@@ -193,6 +197,8 @@ class ListingItemController extends Controller
             'height' => $height,
             'width' => $width,
             'address' => $address,
+            'position_X' => $position_X,
+            'position_Y' => $position_Y,
             'category' => $category,
             'content' => $content
             ]
@@ -226,7 +232,7 @@ class ListingItemController extends Controller
             DB::rollback();
             var_dump($e); die(); //jakby sie wyjebalo to bd wiadomo co
 
-        }   
+        }
     }
     return redirect()->back();
     }
@@ -240,7 +246,7 @@ class ListingItemController extends Controller
 
 
         if(ListingItem::find($id)['user_id']==Auth::id()){
-            
+
            $item= ListingItem::where('id',$id)->first();
            $item->expiration_date=$expiration_date;
            $item->save();
@@ -249,14 +255,14 @@ class ListingItemController extends Controller
         else{
             return redirect()->back()->with('error', 'Nie udało się przedłużyć ogłoszenia o id'.$id);
         }
-            
 
-        
+
+
         }
         else{
             redirect()->back()>with('error', 'Niezgodność id użytkownika i edytowanego ogłsozenia');
         }
-                 
+
 
     }
 

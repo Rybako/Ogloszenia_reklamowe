@@ -103,7 +103,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-end">Opis</label>
 
                             <div class="col-md-6">
-                                
+
                                 <textarea id="content" name="content" rows="4" cols="50" class="form-control @error('content') is-invalid @enderror"  value="{{ old('content') }}" placeholder="Opis ogłoszenia" required></textarea>
 
                                 @error('content')
@@ -157,7 +157,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Dodaj ogłoszenie
                                 </button>
-                                
+
                             </div>
                         </div>
 
@@ -196,8 +196,8 @@
                                 </div>
                             @endif
                         </div>
-                        <input type="hidden"  name="position_X" id="position_X" value="12">
-                        <input type="hidden"  name="position_Y" id="position_Y" value="12"> 
+                        <input type="hidden"  name="position_X" id="position_X" value="{{ old('position_X') }}">
+                        <input type="hidden"  name="position_Y" id="position_Y" value="{{ old('position_Y') }}">
 
                     </form>
 
@@ -215,6 +215,7 @@
                         center: [52, 19],
                         zoom: 6
                         });
+
 
                         var marker = L.marker();
 
