@@ -51,7 +51,29 @@ class UserController extends Controller
 
     public function destroy(User  $user)
     {
+        /* example of proper usage of whereHas
+        ListingPictures::whereHas('listing_item',function ($query)  use ($user)  {
+            $query->where('user_id', '=', $user->id);
+   
+       })->delete();    
+       */
+        ListingItem::where('user_id',$user->id)->delete();
         $user->delete();
+        return redirect()->back();
+    }
+
+    public function block($id)
+    {
+        /* example of proper usage of whereHas
+        ListingPictures::whereHas('listing_item',function ($query)  use ($user)  {
+            $query->where('user_id', '=', $user->id);
+   
+       })->delete();    
+       */
+        
+        $user=User::find($id);
+        $user->blocked=true;
+        $user->save();
         return redirect()->back();
     }
 }

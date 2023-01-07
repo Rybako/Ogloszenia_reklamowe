@@ -11,4 +11,8 @@ class ListingPictures extends Model
     protected $fillable = ['order_position'];
     protected $table = 'listing_pictures';
     use HasFactory;
+
+    public function listing_item(){
+        return $this->belongsTo(ListingItem::class, 'listing_item_id');
+    }
 }

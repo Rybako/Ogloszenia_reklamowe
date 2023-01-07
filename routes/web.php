@@ -36,37 +36,47 @@ Route::get('/send',[MailController::class,'index']);
 //Użykownicy
 Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view');
 
-//Panel użytkownika
-Route::get('/userpanel',  function () {
-    return redirect(route('userpanel.listing_items'));
-})->name('userpanel.view')->middleware('auth'); 
-Route::get('/userpanel/listing_items', [UserPanelController::class,'listing_items'])->name('userpanel.listing_items')->middleware('auth');
-
-//Obrazki
-Route::get('/image/delete/{id}', [ImageController::class,'delete'])->name('image.delete')->middleware('auth');
-Route::get('/image/set_main/{id}', [ImageController::class,'set_main'])->name('image.set_main')->middleware('auth');
-
-//Ogloszenia
+//Ogloszenia nie zalogowane
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
 Route::any('/ogloszenia/szukaj', [ListingItemController::class,'search'])->name('listing_item.search');
-Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create')->middleware('auth');
-Route::get('/ogloszenia/edytuj/{id}', [ListingItemController::class,'edit'])->name('listing_item.edit')->middleware('auth');
-Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
 
-//Ogloszenia manipulacja
-Route::any('/ogloszenia/edytuj_formularz/{id}', [ListingItemController::class,'edit_form'])->name('listing_item.edit_form')->middleware('auth');
-Route::any('/ogloszenia/dodaj_formularz', [ListingItemController::class,'create_form'])->name('listing_item.create_form')->middleware('auth');
-Route::get('/ogloszenia/delete/{id}', [ListingItemController::class,'delete'])->name('listing_item.delete')->middleware('auth');
-Route::get('/ogloszenia/add_time/{id}', [ListingItemController::class,'add_time'])->name('listing_item.add_time')->middleware('auth');
+Route::middleware('checkRole:user')->group(function () {
+    //Ogloszenia zalogowane
+    Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create');
+    Route::get('/ogloszenia/edytuj/{id}', [ListingItemController::class,'edit'])->name('listing_item.edit');
+    Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
 
-///////////////////////////////// new section// adminpanel users
-//TERA USERY
-Route::post('/użytkownik/delete/{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('checkRole:admin');
-Route::get('/użytkownik/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('checkRole:admin');
-Route::get('/adminpanel/userlist', [UserController::class, 'list'])->name('user.list')->middleware('auth')->middleware('checkRole:admin');
-//Updateuser form
-Route::post('/użytkownik/update/{user}', [UserController::class, 'update'])->name('user.update')->middleware('checkRole:admin');
+    //Obrazki
+    Route::get('/image/delete/{id}', [ImageController::class,'delete'])->name('image.delete');
+    Route::get('/image/set_main/{id}', [ImageController::class,'set_main'])->name('image.set_main');
 
+    //Ogloszenia manipulacja
+    Route::any('/ogloszenia/edytuj_formularz/{id}', [ListingItemController::class,'edit_form'])->name('listing_item.edit_form');
+    Route::any('/ogloszenia/dodaj_formularz', [ListingItemController::class,'create_form'])->name('listing_item.create_form');
+    Route::get('/ogloszenia/delete/{id}', [ListingItemController::class,'delete'])->name('listing_item.delete');
+    Route::get('/ogloszenia/add_time/{id}', [ListingItemController::class,'add_time'])->name('listing_item.add_time');
 
-//Response
+    //Panel użytkownika
+    Route::get('/userpanel',  function () {
+        return redirect(route('userpanel.listing_items'));
+    })->name('userpanel.view'); 
+    Route::get('/userpanel/listing_items', [UserPanelController::class,'listing_items'])->name('userpanel.listing_items');
+
+});
+Route::middleware('checkRole:admin')->group(function () {
+    //Panel administratora
+    Route::get('/adminpanel/userlist', [UserController::class, 'list'])->name('user.list');
+    
+    //Użytkownicy dla panelu administratora
+    Route::post('/użytkownik/delete/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get('/użytkownik/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+    
+    //Manipulacja użytkownicy dla panelu administratora
+    Route::post('/użytkownik/update/{user}', [UserController::class, 'update'])->name('user.update');
+    
+    //Zablokuj użytkownika
+    Route::get('/użytkownik/blokuj/{id}', [UserController::class, 'block'])->name('user.block');
+});
+
+//Response, convinent when you dont know how to respond
 Route::get('/response', function(){return view('response');})->name('response');

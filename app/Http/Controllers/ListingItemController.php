@@ -10,6 +10,7 @@ use DateInterval;
 use App\Models\ListingItem;
 use App\Models\User;
 use App\Models\ListingPictures;
+use App\Services\ListingItemService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -230,7 +231,10 @@ class ListingItemController extends Controller
     }
     return redirect()->back();
     }
-    function delete($id){
+    function delete($id, ListingItemService $listingItemService){
+        if(ListingItem::find($id)['user_id']==Auth::id()){
+        $listingItemService->deleteListingItem($id);
+        }
     return   redirect()->back();
     }
     function add_time($id){

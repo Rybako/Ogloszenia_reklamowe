@@ -9,7 +9,7 @@ use App\Models\ListingItem;
 use App\Models\User;
 use App\Models\ListingPictures;
 use Illuminate\Support\Facades\File;
-
+use App\Services\ImageService;
 class ImageController extends Controller
 {
     //
@@ -48,45 +48,12 @@ class ImageController extends Controller
             }
     }
     
-    function delete($id){
-        $image = ListingPictures::find($id);
-        $listing_item= ListingItem::find($image['listing_item_id']);
+    function delete($id, ImageService $imageService){
+        $image= ListingPictures::find($id);
+        $listing_item= ListingItem::find($image->listing_item_id);
+        
         if(  $listing_item['user_id']==Auth::id()){
-            /////////////////////////////////////////////////////
-            if($image['order_position']!=0){
-            ListingPictures::destroy($image['id']);
-            File::delete(public_path('images').'/'.$image['src']);
-            }
-            else{
-                $images = ListingPictures::where('listing_item_id','=',$image['listing_item_id'])->orderBy('order_position', 'asc')->get();
-                if($images->count()>1){
-                    /////////////////////////////
-                    
-                    try{
-                        DB::beginTransaction();
-                        $images->skip(1)->first()->update(['order_position' => 0]);
-                        $imageName=$image['src'];
-                        ListingPictures::destroy($image['id']);
-                        DB::commit();
-                        File::delete(public_path('images').'/'.$imageName);
-
-                    }
-                    catch(Exception $e){    
-                        DB::rollback();
-                        return redirect()->back()->with('error', 'Coś się nie udało');
-                    }
-                    /////////////////////////////
-                }
-                else{
-                    return redirect()->back()->with('error', 'Nie można skasować ostatniego obrazka.');
-                }
-                
-            }
-            return redirect()->back()->with('success', 'Skasowano');
-
-            /////////////////////////////////////////////////////
-            
+        return $imageService->deleteImage($id);
         }
-        else redirect()->back()->with('error', 'Brak zgodności id!');
     }
 }

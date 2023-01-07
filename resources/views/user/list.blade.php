@@ -19,18 +19,23 @@
                 <td>{{ $user->phone_number }}</td>
                 <td>{{ $user->role }}</td>
                 <td>
+                    <a href="{{ route('user.block', $user->id) }}">
+                        <button class="btn btn-success btn-sm"><i class="far fa-edit">
+                            Block
+                        </i></button>
+                    </a>
                 <a href="{{ route('user.edit', $user->id) }}">
                             <button class="btn btn-success btn-sm"><i class="far fa-edit">
                                 Edit
                             </i></button>
                         </a>
-                        
+
                         <form action="{{ route('user.destroy', $user->id) }}" method="post">
                          @method('POST')
                         @csrf
                         <input class="btn btn-danger btn-sm delete" type="submit" value="Delete" />
                         </form>
-                        
+
                     </td>
             </tr>
         @endforeach
