@@ -6,7 +6,7 @@
 		@csrf <!-- {{ csrf_field() }} -->
 		Cena od <input name='price_min' value='0'> Cena do <input name='price_max' value='99999'>
 		Wysokość od <input name='height_min' value='1'> Szerokość od <input name='width_min' value='1'>
-		Kategoria 
+		Kategoria
 		<select id="category" name="category">
 			<option value="Kategoria1">Kategoria1</option>
 			<option value="Kategoria2">Kategoria2</option>
@@ -17,7 +17,7 @@
 
 		<button type="submit">Szukaj</button>
 	</form>
-	
+
 	{{$listing_items->links()}}
 
 
