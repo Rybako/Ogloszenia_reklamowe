@@ -20,27 +20,11 @@
 						<span class="float-end">Typ: {{$item['category']}}</span>
 					</h5>
 					<p class="listText">{{$item['content']}}</p>
-					<span class="text-muted date">Dodano: {{$item['add_date']}}</span>
+					<span class="text-muted date">Dodano: {{$item['add_date']}}, ważne do: {{$item['expiration_date']}}</span>
 				</div>
 			</div>
 		</div>
 	</div>
 	</a>
 </div>
-<!--
-<a href="{{route('listing_item.view', $item['id'])}}">
-<div>
-		<img src=" {{ asset('images/'.$item['src']) }}">
-		<div>
-			<h3>{{$item['title']}}</h3>
-			<span>{{$item['width']}}x{{$item['height']}}</span>
-			<span>{{$item['address']}}</span>
-			<span>{{$item['add_date']}}</span>
-			<span>{{$item['price']}}</span>
-			<span>{{$item['category']}}</span>
-			<span>{{$item['content']}}</span>
-		</div>
-</div>
-</a>
--->
 @endforeach

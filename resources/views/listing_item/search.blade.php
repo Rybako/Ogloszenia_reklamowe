@@ -26,6 +26,9 @@
 <hr>
 
 @include('components.foreach_listing_items')
+
+<hr>
+
+{{$listing_items->links()}}
+
 @endsection
-
-
