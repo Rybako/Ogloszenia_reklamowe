@@ -24,14 +24,10 @@ Route::get('/', function () {
     return redirect(route('listing_item.index'));
 });
 
-Route::get('/map', [MapController::class, 'index']);
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-//testowa implementacja mailowania
-Route::get('/send',[MailController::class,'index']);
 
 //Użykownicy
 Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view');
