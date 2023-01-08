@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Validator;
 class ListingItemController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware(['auth','verified'])->only(['create','create_form']);
+    }
 
     function index(){ // Domyślny widok ogłoszeń wyswietla określoną liczbę ostatnio dodanych
         $listing_items = ListingItem::orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
@@ -62,7 +66,6 @@ class ListingItemController extends Controller
         return view('listing_item/search',['listing_items' => $listing_items]);
     }
     function create(){
-
         return view('listing_item/create');
     }
     function create_form(Request $create_data){

@@ -22,12 +22,13 @@ use App\Http\Controllers\HomeController;
 */
 Route::get('/', function () {
     return redirect(route('listing_item.index'));
+})->name('home');
+Route::get('/home', function () {
+    return redirect(route('listing_item.index'));
 });
-
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Użykownicy
 Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view');
@@ -76,3 +77,6 @@ Route::middleware('checkRole:admin')->group(function () {
 
 //Response, convinent when you dont know how to respond
 Route::get('/response', function(){return view('response');})->name('response');
+
+
+//http://localhost:8000/email/verify ścieżka do email veryfiy żebym nie zapomniał

@@ -37,7 +37,7 @@ class LoginController extends Controller
         return redirect()->route('adminpanel');
     }
 
-    return redirect('/home');
+    return redirect()->route('home');
     }
     /**
      * Create a new controller instance.
