@@ -182,7 +182,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ogłoszenie zostało poprawne</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ogłoszenie zostało dodane poprawnie</h1>
                                         <button type="button" id="close" onclick="closeModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -196,6 +196,7 @@
                                 </div>
                             @endif
                         </div>
+
                         <input type="hidden"  name="position_X" id="position_X" value="{{ old('position_X') }}">
                         <input type="hidden"  name="position_Y" id="position_Y" value="{{ old('position_Y') }}">
 

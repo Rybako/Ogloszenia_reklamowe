@@ -48,8 +48,6 @@ walidacja:
 - modal przy usuwaniu zdjęć z ogłoszenia
 - do poprawy wyświetlanie różnych kształtów zdjęć
 - Auth: przyeciski, powiadomienia, przetłumaczyć na polski-- masa roboty, tu mamy praktycznie nietknięty szablon domyślny wrzucony
-- ostylować edit.blade
-- ostylować searchbar
 
 
 ------------------Marcin------------------
