@@ -40,6 +40,19 @@
             margin-bottom: 1rem;
         }
 
+        .edit-gallery img{
+            object-fit: contain;
+            object-position: center;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .edit-gallery {
+            overflow: hidden;
+            width: 400px;
+            max-height: 300px;
+        }
+
         .carousel-mini {
             height:50vh;
             overflow: hidden;
