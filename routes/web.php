@@ -61,7 +61,7 @@ Route::middleware('checkRole:user')->group(function () {
 });
 Route::middleware('checkRole:admin')->group(function () {
     //Panel administratora
-    Route::get('/adminpanel/userlist', [UserController::class, 'list'])->name('user.list');
+    Route::get('/adminpanel/userlist', [UserController::class, 'list'])->name('adminpanel');
     
     //Użytkownicy dla panelu administratora
     Route::post('/użytkownik/delete/{user}', [UserController::class, 'destroy'])->name('user.destroy');
