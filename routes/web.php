@@ -73,6 +73,9 @@ Route::middleware('checkRole:admin')->group(function () {
     
     //Zablokuj użytkownika
     Route::get('/użytkownik/blokuj/{id}', [UserController::class, 'block'])->name('user.block');
+
+    //Odblokuj użytkownika
+    Route::get('/użytkownik/odblokuj/{id}', [UserController::class, 'unblock'])->name('user.unblock');
 });
 
 //Response, convinent when you dont know how to respond

@@ -52,10 +52,5 @@ walidacja:
 
 ------------------Marcin------------------
 ja do zrobienia:
-	-kasowanie listing_items
-	-poprawić weryfikacje emaili linki
-	-panel użytkownika - dodać jakiś widok view, usunąć dane usera z userpanel.listing_items
+	-poprawić weryfikacje emaili tłumaczenie
 	-zapamiętywanie filtrów search
-
-ja do zrobienia później:
-	- gdzie hashuje się hasło? i jak jest zgodnie ze sztuką?

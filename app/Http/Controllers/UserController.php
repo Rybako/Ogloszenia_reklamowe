@@ -76,4 +76,19 @@ class UserController extends Controller
         $user->save();
         return redirect()->back();
     }
+
+    public function unblock($id)
+    {
+        /* example of proper usage of whereHas
+        ListingPictures::whereHas('listing_item',function ($query)  use ($user)  {
+            $query->where('user_id', '=', $user->id);
+   
+       })->delete();    
+       */
+        
+        $user=User::find($id);
+        $user->blocked=false;
+        $user->save();
+        return redirect()->back();
+    }
 }
