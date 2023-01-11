@@ -27,6 +27,7 @@ return new class extends Migration
             $table->double('position_Y');
             $table->date('add_date');
             $table->date('expiration_date');
+            $table->boolean('blocked')->nullable()->default(false);
         });
     }
 

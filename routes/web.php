@@ -8,6 +8,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\HomeController;
+use App\Models\ListingItem;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,8 @@ Route::get('/response', function(){return view('response');})->name('response');
 
 
 //http://localhost:8000/email/verify ścieżka do email veryfiy żebym nie zapomniał
+
+Route::get('/test', function () {
+    $test= ListingItem::find(1);
+     return view('test',['test'=>$test]);
+});

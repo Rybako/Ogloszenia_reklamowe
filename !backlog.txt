@@ -53,4 +53,5 @@ walidacja:
 ------------------Marcin------------------
 ja do zrobienia:
 	-poprawić weryfikacje emaili tłumaczenie
-	-zapamiętywanie filtrów search
+	-usuwanie swoja konta, 
+	- potwierdzenie usunięcia, ciekawostka na koniec
