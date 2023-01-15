@@ -86,6 +86,6 @@ Route::get('/response', function(){return view('response');})->name('response');
 //http://localhost:8000/email/verify ścieżka do email veryfiy żebym nie zapomniał
 
 Route::get('/test', function () {
-    $test= ListingItem::find(1);
+    $test= ListingItem::find(2);
      return view('test',['test'=>$test]);
 });

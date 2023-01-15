@@ -17,7 +17,7 @@ class ListingItem extends Model
         parent::boot();
 
         static::retrieved(function($model){
-            $model->pickBlocked ? null:   ( $model->blocked ? $model->a=3 : null) ;
+            $model->pickBlocked ? null: ( $model->blocked ? $model->break : null) ;
         });
     }   
 }

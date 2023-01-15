@@ -40,9 +40,6 @@ walidacja:
 	- opis 1000 znaków
 	- zdjęcia max 6, jpg, jpeg, png - do ustalenia sposób zmniejszania i docelowa rozdzielczość/waga pliku (3mb max)
 
- edycja ogłoszenia:
-	- sprawdzenie ile zdjęć jest aktualnie wrzuconych - nie może przyjąć sumy większej niż 6
-
 ------------------Olgierd------------------
 
 - modal przy usuwaniu zdjęć z ogłoszenia
@@ -52,6 +49,6 @@ walidacja:
 
 ------------------Marcin------------------
 ja do zrobienia:
-	-poprawić weryfikacje emaili tłumaczenie
+	-EDYCJA,TWORZENIE sprawdzenie ile zdjęć jest aktualnie wrzuconych - nie może przyjąć sumy większej niż 6
 	-usuwanie swoja konta, 
 	- potwierdzenie usunięcia, ciekawostka na koniec
