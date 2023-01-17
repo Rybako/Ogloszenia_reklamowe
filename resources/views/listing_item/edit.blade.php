@@ -84,7 +84,7 @@
 
                             <div class="row mb-3">
                                 <label for="address" class="col-md-4 col-form-label text-md-end">Typ</label>
-    
+
                                 <div class="col-md-6">
                                     <select id="category" class="form-control @error('content') is-invalid @enderror" name="category" value="{{old('category')}}" required>
                                         <option @if($item['category']=="Kategoria1") selected @endif value="Kategoria1">Kategoria1</option>
@@ -169,21 +169,24 @@
                                     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
                                 integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
                                 crossorigin=""></script>
-        
+
                                 <script src="https://cdn.jsdelivr.net/npm/leaflet-search@3.0.5/dist/leaflet-search.src.js" integrity="sha256-iMrQwQNA33R07kJCTZcXDL3+RUJe0j9W9mY+RZEbUe4=" crossorigin="anonymous"></script>
                                 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
                                 <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js"></script>
-            
+                                <div id="listing_coords" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" > </div>
                                 <script>
-            
+
                                     const map = L.map('map', {
                                     center: [52, 19],
                                     zoom: 6
                                     });
-            
-                                    var marker = L.marker();
-            
-            
+
+                                    var marker = L.marker()
+
+                                        .setLatLng([document.getElementById("listing_coords").getAttribute("x"), document.getElementById("listing_coords").getAttribute("y")],)
+                                        .addTo(map);
+
+                                    console.log(marker)
                                     function onMapClick(e) {
                                         marker
                                         .setLatLng(e.latlng)
@@ -192,17 +195,17 @@
                                         const {lat,lng} = marker.getLatLng()
                                         document.getElementById("position_X").value=lat
                                         document.getElementById("position_Y").value=lng
-            
-            
+
+
                                     }
-            
+
                                     map.on('click', onMapClick);
-            
+
                                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-            
+
                                     L.Control.geocoder().addTo(map);
                                     L.control.locate().addTo(map);
-            
+
                                 </script>
 
                             </div>

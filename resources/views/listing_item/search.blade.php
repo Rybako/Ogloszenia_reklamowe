@@ -48,7 +48,52 @@
 
 <hr>
 
-@include('components.foreach_listing_items')
+<div> @include('components.foreach_listing_items') </div>
+
+<div class="row mb-3">
+                            <div class="col ">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Wszystkie ogłoszenia:
+                                    </div>
+                                    <div class="">
+                                        <div id="map" class="form-control" style="width: auto; height: 50vh;"></div>
+                                    </div>
+                                <div>
+                            </div>
+                        </div>
+
+
+				<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+				integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+				crossorigin=""></script>
+
+				<script>
+
+					console.log(document.getElementById("map").getAttribute("x"))
+					const map = L.map('map', {
+					center: [52, 19],
+					zoom: 6
+					});
+
+					L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+
+                    const listings = document.getElementsByClassName("listing_coords")
+                    console.log(listings)
+                    for (const listing of listings) {
+                    var marker = L.marker([listing.getAttribute("x"), listing.getAttribute("y")]);
+                    const popup = L.popup()
+                    .setContent(`<a href="${listing.getAttribute("path")}" style="text-decoration:none; color:inherit; "> asdf</a>`);
+                    marker.bindPopup(popup);
+
+					marker.addTo(map);
+
+                    }
+
+
+				</script>
+
+
 
 <hr>
 

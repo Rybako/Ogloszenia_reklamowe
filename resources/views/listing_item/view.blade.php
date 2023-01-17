@@ -7,7 +7,7 @@
 			<div id="carouselExampleControls" class="carousel carousel-dark col-xl-8 carousel-mini d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
 				<div class="carousel-indicators" >
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-					
+
 					@foreach($images as $key=>$image)
 						@if($key!=0)
 							<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$key}}"></button>
@@ -56,14 +56,14 @@
 						<div id="carouselModalControls" class="carousel carousel-dark carousel-max d-block slide" data-bs-ride="carousel" data-bs-interval="1000000">
 							<div class="carousel-indicators" >
 								<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-								
+
 								@foreach($images as $key=>$image)
 									@if($key!=0)
 										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$key}}"></button>
 									@endif
 								@endforeach
 							</div>
-			
+
 							<div class="carousel-inner" >
 							<div class="carousel-item active">
 								<img id="Myimg" src="{{ asset('images/'.$images[0]['src']) }}" class="d-block w-100" alt="..." data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -89,7 +89,7 @@
 				  </div>
 				</div>
 			  </div>
-			
+
 			<!--MAPA-->
 			<div id="map" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" class="col-xl-4"></div>
 
@@ -113,7 +113,7 @@
 				</script>
 			</div>
 		</div>
-		
+
 		<div class="row mx-0 mt-3 me-2">
 
 			<div class="card col-xl-8">
@@ -128,7 +128,7 @@
 					<h4>
 						<span>{{$item['width']}}x{{$item['height']}}m</span>
 						<span class="float-end">Typ: {{$item['category']}}</span>
-						
+
 					</h4>
 
 				  <h5 class="card-title"></h5>
@@ -154,4 +154,3 @@
 
 
 
-	
