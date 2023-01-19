@@ -45,18 +45,15 @@ walidacja:
 - do poprawy wyświetlanie różnych kształtów zdjęć
 - do przetestowania czy przedawnione ogłoszenia są ukrywane
 - edycja = success -> modal z powiadomieniem
+- style dla panelu admina
 
 
 ------------------Marcin------------------
 ja do zrobienia:
-	-kasowanie listing_items
-	-poprawić weryfikacje emaili linki
-	-panel użytkownika - dodać jakiś widok view, usunąć dane usera z userpanel.listing_items
-	-zapamiętywanie filtrów search
-	-w wyszukiwaniu powinna być dostępna kategoria "wszystkie" (pole select)
 	-przy edytowaniu ogłoszenia nie da się usunąć zdjęcia które jest ustawione jako główne
 	-ResetPasswordController.php - dodalem zasady walidacji ale nie wiem jak zrobić żeby to działało
 	-przywrócenie searchbar
+	-dla admina: dodatkowe przyciski pod pogłoszeniami (blokuj, usuń) + dodatkowa opcja w menu kontekstowym (panel administratora do usuwania/blokowania itp userów)
 
 
 ----------------------Maciej--------------------------
