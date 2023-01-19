@@ -49,7 +49,6 @@ walidacja:
 
 ------------------Marcin------------------
 ja do zrobienia:
-	-ResetPasswordController.php - dodalem zasady walidacji ale nie wiem jak zrobić żeby to działało
 	-dla admina: dodatkowe przyciski pod pogłoszeniami (blokuj, usuń) + dodatkowa opcja w menu kontekstowym (panel administratora do usuwania/blokowania itp userów)
 	-przedawnione ogłoszenia się nie ukrywają
 
