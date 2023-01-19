@@ -43,8 +43,8 @@ walidacja:
 ------------------Olgierd------------------
 
 - do poprawy wyświetlanie różnych kształtów zdjęć
-- Auth: przyeciski, powiadomienia, przetłumaczyć na polski-- masa roboty, tu mamy praktycznie nietknięty szablon domyślny wrzucony
 - do przetestowania czy przedawnione ogłoszenia są ukrywane
+- edycja = success -> modal z powiadomieniem
 
 
 ------------------Marcin------------------
@@ -54,6 +54,13 @@ ja do zrobienia:
 	-panel użytkownika - dodać jakiś widok view, usunąć dane usera z userpanel.listing_items
 	-zapamiętywanie filtrów search
 	-w wyszukiwaniu powinna być dostępna kategoria "wszystkie" (pole select)
-	-wprowadzenie niepełnego adresu email w rejestracji (np. 123@123) wywala błąd strony
 	-przy edytowaniu ogłoszenia nie da się usunąć zdjęcia które jest ustawione jako główne
 	-ResetPasswordController.php - dodalem zasady walidacji ale nie wiem jak zrobić żeby to działało
+	-przywrócenie searchbar
+
+
+----------------------Maciej--------------------------
+
+- brak znacznika przy zakładaniu ogłoszenia nie jest obsłużony
+- szczegóły zgłoszenia po kliknięciu w znacznik
+- podpowiadanie adresu przy zakładaniu zgłoszenia
