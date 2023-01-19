@@ -6,8 +6,6 @@
 		@csrf <!-- {{ csrf_field() }} -->
 		<div class="col-md">
 			<label for="price_min">Cena od (zł/ms)</label>
-			<input type="number" name='price_min' min="0" max="99999999.99" value="0" step="0.01" class="form-control">
-			<label for="price_min">Cena od</label>
 			<input type="number" name='price_min' min="0" value='{{isset($old) ? $old->price_min : 0}}' class="form-control">
 		</div>
 		<div class="col-md">
