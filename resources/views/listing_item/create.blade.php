@@ -15,7 +15,7 @@
                             <label for="title" class="col-md-4 col-form-label text-md-end">Tytuł</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+                                <input id="title" type="text" maxlength="50" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-end">Cena</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" min="0" step="0.1" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required>
+                                <input id="price" type="number" min="0" max="99999999.99" step="0.01" placeholder="podaj miesięczną cenę wynajmu w PLN" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required>
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                             <label for="height" class="col-md-4 col-form-label text-md-end">Wysokość</label>
 
                             <div class="col-md-6">
-                                <input id="height" type="number" min="1" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') }}" required>
+                                <input id="height" type="number" min="0.01" max="999.99" step="0.01" placeholder="podaj wysokość w metrach" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') }}" required>
 
                                 @error('height')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                             <label for="width" class="col-md-4 col-form-label text-md-end">Szerokość</label>
 
                             <div class="col-md-6">
-                                <input id="width" type="number" min="1" class="form-control @error('width') is-invalid @enderror" name="width" value="{{ old('width') }}" required>
+                                <input id="width" type="number" min="0.01" max="999.99" step="0.01" placeholder="podaj szerokość w metrach" class="form-control @error('width') is-invalid @enderror" name="width" value="{{ old('width') }}" required>
 
                                 @error('width')
                                     <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-end">Adres</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
+                                <input id="address" type="text" maxlength="70" placeholder="np. ul. Głogowska 260, 60-104 Poznań" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -86,10 +86,11 @@
 
                             <div class="col-md-6">
                                 <select id="category" class="form-control @error('content') is-invalid @enderror" name="category" value="{{old('category')}}" required>
-                                    <option value="Kategoria1">Kategoria1</option>
-                                    <option value="Kategoria2">Kategoria2</option>
-                                    <option value="Kategoria3">Kategoria3</option>
-                                    <option value="Kategoria4">Kategoria4</option>
+                                    <option value="Bilbord">Bilbord</option>
+                                    <option value="Witryna">Witryna</option>
+                                    <option value="Baner">Baner</option>
+                                    <option value="Telebim">Telebim</option>
+                                    <option value="Inne">Inne</option>
                                 </select>
                                 @error('category')
                                     <span class="invalid-feedback" role="alert">
@@ -104,7 +105,7 @@
 
                             <div class="col-md-6">
 
-                                <textarea id="content" name="content" rows="4" cols="50" class="form-control @error('content') is-invalid @enderror"  value="{{ old('content') }}" placeholder="Opis ogłoszenia" required></textarea>
+                                <textarea id="content" name="content" maxlength="1000" rows="4" cols="50" class="form-control @error('content') is-invalid @enderror"  value="{{ old('content') }}" placeholder="Opis ogłoszenia" required></textarea>
 
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">
@@ -157,7 +158,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     Dodaj ogłoszenie
                                 </button>
-
+                                <a class="btn btn-secondary" href="{{ url('/ogloszenia') }}">
+                                    Anuluj
+                                </a>
                             </div>
                         </div>
 

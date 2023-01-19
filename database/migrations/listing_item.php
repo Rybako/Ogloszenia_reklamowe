@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('listing_item', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('title');
-            $table->string('address');
+            $table->string('title', 50);
+            $table->string('address', 70);
             $table->string('content', 1000);
             $table->string('category');
             $table->integer('user_id'); //id uzytkownika ktory wystawil ogloszenie
-            $table->integer('width');
-            $table->integer('height');
-            $table->integer('price');
+            $table->float('width', 5, 2);
+            $table->float('height' , 5, 2);
+            $table->float('price', 10, 2);
             $table->double('position_X'); //do znaczników
             $table->double('position_Y');
             $table->date('add_date');

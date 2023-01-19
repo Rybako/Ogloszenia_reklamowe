@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('name', 30);
+            $table->string('email', 40)->unique();
+            $table->timestamp('email_verified_at')->nullable(); //data weryfikacji konta
             $table->string('password');
             $table->string('role')->nullable()->default("user"); //user, admin
-            $table->string('phone_number');
-            $table->boolean('confirmed')->nullable()->default(false); //konto domyślnie nie jest potwierdzone
+            $table->string('phone_number', 11); //123-123-123
             $table->boolean('blocked')->nullable()->default(false); //konto domyślnie nie jest zablokowane
             $table->rememberToken();
             $table->timestamps();

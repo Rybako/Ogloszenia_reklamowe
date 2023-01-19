@@ -79,17 +79,17 @@ class ListingItemController extends Controller
         $category = $create_data->has('category') ? $create_data->get('category') : null;
         $content = $create_data->has('content') ? $create_data->get('content') : null;
         $validator = Validator::make($create_data->all(), [
-            'title'=>'required',
-            'price'=>'required|numeric',
-            'height'=>'required|numeric',
-            'width'=>'required|numeric',
-            'address'=>'required',
+            'title'=>'required|string|max:50',
+            'price'=>'required|numeric|between:0,99999999.99',
+            'height'=>'required|numeric|between:0,99999.99',
+            'width'=>'required|numeric|between:0,99999.99',
+            'address'=>'required|string|max:70',
             'images' => 'required',
             'images.*' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             'position_X'=>'required',
             'position_Y'=>'required',
             'category'=>'required',
-            'content' => 'required'
+            'content' => 'required|string|max:1000'
 
         ]);
 

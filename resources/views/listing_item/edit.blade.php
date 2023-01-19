@@ -16,7 +16,7 @@
                                 <label for="title" class="col-md-4 col-form-label text-md-end">Tytuł</label>
 
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$item['title']}}" required autocomplete="title" autofocus>
+                                    <input id="title" type="text" maxlength="50" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$item['title']}}" required autocomplete="title" autofocus>
 
                                     @error('title')
                                         <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-end">Cena</label>
 
                                 <div class="col-md-6">
-                                    <input id="price" type="number" min="0" step="0.1" class="form-control @error('price') is-invalid @enderror" name="price" value="{{$item['price']}}" required autocomplete="price">
+                                    <input id="price" type="number" min="0" max="99999999.99" step="0.01" placeholder="podaj miesięczną cenę wynajmu w PLN" class="form-control @error('price') is-invalid @enderror" name="price" value="{{$item['price']}}" required autocomplete="price">
 
                                     @error('price')
                                         <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                                 <label for="height" class="col-md-4 col-form-label text-md-end">Wysokość</label>
 
                                 <div class="col-md-6">
-                                    <input id="height" type="number" min="1" class="form-control @error('height') is-invalid @enderror" name="height" value="{{$item['height']}}" required autocomplete="height" autofocus>
+                                    <input id="height" type="number" min="0" max="999.99" step="0.01" placeholder="podaj wysokość w metrach" class="form-control @error('height') is-invalid @enderror" name="height" value="{{$item['height']}}" required autocomplete="height" autofocus>
 
                                     @error('height')
                                         <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                                 <label for="width" class="col-md-4 col-form-label text-md-end">Szerokość</label>
 
                                 <div class="col-md-6">
-                                    <input id="width" type="number" min="1" class="form-control @error('width') is-invalid @enderror" name="width" value="{{$item['width']}}" required autocomplete="width" autofocus>
+                                    <input id="width" type="number" min="0" max="999.99" step="0.01" placeholder="podaj szerokość w metrach" class="form-control @error('width') is-invalid @enderror" name="width" value="{{$item['width']}}" required autocomplete="width" autofocus>
 
                                     @error('width')
                                         <span class="invalid-feedback" role="alert">
@@ -72,7 +72,7 @@
                                 <label for="address" class="col-md-4 col-form-label text-md-end">Adres</label>
 
                                 <div class="col-md-6">
-                                    <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{$item['address']}}" required autocomplete="address" autofocus>
+                                    <input id="address" type="text" maxlength="70" placeholder="np. ul. Głogowska 260, 60-104 Poznań" class="form-control @error('address') is-invalid @enderror" name="address" value="{{$item['address']}}" required autocomplete="address" autofocus>
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -87,10 +87,11 @@
 
                                 <div class="col-md-6">
                                     <select id="category" class="form-control @error('content') is-invalid @enderror" name="category" value="{{old('category')}}" required>
-                                        <option @if($item['category']=="Kategoria1") selected @endif value="Kategoria1">Kategoria1</option>
-                                        <option @if($item['category']=="Kategoria2") selected @endif value="Kategoria2">Kategoria2</option>
-                                        <option @if($item['category']=="Kategoria3") selected @endif value="Kategoria3">Kategoria3</option>
-                                        <option @if($item['category']=="Kategoria4") selected @endif value="Kategoria4">Kategoria4</option>
+                                        <option @if($item['category']=="Bilbord") selected @endif value="Bilbord">Bilbord</option>
+                                        <option @if($item['category']=="Witryna") selected @endif value="Witryna">Witryna</option>
+                                        <option @if($item['category']=="Baner") selected @endif value="Baner">Baner</option>
+                                        <option @if($item['category']=="Telebim") selected @endif value="Telebim">Telebim</option>
+                                        <option @if($item['category']=="Inne") selected @endif value="Inne">Inne</option>
                                     </select>
                                     @error('category')
                                         <span class="invalid-feedback" role="alert">
@@ -138,19 +139,38 @@
                                         <div class="card-body"></div>
                                         <div class="card-footer">
                                             <div class="vstack gap-2">
-                                                @if(count($images)!=1)
-                                                    <a href="{{ route('image.delete',$image['id']) }}" class="btn btn-danger">Usuń zdjęcie</a>
-                                                @endif
                                                 @if($image['order_position']!=0)
                                                     <a href="{{ route('image.set_main',$image['id']) }}" class="btn btn-success">Ustaw jako zdjęcie główne</a>
                                                 @endif
                                                 @if($image['order_position']==0)
                                                     <div class="btn btn-success disabled" style="cursor: not-allowed;">Ustawiono jako zdjęcie główne</div>
                                                 @endif
+                                                @if(count($images)!=1)
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger">Usuń zdjęcie</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
+                            </div>
+
+                            <!-- Modal delete-->
+                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="deleteModalLabel">Uwaga</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Czy na pewno chcesz usunąć zdjęcie?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                                        <a href="{{ route('image.delete',$image['id']) }}" class="btn btn-danger">Usuń zdjęcie</a>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
 
                             <div class="row mb-3 my-3">
@@ -214,6 +234,9 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Zatwierdź zmiany') }}
                                     </button>
+                                    <a class="btn btn-secondary" href="{{ route('userpanel.view') }}">
+                                        Anuluj
+                                    </a>
                                 </div>
                             </div>
                         </form>
