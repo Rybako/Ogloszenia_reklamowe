@@ -37,12 +37,13 @@ Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view
 //Ogloszenia nie zalogowane
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
 Route::any('/ogloszenia/szukaj', [ListingItemController::class,'search'])->name('listing_item.search');
+Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
 
 Route::middleware('checkRole:user')->group(function () {
     //Ogloszenia zalogowane
     Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create');
     Route::get('/ogloszenia/edytuj/{id}', [ListingItemController::class,'edit'])->name('listing_item.edit');
-    Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
+
 
     //Obrazki
     Route::get('/image/delete/{id}', [ImageController::class,'delete'])->name('image.delete');

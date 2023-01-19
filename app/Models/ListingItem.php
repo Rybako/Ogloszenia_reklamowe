@@ -12,7 +12,7 @@ class ListingItem extends Model
     protected $table = 'listing_item';
     use HasFactory;
 
-        protected static function boot()
+    /*    protected static function boot()
     {
         parent::boot();
 
@@ -20,5 +20,6 @@ class ListingItem extends Model
             $model->pickBlocked ? null: ( $model->blocked ? $model->break : null) ;
         });
     }   
+    */
 }
 
