@@ -29,11 +29,12 @@ class ResetPasswordController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+
+    protected function rules()
     {
-        return Validator::make($data, [
-            'password' => ['required', 'string', 'max:100', 'min:8', Password::defaults()->mixedCase()->numbers(), 'confirmed']
-        ]);
+        return [
+            'password' => ['required', 'string', 'max:100', 'min:18', Password::defaults()->mixedCase()->numbers(), 'confirmed'],
+        ];
     }
 
     /**
