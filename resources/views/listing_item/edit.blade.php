@@ -146,7 +146,7 @@
                                                     <div class="btn btn-success disabled" style="cursor: not-allowed;">Ustawiono jako zdjęcie główne</div>
                                                 @endif
                                                 @if(count($images)!=1)
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger">Usuń zdjęcie</a>
+                                                    <a href="" data-bs-toggle="modal" onclick="document.getElementById('deleteModalHref').href='{{route('image.delete',$image['id'])}}';" data-bs-target="#deleteModal" class="btn btn-danger">Usuń zdjęcie</a>
                                                 @endif
                                             </div>
                                         </div>
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-                                        <a href="{{ route('image.delete',$image['id']) }}" class="btn btn-danger">Usuń zdjęcie</a>
+                                        <a id="deleteModalHref" href="JO" class="btn btn-danger">Usuń zdjęcie</a>
                                     </div>
                                 </div>
                                 </div>
