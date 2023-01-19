@@ -53,18 +53,18 @@ class User extends Authenticatable implements MustVerifyEmail
      * @param  string  $token
      * @return void
      */
-    /*public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification($token)
     {
         $this->notify(new PasswordReset($token));
-    }*/
+    }
 
     /**
      * Send the email verification notification.
      *
      * @return void
      */
-    /*public function sendEmailVerificationNotification()
+    public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail);
-    }*/
+    }
 }

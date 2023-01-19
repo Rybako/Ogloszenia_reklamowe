@@ -8,6 +8,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\HomeController;
+use App\Models\ListingItem;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,12 +37,13 @@ Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view
 //Ogloszenia nie zalogowane
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
 Route::any('/ogloszenia/szukaj', [ListingItemController::class,'search'])->name('listing_item.search');
+Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
 
 Route::middleware('checkRole:user')->group(function () {
     //Ogloszenia zalogowane
     Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create');
     Route::get('/ogloszenia/edytuj/{id}', [ListingItemController::class,'edit'])->name('listing_item.edit');
-    Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
+
 
     //Obrazki
     Route::get('/image/delete/{id}', [ImageController::class,'delete'])->name('image.delete');
@@ -73,6 +75,9 @@ Route::middleware('checkRole:admin')->group(function () {
     
     //Zablokuj użytkownika
     Route::get('/użytkownik/blokuj/{id}', [UserController::class, 'block'])->name('user.block');
+
+    //Odblokuj użytkownika
+    Route::get('/użytkownik/odblokuj/{id}', [UserController::class, 'unblock'])->name('user.unblock');
 });
 
 //Response, convinent when you dont know how to respond
@@ -80,3 +85,8 @@ Route::get('/response', function(){return view('response');})->name('response');
 
 
 //http://localhost:8000/email/verify ścieżka do email veryfiy żebym nie zapomniał
+
+Route::get('/test', function () {
+    $test= ListingItem::find(2);
+     return view('test',['test'=>$test]);
+});

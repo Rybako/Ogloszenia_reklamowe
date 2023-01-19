@@ -40,9 +40,6 @@ walidacja:
 	- opis 1000 znaków
 	- zdjęcia max 6, jpg, jpeg, png - do ustalenia sposób zmniejszania i docelowa rozdzielczość/waga pliku (3mb max)
 
- edycja ogłoszenia:
-	- sprawdzenie ile zdjęć jest aktualnie wrzuconych - nie może przyjąć sumy większej niż 6
-
 ------------------Olgierd------------------
 
 - do poprawy wyświetlanie różnych kształtów zdjęć
@@ -60,6 +57,3 @@ ja do zrobienia:
 	-wprowadzenie niepełnego adresu email w rejestracji (np. 123@123) wywala błąd strony
 	-przy edytowaniu ogłoszenia nie da się usunąć zdjęcia które jest ustawione jako główne
 	-ResetPasswordController.php - dodalem zasady walidacji ale nie wiem jak zrobić żeby to działało
-
-ja do zrobienia później:
-	- gdzie hashuje się hasło? i jak jest zgodnie ze sztuką?

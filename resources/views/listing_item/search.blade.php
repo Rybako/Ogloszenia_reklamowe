@@ -2,41 +2,43 @@
 @section('content')
 <div>
 
-	<form action="{{ route('listing_item.search') }}" method="post" class="row g-3">
+	<form id="filter" action="{{ route('listing_item.search') }}" method="post" class="row g-3">
 		@csrf <!-- {{ csrf_field() }} -->
 		<div class="col-md">
 			<label for="price_min">Cena od (zł/ms)</label>
 			<input type="number" name='price_min' min="0" max="99999999.99" value="0" step="0.01" class="form-control">
+			<label for="price_min">Cena od</label>
+			<input type="number" name='price_min' min="0" value='{{isset($old) ? $old->price_min : 0}}' class="form-control">
 		</div>
 		<div class="col-md">
-			<label for="price_max">Cena do (zł/ms)</label>
-			<input type="number" name='price_max' min="0" max="99999999.99" value="99999999.99" step="0.01" class="form-control">
+			<label for="price_max">Cena do</label>
+			<input type="number" name='price_max' min="0" value='{{isset($old) ? $old->price_max : 99999}}' class="form-control">
 		</div>
 		<div class="col-md">
-			<label for="height_min">Wysokość od (w metrach)</label>
-			<input type="number" name='height_min' min="0.01" max="999.99" step="0.01" value='0.01' class="form-control">
+			<label for="height_min">Wysokość od</label>
+			<input type="number" name='height_min' min="0" value='{{isset($old) ? $old->height_min : 1}}' class="form-control">
 		</div>
 		<div class="col-md">
-			<label for="width_min">Szerokość od (w metrach)</label>
-			<input type="number" name='width_min' min="0.01" max="999.99" step="0.01" value='0.01' class="form-control">
+			<label for="width_min">Szerokość od</label>
+			<input type="number" name='width_min' min="0" value='{{isset($old) ? $old->width_min : 1}}' class="form-control">
 		</div>
 		<div class="col-md">
 			<label for="category">Kategoria</label>
 			<select id="category" name="category" class="form-control">
-				<option value="">Wszystkie</option>
-				<option value="Bilbord">Bilbord</option>
-				<option value="Witryna">Witryna</option>
-				<option value="Baner">Baner</option>
-				<option value="Telebim">Telebim</option>
-				<option value="Inne">Inne</option>
+				<option {{isset($old) ? $old->category=='Wszystkie Kategorie' ? 'selected': '' : ''}} value="Wszystkie Kategorie">Wszystkie Kategorie</option>
+				<option {{isset($old) ? $old->category=='Bilbord' ? 'selected': '' : ''}} value="Bilbord">Bilbord</option>
+				<option {{isset($old) ? $old->category=='Witryna' ? 'selected': '' : ''}} value="Witryna">Witryna</option>
+				<option {{isset($old) ? $old->category=='Baner' ? 'selected': '' : ''}} value="Baner">Baner</option>
+				<option {{isset($old) ? $old->category=='Telebim' ? 'selected': '' : ''}} value="Telebim">Telebim</option>
+				<option {{isset($old) ? $old->category=='Inne' ? 'selected': '' : ''}} value="Inne">Inne</option>
 			</select>
 		</div>
 		<div class="col-md">
 			<label for="sort">Sortuj</label>
 			<select id="sort" name="sort" class="form-control">
-				<option value='new'>Od najnowszych</option>
-				<option value='cheap'>Od najtańszych</option>
-				<option value="expensive">Od najdroższych</option>
+				<option {{isset($old) ? $old->sort=='new' ? 'selected': '' : ''}} value='new'>Od najnowszych</option>
+				<option {{isset($old) ? $old->sort=='cheap' ? 'selected': '' : ''}} value='cheap'>Od najtańszych</option>
+				<option {{isset($old) ? $old->sort=='expensive' ? 'selected': '' : ''}} value="expensive">Od najdroższych</option>
 			</select>
 		</div>
 		<div class="col-md">

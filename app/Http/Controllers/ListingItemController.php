@@ -63,7 +63,7 @@ class ListingItemController extends Controller
 
 
 
-        return view('listing_item/search',['listing_items' => $listing_items]);
+        return view('listing_item/search',['listing_items' => $listing_items,'old' => $search_data]);
     }
     function create(){
         return view('listing_item/create');
