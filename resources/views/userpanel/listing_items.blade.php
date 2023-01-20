@@ -3,7 +3,7 @@
 
 @section('content')
 
-<form action="{{ route('listing_item.search') }}" method="post" class="row g-3">
+<form action="" method="post" class="row g-3">
     @csrf <!-- {{ csrf_field() }} -->
     <div class="col-md">
         <label for="name">Użytkownik</label>

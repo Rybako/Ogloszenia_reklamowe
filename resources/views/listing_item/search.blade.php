@@ -6,19 +6,19 @@
 		@csrf <!-- {{ csrf_field() }} -->
 		<div class="col-md">
 			<label for="price_min">Cena od (zł/ms)</label>
-			<input type="number" name='price_min' min="0" max="99999999.99"  step="0.01" value='{{isset($old) ? $old->price_min : 0}}' class="form-control">
+			<input type="number" name='price_min' min="0" max="99999999.99"  step="0.01" value='{{isset($old) ? $old->price_min : 0.01}}' class="form-control">
 		</div>
 		<div class="col-md">
 			<label for="price_max">Cena do (zł/ms)</label>
-			<input type="number" name='price_max' min="0"   max="99999999.99" step="0.01" value='{{isset($old) ? $old->price_max : 99999}}' class="form-control">
+			<input type="number" name='price_max' min="0"   max="99999999.99" step="0.01" value='{{isset($old) ? $old->price_max : 99999999.99}}' class="form-control">
 		</div>
 		<div class="col-md">
 			<label for="height_min">Wysokość od (w metrach)</label>
-			<input type="number" name='height_min' min="0"   max="999.99" step="0.01" value='{{isset($old) ? $old->height_min : 1}}' class="form-control">
+			<input type="number" name='height_min' min="0"   max="999.99" step="0.01" value='{{isset($old) ? $old->height_min : 0.01}}' class="form-control">
 		</div>
 		<div class="col-md">
 			<label for="width_min">Szerokość od (w metrach)</label>
-			<input type="number" name='width_min' min="0"  max="999.99"  step="0.01" value='{{isset($old) ? $old->width_min : 1}}' class="form-control">
+			<input type="number" name='width_min' min="0"  max="999.99"  step="0.01" value='{{isset($old) ? $old->width_min : 0.01}}' class="form-control">
 		</div>
 		<div class="col-md">
 			<label for="category">Kategoria</label>

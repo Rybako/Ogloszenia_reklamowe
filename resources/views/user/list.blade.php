@@ -8,10 +8,13 @@
         <tr>
         <th scope="col">#</th>
         <th scope="col">Email</th>
-        <th scope="col">Name</th>
-        <th scope="col">Surname</th>
-        <th scope="col">Role</th>
+        <th scope="col">Imię i nazwisko</th>
+        <th scope="col">Numer telefonu</th>
+        <th scope="col">Rola</th>
         <th scope="col">Status</th>
+        <th scope="col"></th>
+        <th scope="col">Akcje</th>
+        <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -23,40 +26,100 @@
                 <td>{{ $user->phone_number }}</td>
                 <td>{{ $user->role }}</td>
                 @if($user->blocked)
-                <td>blocked</td>
+                <td>Zablokowany</td>
                 @else
-                <td>active</td>
+                <td>Aktywny</td>
                 @endif
 
+                <td>
+                    <a href="{{ route('user.edit', $user->id) }}">
+                        <button class="btn btn-primary btn-sm">
+                            Edytuj
+                        </button>
+                    </a>
+                </td>
 
                 <td>
                     @if(!$user->blocked)
-                    <a href="{{ route('user.block', $user->id) }}">
-                        <button class="btn btn-success btn-sm"><i class="far fa-edit">
-                            Block
-                        </i></button>
-                    </a>
+                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#blockModal">Zablokuj</button>
                     @else
-                    <a href="{{ route('user.unblock', $user->id) }}">
-                        <button class="btn btn-success btn-sm"><i class="far fa-edit">
-                            unBlock
-                        </i></button>
-                    </a>
+                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#unblockModal">Odblokuj</button>
                     @endif
-                <a href="{{ route('user.edit', $user->id) }}">
-                            <button class="btn btn-success btn-sm"><i class="far fa-edit">
-                                Edit
-                            </i></button>
-                        </a>
-
-                        <form action="{{ route('user.destroy', $user->id) }}" method="post">
-                         @method('POST')
-                        @csrf
-                        <input class="btn btn-danger btn-sm delete" type="submit" value="Delete" />
-                        </form>
-
-                    </td>
+                </td>
+                
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">Usuń</button>
+                </td>
             </tr>
+
+            <!-- Modal block-->
+            <div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="blockModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="blockModalLabel">Uwaga</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    Czy na pewno chcesz zablokować tego użytkownika?
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <a href="{{ route('user.block', $user->id) }}">
+                        <button class="btn btn-warning">
+                            Zablokuj
+                        </button>
+                    </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Modal unblock-->
+            <div class="modal fade" id="unblockModal" tabindex="-1" aria-labelledby="unblockModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="unblockModalLabel">Uwaga</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    Czy na pewno chcesz odblokować tego użytkownika?
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <a href="{{ route('user.unblock', $user->id) }}">
+                        <button class="btn btn-warning">
+                            Odblokuj
+                        </button>
+                    </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Modal delete-->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Uwaga</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    Czy na pewno chcesz usunąć tego użytkownika?
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                        @method('POST')
+                        @csrf
+                        <input class="btn btn-danger delete" type="submit" value="Usuń" />
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
         @endforeach
     </tbody>
     </table>

@@ -235,7 +235,7 @@
                                         {{ __('Zatwierdź zmiany') }}
                                     </button>
                                     <a class="btn btn-secondary" href="{{ route('userpanel.view') }}">
-                                        Anuluj
+                                        Powrót
                                     </a>
                                 </div>
                             </div>
