@@ -155,13 +155,12 @@
 
                         <div class="row mb-0 mt-3">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" id="submit-button" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary">
                                     Dodaj ogłoszenie
                                 </button>
                                 <a class="btn btn-secondary" href="{{ url('/ogloszenia') }}">
                                     Anuluj
                                 </a>
-
                             </div>
                         </div>
 
@@ -242,16 +241,6 @@
 
                         L.Control.geocoder().addTo(map);
                         L.control.locate().addTo(map);
-
-                        // Obsługa braku zaznaczenia lokacji na mapie
-                        document.getElementById("submit-button").addEventListener("click", function(e) {
-                        e.preventDefault();
-                        if (!marker._map) {
-                        alert("Zaznacz lokalizację na mapie!");
-                        } else {
-                        document.forms[0].submit();
-                        }
-                        });
 
                     </script>
                 </div>
