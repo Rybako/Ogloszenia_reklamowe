@@ -44,7 +44,6 @@ walidacja:
 
 - do poprawy wyświetlanie różnych kształtów zdjęć
 - edycja = success -> modal z powiadomieniem
-- style dla panelu admina
 
 
 ------------------Marcin------------------
