@@ -46,13 +46,29 @@ walidacja:
 - edycja = success -> modal z powiadomieniem
 
 
+	##DOKUMENTACJA:
+        -Diagramy przypadków użycia i aktywności
+        -Prezentacja interfejsu użytkownika
+        -Autoewaluacja
+
+
 ------------------Marcin------------------
 ja do zrobienia:
 	-dla admina: dodatkowe przyciski pod pogłoszeniami (blokuj, usuń) + dodatkowa opcja w menu kontekstowym (panel administratora do usuwania/blokowania itp userów)
 	-przedawnione ogłoszenia się nie ukrywają
 
+	##DOKUMENTACJA:
+        -Dopisanie zadań
+        -Prezentacja fragmentów kodu
+        -Autoewaluacja
 
 ----------------------Maciej--------------------------
 - podpowiadanie adresu przy zakładaniu zgłoszenia
 - uładnić popupy na mapie
 - ewentualnie zrobić podstrone z mapa wszystkich ogloszen
+
+	##DOKUMENTACJA:
+        -Dopisanie zadań
+        -Prezentacja fragmentów kodu
+        -Testy przy ↓zyciu Github Actions
+        -Autoewaluacja
