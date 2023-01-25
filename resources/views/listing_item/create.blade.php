@@ -155,7 +155,7 @@
 
                         <div class="row mb-0 mt-3">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" id="submit-button" class="btn btn-primary">
                                     Dodaj ogłoszenie
                                 </button>
                                 <a class="btn btn-secondary" href="{{ url('/ogloszenia') }}">
@@ -241,6 +241,17 @@
 
                         L.Control.geocoder().addTo(map);
                         L.control.locate().addTo(map);
+
+                        const submitButton = document.getElementById("submit-button");
+
+                        submitButton.addEventListener("click", function(e) {
+                        if (!marker._latlng) {
+                            e.preventDefault();
+                                alert("Proszę o dodanie znacznika na mapie.");
+                            }
+                        });
+
+
 
                     </script>
                 </div>

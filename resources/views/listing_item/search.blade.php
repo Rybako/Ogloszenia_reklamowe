@@ -85,7 +85,9 @@ crossorigin=""></script>
 	for (const listing of listings) {
 	var marker = L.marker([listing.getAttribute("x"), listing.getAttribute("y")]);
 	const popup = L.popup()
-	.setContent(`<a href="${listing.getAttribute("path")}" style="text-decoration:none; color:inherit; "> asdf</a>`);
+	.setContent(`<img src="${listing.getAttribute("pic")}" class="img-fluid rounded-start rounded-end mb-3" >
+    <a href="${listing.getAttribute("path")}" style="text-decoration:none; color:inherit; "><h4>${listing.getAttribute("name")}</h4> </a>
+    <span>${listing.getAttribute("price")} zł/ms</span>`);
 	marker.bindPopup(popup);
 
 	marker.addTo(map);

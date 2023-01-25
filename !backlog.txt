@@ -8,7 +8,7 @@ większe funkcjonalności:
 
 
 mniejsze funkcjonalności:
-	
+
 	- skalowanie zdjęć które wrzuca użytkownik (dopuszczalna rozdzielczość/waga)
 	- do sprawdzenia wszystkie treści błędów w formularzach
 	- powiększenie zdjęć po kliknięciu
@@ -17,10 +17,10 @@ mniejsze funkcjonalności:
 	- duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu
 	- kliknięcie znacznika na dużej mapie skutkuje czymś (do ustalenia)
 	- walidacja po strone front i back (formularz i zdjęcia - rozmiar zdjęć?)
-	
+
 
 do usunięcia?pliki tymczasowe:
-	kontrolery: MapController, HomeController, 
+	kontrolery: MapController, HomeController,
 	Mail: MailTest.php
 	views: emails/index.blade.php, home.blade.php, map.php, welcome.blade.php
 
@@ -30,7 +30,7 @@ walidacja:
 	- email 40 znaków
 	- telefon string 11 znaków (123-123-123)
 	- hasło min 8 znaków max 100 znaków, 1 duża, 1 mała
-	
+
 
  dodawanie ogłoszenia: - zrobione oprócz zdjęć
 	- tytuł 50 znaków
@@ -53,7 +53,6 @@ ja do zrobienia:
 
 
 ----------------------Maciej--------------------------
-
-- brak znacznika przy zakładaniu ogłoszenia nie jest obsłużony
-- szczegóły zgłoszenia po kliknięciu w znacznik
 - podpowiadanie adresu przy zakładaniu zgłoszenia
+- uładnić popupy na mapie
+- ewentualnie zrobić podstrone z mapa wszystkich ogloszen
