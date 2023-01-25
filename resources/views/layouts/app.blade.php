@@ -155,6 +155,11 @@
                                     <a class="dropdown-item" href="{{ route('userpanel.view') }}">
                                     Panel Użytkownika
                                     </a>
+                                    @if(Auth::user()->role=='admin')
+                                    <a class="dropdown-item" href="{{ route('adminpanel') }}">
+                                    Panel Admistratora
+                                    </a>
+                                    @endif
                                 </div>
                             </li>
                         @endguest
