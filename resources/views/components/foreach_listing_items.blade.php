@@ -1,8 +1,26 @@
 @foreach($listing_items as $item)
 
+@if(Auth::user()->role=='admin')
+
+	@if(!$item->blocked)
+                    <a href="{{ route('listing_item.block', $item->id) ;}}">
+                        <button class="btn btn-success btn-sm"><i class="far fa-edit">
+                            Block
+                        </i></button>
+                    </a>
+    @else
+                    <a href="{{ route('listing_item.unblock', $item->id) }}">
+                        <button class="btn btn-success btn-sm"><i class="far fa-edit">
+                            unBlock
+                        </i></button>
+                    </a>
+     @endif
+
+@endif
+
 <div class="my-1" style="overflow: hidden;">
 	<a href="{{route('listing_item.view', $item['id'])}}" style="text-decoration:none; color:inherit; ">
-		<div class="card mb-3">
+		<div class="card mb-3" style="{{$item->blocked?"background-color:red;": ($item->expiration_date<=date('Y-m-d H:i:s')?"background-color:yellow;":"")}}">
 			<div class="row g-0">
 				<div class="col-md-3 thumb-post" style="height: 250px;">
 					<img src=" {{ asset('images/'.$item['src']) }}" class="img-fluid rounded-start">
