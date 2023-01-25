@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+@if($user['role']=='admin')
 	<div class="containter" style="">
 		<div class="row">
 			<!--CAROUSEL-->

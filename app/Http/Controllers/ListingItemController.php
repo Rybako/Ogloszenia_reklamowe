@@ -24,7 +24,8 @@ class ListingItemController extends Controller
     }
 
     function index(){ // Domyślny widok ogłoszeń wyswietla określoną liczbę ostatnio dodanych
-        $listing_items = ListingItem::orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
+        Auth::user()->role=='admin'?$listing_items= ListingItem::allListingItems(): $listing_items=new ListingItem;
+        $listing_items = $listing_items->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         foreach($listing_items as $key=>$item){
             $listing_items[$key]['src']=(ListingPictures::where('listing_item_id','=', $item['id'])->orderBy('order_position', 'asc')->first())['src'];
             }
@@ -40,8 +41,8 @@ class ListingItemController extends Controller
         $category = $search_data->has('category') ? $search_data->get('category') : 0;
         $sort = $search_data->has('sort') ? $search_data->get('sort') : 'new';
         //$category ='Wszystkie Kategorie';
-
-        $listing_items = ListingItem::where( [['price', '>=', (int)$price_minimum], ['price', '<=', (int)$price_maximum],
+        Auth::user()->role=='admin'?$listing_items= ListingItem::allListingItems(): $listing_items=new ListingItem;
+        $listing_items = $listing_items->where( [['price', '>=', (int)$price_minimum], ['price', '<=', (int)$price_maximum],
         ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum]]
                                             );
         if($category!='Wszystkie Kategorie') $listing_items= $listing_items->where('category','=', $category);
@@ -156,7 +157,6 @@ class ListingItemController extends Controller
         $item = ListingItem::where('id', $id)->first();
         $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
         $user = User::select('id','name','email','phone_number')->where('id',$item['user_id'])->first();
-
         return view('listing_item/view',['item' => $item,'images' => $images, 'user' => $user]);
     }
     function edit($id){
@@ -271,6 +271,36 @@ class ListingItemController extends Controller
         }
 
 
+    }
+
+    public function block($id)
+    {
+        /* example of proper usage of whereHas
+        ListingPictures::whereHas('listing_item',function ($query)  use ($user)  {
+            $query->where('user_id', '=', $user->id);
+   
+       })->delete();    
+       */
+        
+        $listing_item=ListingItem::allListingItems()->find($id);
+        $listing_item->blocked=true;
+        $listing_item->save();
+        return redirect()->back();
+    }
+
+    public function unblock($id)
+    {
+        /* example of proper usage of whereHas
+        ListingPictures::whereHas('listing_item',function ($query)  use ($user)  {
+            $query->where('user_id', '=', $user->id);
+   
+       })->delete();    
+       */
+        
+        $listing_item=ListingItem::allListingItems()->find($id);
+        $listing_item->blocked=false;
+        $listing_item->save();
+        return redirect()->back();
     }
 
 }

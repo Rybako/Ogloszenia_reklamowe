@@ -78,6 +78,11 @@ Route::middleware('checkRole:admin')->group(function () {
 
     //Odblokuj użytkownika
     Route::get('/użytkownik/odblokuj/{id}', [UserController::class, 'unblock'])->name('user.unblock');
+
+    //Ogłoszenia zablokuj odblokuj
+    Route::get('/ogloszenia/blokuj/{id}', [ListingItemController::class,'block'])->name('listing_item.block');
+
+    Route::get('/ogloszenia/odblokuj/{id}', [ListingItemController::class,'unblock'])->name('listing_item.unblock');
 });
 
 //Response, convinent when you dont know how to respond
@@ -87,6 +92,7 @@ Route::get('/response', function(){return view('response');})->name('response');
 //http://localhost:8000/email/verify ścieżka do email veryfiy żebym nie zapomniał
 
 Route::get('/test', function () {
-    $test= ListingItem::find(2);
+    $test= ListingItem::allListingItems()->find(15);
+
      return view('test',['test'=>$test]);
 });
