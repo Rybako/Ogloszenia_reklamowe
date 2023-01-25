@@ -154,13 +154,13 @@ class ListingItemController extends Controller
         }
     }
     function view($id){
-        $item = ListingItem::where('id', $id)->first();
+        $item = ListingItem::allListingItems()->where('id', $id)->first();
         $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
         $user = User::select('id','name','email','phone_number')->where('id',$item['user_id'])->first();
         return view('listing_item/view',['item' => $item,'images' => $images, 'user' => $user]);
     }
     function edit($id){
-        $item = ListingItem::where('id', $id)->first();
+        $item = ListingItem::allListingItems()->where('id', $id)->first();
         $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
         $user = User::where('id',$item['user_id'])->first();
         return view('listing_item/edit',['item' => $item,'images' => $images, 'user' => $user]);
@@ -192,9 +192,9 @@ class ListingItemController extends Controller
         }
 
 
-        if(ListingItem::find($id)['user_id']==Auth::id()){
+        if(ListingItem::allListingItems()->find($id)['user_id']==Auth::id()){
 
-        ListingItem::where('id',$id)->update(
+        ListingItem::allListingItems()->where('id',$id)->update(
             [
             'title' => $title,
             'price' => $price,
@@ -241,7 +241,7 @@ class ListingItemController extends Controller
     return redirect()->back();
     }
     function delete($id, ListingItemService $listingItemService){
-        if(ListingItem::find($id)['user_id']==Auth::id()){
+        if(ListingItem::allListingItems()->find($id)['user_id']==Auth::id()){
         $listingItemService->deleteListingItem($id);
         }
     return   redirect()->back();
@@ -252,9 +252,9 @@ class ListingItemController extends Controller
         $expiration_date = $date->format('Y-m-d H:i:s');
 
 
-        if(ListingItem::find($id)['user_id']==Auth::id()){
+        if(ListingItem::allListingItems()->find($id)['user_id']==Auth::id()){
 
-           $item= ListingItem::where('id',$id)->first();
+           $item= ListingItem::allListingItems()->where('id',$id)->first();
            $item->expiration_date=$expiration_date;
            $item->save();
            if($item->wasChanged())

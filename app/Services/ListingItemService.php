@@ -19,7 +19,7 @@ class ListingItemService
             error_log($picture['id']);
             $imageService->deleteImage($picture['id'], true);
        }
-       ListingItem::find($id)->delete();
+       ListingItem::allListingItems()->find($id)->delete();
 
 
     }

@@ -14,7 +14,7 @@ class ImageService
     public function deleteImage($id, $ignoreLast = False)
     {
         $image = ListingPictures::find($id);
-        $listing_item= ListingItem::find($image['listing_item_id']);
+        $listing_item= ListingItem::allListingItems()->find($image['listing_item_id']);
         if(  $listing_item['user_id']==Auth::id()){
             /////////////////////////////////////////////////////
             if($image['order_position']!=0){
