@@ -89,7 +89,7 @@ crossorigin=""></script>
     <a href="${listing.getAttribute("path")}" style="text-decoration:none; color:inherit; "><h4>${listing.getAttribute("name")}</h4> </a>
     <h5>  <span class="float-end">Typ: ${listing.getAttribute("type")}</span>
     <span>${listing.getAttribute("width")}x${listing.getAttribute("height")}m</span> </h5>
-    <span>${listing.getAttribute("price")} zł/ms</span> <span class="float-end"> ${listing.getAttribute("address")}</span>`);
+    <span>${listing.getAttribute("price")} zł/ms</span>`);
 	marker.bindPopup(popup);
 
 	marker.addTo(map);

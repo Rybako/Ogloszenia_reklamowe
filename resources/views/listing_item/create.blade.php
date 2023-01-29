@@ -71,7 +71,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-end">Adres</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" maxlength="70" placeholder="np. ul. Głogowska 260, 60-104 Poznań" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
+                                <input id="address_bar" type="text" maxlength="70" placeholder="np. ul. Głogowska 260, 60-104 Poznań" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -212,6 +212,31 @@
                     <script src="https://cdn.jsdelivr.net/npm/leaflet-search@3.0.5/dist/leaflet-search.src.js" integrity="sha256-iMrQwQNA33R07kJCTZcXDL3+RUJe0j9W9mY+RZEbUe4=" crossorigin="anonymous"></script>
                     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js"></script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places"></script>
+
+                    <script>
+                    var searchInput = document.getElementById('address_bar');
+
+                    var autocomplete = new google.maps.places.Autocomplete(address_bar, {
+                    componentRestrictions: { country: 'pl' }
+                    });
+
+document.getElementById('submit-button').addEventListener('click', function(e) {
+  var place = autocomplete.getPlace();
+  if (!place || !place.geometry) {
+
+    window.alert("Podany adres   '" + searchInput.value + "' nie widnieje w naszej bazie.");
+    e.preventDefault();
+    return;
+  }
+
+  address_bar.value = place.formatted_address;
+});
+
+
+
+
+                    </script>
 
                     <script>
 
