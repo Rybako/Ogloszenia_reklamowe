@@ -29,7 +29,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">Adres email</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" maxlength="40" pattern="[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,4}$" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" maxlength="40" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

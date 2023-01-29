@@ -56,7 +56,7 @@
 	<div class="col ">
 		<div class="card">
 			<div class="card-header">
-				Wszystkie ogłoszenia:
+				Aktualnie widoczne ogłoszenia:
 			</div>
 			<div class="">
 				<div id="map" class="form-control" style="width: auto; height: 50vh;"></div>

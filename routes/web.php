@@ -34,7 +34,7 @@ Route::any('/ogloszenia/szukaj', [ListingItemController::class,'search'])->name(
 Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
 
 // Sekcja zawierająca routing dozwolony dla ról 'admin' i 'user'
-Route::middleware('checkRole:user')->group(function () {
+Route::middleware('checkRole:user,admin')->group(function () {
     // Dodawanie ogłoszenia
     Route::get('/ogloszenia/dodaj', [ListingItemController::class,'create'])->name('listing_item.create');
     Route::any('/ogloszenia/dodaj_formularz', [ListingItemController::class,'create_form'])->name('listing_item.create_form');

@@ -1,22 +1,11 @@
 większe funkcjonalności:
-	- panel administracyjny użytkowników/ogłoszeń z poziomu admina
-		- lista użytkowników, możliwość usuwania, blokowania i zmiany roli
-		- usuwanie/blokowanie ogłoszeń - komentarz dla usera i możliwość edycji ogłoszenia
-		- lista ogłoszeń per użytkownik
 	- chat między użytkownikami
-
 
 
 mniejsze funkcjonalności:
 
-	- skalowanie zdjęć które wrzuca użytkownik (dopuszczalna rozdzielczość/waga)
-	- do sprawdzenia wszystkie treści błędów w formularzach
-	- powiększenie zdjęć po kliknięciu
 	- pole adres z wyszukiwaniem konkretnego adresu zamiast wpisywania stringa
 	- pole wyszukaj w odległości od adresu
-	- duża mapa na liście ogłoszeń - wyświetla wszystkie znaczniki ujete w aktualnym wyświetlaniu
-	- kliknięcie znacznika na dużej mapie skutkuje czymś (do ustalenia)
-	- walidacja po strone front i back (formularz i zdjęcia - rozmiar zdjęć?)
 
 
 do usunięcia?pliki tymczasowe:
@@ -47,25 +36,20 @@ walidacja:
 
 
 	##DOKUMENTACJA:
-        -Diagramy przypadków użycia i aktywności
         -Prezentacja interfejsu użytkownika
         -Autoewaluacja
 
 
 ------------------Marcin------------------
 ja do zrobienia:
-	-dla admina: dodatkowe przyciski pod pogłoszeniami (blokuj, usuń) + dodatkowa opcja w menu kontekstowym (panel administratora do usuwania/blokowania itp userów)
-	-przedawnione ogłoszenia się nie ukrywają
 
 	##DOKUMENTACJA:
-        -Dopisanie zadań
         -Prezentacja fragmentów kodu
         -Autoewaluacja
 
 ----------------------Maciej--------------------------
 - podpowiadanie adresu przy zakładaniu zgłoszenia
 - uładnić popupy na mapie
-- ewentualnie zrobić podstrone z mapa wszystkich ogloszen
 
 	##DOKUMENTACJA:
         -Dopisanie zadań
