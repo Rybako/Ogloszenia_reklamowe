@@ -1,6 +1,6 @@
 @foreach($listing_items as $item)
 
-@if(Auth::user()->role=='admin')
+@if(Auth::user()!=null?Auth::user()->role=='admin':false)
 
 	@if(!$item->blocked)
                     <a href="{{ route('listing_item.block', $item->id) ;}}">

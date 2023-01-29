@@ -41,7 +41,8 @@ class ListingItemController extends Controller
         $category = $search_data->has('category') ? $search_data->get('category') : 0;
         $sort = $search_data->has('sort') ? $search_data->get('sort') : 'new';
         //$category ='Wszystkie Kategorie';
-        Auth::user()->role=='admin'?$listing_items= ListingItem::allListingItems(): $listing_items=new ListingItem;
+        Auth::user()==null?$listing_items=new ListingItem:(Auth::user()->role=='admin'?$listing_items= ListingItem::allListingItems(): $listing_items=new ListingItem);
+        
         $listing_items = $listing_items->where( [['price', '>=', (int)$price_minimum], ['price', '<=', (int)$price_maximum],
         ['height', '>=', (int)$height_minimum], ['width', '>=', (int)$width_minimum]]
                                             );
