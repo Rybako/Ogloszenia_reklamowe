@@ -28,7 +28,8 @@
 			<div class="col row" style="height: 250px;">
 				<div class="card-body cardList">
 					<h3 class="card-title">{{$item['title']}}</h3>
-					<div class="listing_coords" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" id="{{$item['id']}}" path="{{route('listing_item.view', $item['id'])}}" name="{{$item['title']}}" price="{{$item['price']}}" pic=" {{ asset('images/'.$item['src']) }}"   > </div>
+					<div class="listing_coords" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" id="{{$item['id']}}" path="{{route('listing_item.view', $item['id'])}}" name="{{$item['title']}}" price="{{$item['price']}}" pic=" {{ asset('images/'.$item['src']) }}" type="{{$item['category']}}" width="{{$item['width']}}"
+                    height="{{$item['height']}}" address="{{$item['address']}}"> </div>
 					<h5>
 						<span>{{$item['price']}} zł/ms</span>
 						<span class="float-end"> {{$item['address']}}</span>
