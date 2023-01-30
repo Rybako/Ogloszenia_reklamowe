@@ -218,6 +218,7 @@
                     var searchInput = document.getElementById('address_bar');
 
                     var autocomplete = new google.maps.places.Autocomplete(address_bar, {
+                    types: ['address'],
                     componentRestrictions: { country: 'pl' }
                     });
 

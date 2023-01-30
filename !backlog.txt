@@ -48,8 +48,7 @@ ja do zrobienia:
         -Autoewaluacja
 
 ----------------------Maciej--------------------------
-- podpowiadanie adresu przy zakładaniu zgłoszenia
-- uładnić popupy na mapie
+- podpowiadanie adresu przy zakładaniu zgłoszenia /// zostało zrobić formatowanie, aktualnie API outputuje dane w formacie "ulica,miasto,panstwo"
 
 	##DOKUMENTACJA:
         -Dopisanie zadań
