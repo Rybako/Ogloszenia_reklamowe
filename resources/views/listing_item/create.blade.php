@@ -212,7 +212,7 @@
                     <script src="https://cdn.jsdelivr.net/npm/leaflet-search@3.0.5/dist/leaflet-search.src.js" integrity="sha256-iMrQwQNA33R07kJCTZcXDL3+RUJe0j9W9mY+RZEbUe4=" crossorigin="anonymous"></script>
                     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js"></script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places"></script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&region=pl"></script>
 
                     <script>
                     var searchInput = document.getElementById('address_bar');
@@ -222,17 +222,18 @@
                     componentRestrictions: { country: 'pl' }
                     });
 
-document.getElementById('submit-button').addEventListener('click', function(e) {
-  var place = autocomplete.getPlace();
-  if (!place || !place.geometry) {
+                    document.getElementById('submit-button').addEventListener('click', function(e) {
+                    var place = autocomplete.getPlace();
+                    if (!place || !place.geometry) {
 
-    window.alert("Podany adres   '" + searchInput.value + "' nie widnieje w naszej bazie.");
-    e.preventDefault();
-    return;
-  }
+                    window.alert("Podany adres '" + searchInput.value + "' nie widnieje w naszej bazie.");
+                    e.preventDefault();
+                    return;
+                    }
 
-  address_bar.value = place.formatted_address;
-});
+
+                    address_bar.value = place.formatted_address;
+                    });
 
 
 
