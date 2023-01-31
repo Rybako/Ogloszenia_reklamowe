@@ -236,10 +236,11 @@ class ListingItemController extends Controller
         }catch(Exception $e){
             DB::rollback();
             var_dump($e); die(); //jakby sie wyjebalo to bd wiadomo co
+            return redirect()->back()->with('error', 'Nie udało się edytować o id '.$id)->with('id',$id);
 
         }
     }
-    return redirect()->back();
+    return redirect()->back()->with('success', 'Poprawnie edytowano ogłoszenie o id '.$id)->with('id',$id);
     }
     function delete($id, ListingItemService $listingItemService){
         if(ListingItem::allListingItems()->find($id)['user_id']==Auth::id()){
