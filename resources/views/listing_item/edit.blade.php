@@ -186,101 +186,106 @@
                                 </div>
                                 <input type="hidden"  name="position_X" id="position_X" value="{{$item['position_X']}}">
                                 <input type="hidden"  name="position_Y" id="position_Y" value="{{$item['position_Y']}}">
-                                    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-                                integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-                                crossorigin=""></script>
-
-                                <script src="https://cdn.jsdelivr.net/npm/leaflet-search@3.0.5/dist/leaflet-search.src.js" integrity="sha256-iMrQwQNA33R07kJCTZcXDL3+RUJe0j9W9mY+RZEbUe4=" crossorigin="anonymous"></script>
-                                <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js"></script>
-                                <div id="listing_coords" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" > </div>
-                                <script>
-
-                                    const map = L.map('map', {
-                                    center: [52, 19],
-                                    zoom: 6
-                                    });
-
-                                    var marker = L.marker()
-
-                                        .setLatLng([document.getElementById("listing_coords").getAttribute("x"), document.getElementById("listing_coords").getAttribute("y")],)
-                                        .addTo(map);
-
-                                    console.log(marker)
-                                    function onMapClick(e) {
-                                        marker
-                                        .setLatLng(e.latlng)
-                                        .addTo(map);
-                                        console.log(marker.getLatLng())
-                                        const {lat,lng} = marker.getLatLng()
-                                        document.getElementById("position_X").value=lat
-                                        document.getElementById("position_Y").value=lng
-
-
-                                    }
-
-                                    map.on('click', onMapClick);
-
-                                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-
-                                    L.Control.geocoder().addTo(map);
-                                    L.control.locate().addTo(map);
-
-                                </script>
+                                
 
                             </div>
                             <div class="row mb-0 mt-3">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Zatwierdź zmiany') }}
+                                    <button type="submit" id="submit-button" class="btn btn-primary">
+                                        Zatwierdź zmiany
                                     </button>
                                     <a class="btn btn-secondary" href="{{ route('userpanel.view') }}">
                                         Powrót
                                     </a>
                                 </div>
                             </div>
+                            dupa kontrolna
+
+                            <div class="row mb-0">
+                                @if(session()->has('error'))
+                                dupa error
+                                <div class="col-md-6 offset-md-4"><br>
+                                        {{ session()->get('error') }}
+                                </div>
+                                @endif
+    
+                                @if(session()->has('success'))
+
+                                dupa sukces
+    
+                                    <script>
+                                        function closeModal() {
+                                            document.getElementById('exampleModal').style.display = "none";
+                                        }
+                                    </script>
+    
+    
+                                    <!-- Modal success-->
+                                    <div class="modal fade show" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" style="display: block;">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="successModalLabel">Edycja zakończona pomyślnie</h1>
+                                            <button type="button" id="close" onclick="closeModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <a href="{{ route('listing_item.view',['id'=>session('id')]) }}" class="btn btn-success form-control">
+                                                    Przejdź do ogłoszenia
+                                                </a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
                         </form>
+
+                        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+                        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+                        crossorigin=""></script>
+
+                        <script src="https://cdn.jsdelivr.net/npm/leaflet-search@3.0.5/dist/leaflet-search.src.js" integrity="sha256-iMrQwQNA33R07kJCTZcXDL3+RUJe0j9W9mY+RZEbUe4=" crossorigin="anonymous"></script>
+                        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js"></script>
+                        <div id="listing_coords" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" > </div>
+                        <script>
+
+                            const map = L.map('map', {
+                            center: [52, 19],
+                            zoom: 6
+                            });
+
+                            var marker = L.marker()
+
+                                .setLatLng([document.getElementById("listing_coords").getAttribute("x"), document.getElementById("listing_coords").getAttribute("y")],)
+                                .addTo(map);
+
+                            console.log(marker)
+                            function onMapClick(e) {
+                                marker
+                                .setLatLng(e.latlng)
+                                .addTo(map);
+                                console.log(marker.getLatLng())
+                                const {lat,lng} = marker.getLatLng()
+                                document.getElementById("position_X").value=lat
+                                document.getElementById("position_Y").value=lng
+
+
+                            }
+
+                            map.on('click', onMapClick);
+
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+
+                            L.Control.geocoder().addTo(map);
+                            L.control.locate().addTo(map);
+
+                        </script>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-<!--
-    @foreach($images as $key=>$image)
-        <img src="{{ asset('images/'.$image['src']) }}" >
-        @if(count($images)!=1)
-        <a href="{{ route('image.delete',$image['id']) }}" class="btn btn-danger">delete image</a>
-        @endif
-        @if($image['order_position']!=0)
-        <a href="{{ route('image.set_main',$image['id']) }}">set image main</a>
-        @endif
-    @endforeach
--->
-<!--
-    <form action="{{ route('listing_item.edit_form', $item['id']) }}" method="post" enctype="multipart/form-data">
-        @csrf {{ csrf_field() }}
-        Tytuł <input class='title' name='title' value="{{$item['title']}}">
-        @error('title')<span>{{ $message }}</span>@enderror
-
-        Cena <input class='price' name='price' value="{{$item['price']}}">
-        @error('price')<span>{{ $message }}</span>@enderror
-
-        Wysokość <input class='height' name='height' value="{{$item['height']}}">
-        @error('height')<span>{{ $message }}</span>@enderror
-
-        Szerokość <input class='width' name='width' value="{{$item['width']}}">
-        @error('width')<span>{{ $message }}</span>@enderror
-
-        Adres <input class='address' name='address'  value="{{$item['address']}}">
-        @error('address')<span>{{ $message }}</span>@enderror
-        <input class='id' name='id' value='{{$item['id']}}' hidden>
-        <input type="submit">
-    </form>
--->
-
 @endif
 @endsection

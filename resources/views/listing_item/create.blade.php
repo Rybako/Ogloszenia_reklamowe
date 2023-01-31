@@ -154,15 +154,19 @@
                             </div>
                         </div>
 
+                        dupa kontrolna
+
                         <div class="row mb-0">
                             @if(session()->has('error'))
                             <div class="col-md-6 offset-md-4"><br>
                                     {{ session()->get('error') }}
                             </div>
+                            dupoa error
                             @endif
 
                             @if(session()->has('success'))
 
+                            dupa success
                                 <script>
                                     function closeModal() {
                                         document.getElementById('exampleModal').style.display = "none";
