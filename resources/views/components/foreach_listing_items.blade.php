@@ -1,26 +1,8 @@
 @foreach($listing_items as $item)
 
-@if(Auth::user()!=null?Auth::user()->role=='admin':false)
-
-	@if(!$item->blocked)
-                    <a href="{{ route('listing_item.block', $item->id) ;}}">
-                        <button class="btn btn-success btn-sm"><i class="far fa-edit">
-                            Block
-                        </i></button>
-                    </a>
-    @else
-                    <a href="{{ route('listing_item.unblock', $item->id) }}">
-                        <button class="btn btn-success btn-sm"><i class="far fa-edit">
-                            unBlock
-                        </i></button>
-                    </a>
-     @endif
-
-@endif
-
-<div class="my-1" style="overflow: hidden;">
+<div class="mt-3 mb-1" style="overflow: hidden;">
 	<a href="{{route('listing_item.view', $item['id'])}}" style="text-decoration:none; color:inherit; ">
-		<div class="card mb-3" style="{{$item->blocked?"background-color:red;": ($item->expiration_date<=date('Y-m-d H:i:s')?"background-color:yellow;":"")}}">
+		<div class="card" style="{{$item->blocked?"background-color:red;": ($item->expiration_date<=date('Y-m-d H:i:s')?"background-color:yellow;":"")}}">
 			<div class="row g-0">
 				<div class="col-md-3 thumb-post" style="height: 250px;">
 					<img src=" {{ asset('images/'.$item['src']) }}" class="img-fluid rounded-start">
@@ -47,4 +29,61 @@
 	</div>
 	</a>
 </div>
+
+@if(Auth::user()!=null?Auth::user()->role=='admin':false)
+
+	@if(!$item->blocked)
+			<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#blockModal">Zablokuj</button>
+    @else
+			<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#unblockModal">Odblokuj</button>
+    @endif
+
+	<!-- Modal block-->
+	<div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="blockModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h1 class="modal-title fs-5" id="blockModalLabel">Uwaga</h1>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			Czy na pewno chcesz zablokować to ogłoszenie?
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+			<a href="{{ route('listing_item.block', $item->id) ;}}">
+				<button class="btn btn-warning">
+					Zablokuj
+				</button>
+			</a>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<!-- Modal unblock-->
+	<div class="modal fade" id="unblockModal" tabindex="-1" aria-labelledby="unblockModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h1 class="modal-title fs-5" id="unblockModalLabel">Uwaga</h1>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			Czy na pewno chcesz odblokować to ogłoszenie?
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+			<a href="{{ route('listing_item.unblock', $item->id) }}">
+				<button class="btn btn-warning">
+					Odblokuj
+				</button>
+			</a>
+			</div>
+		</div>
+		</div>
+	</div>
+
+@endif
+
 @endforeach

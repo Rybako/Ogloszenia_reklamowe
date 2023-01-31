@@ -52,7 +52,7 @@
 
 <div> @include('components.foreach_listing_items') </div>
 
-<div class="row mb-3">
+<div class="row mb-3 mt-3">
 	<div class="col ">
 		<div class="card">
 			<div class="card-header">

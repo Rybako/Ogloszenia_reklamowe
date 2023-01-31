@@ -130,16 +130,6 @@
                         </div>
 
                         <!-- MAPA -->
-                        <!--<div class="row mb-3">
-                            <div class="col card">
-                                <div class="card-header">
-                                    Kliknij aby wybrać dokładną lokalizację reklamy:
-                                </div>
-                                        <div id="map" class="form-control" style="width: auto; height: 50vh;"></div>
-                            </div>
-                        </div>-->
-
-                        <!-- MAPA -->
                         <div class="row mb-3">
                             <div class="col ">
                                 <div class="card">
@@ -226,7 +216,7 @@ document.getElementById('submit-button').addEventListener('click', function(e) {
   var place = autocomplete.getPlace();
   if (!place || !place.geometry) {
 
-    window.alert("Podany adres   '" + searchInput.value + "' nie widnieje w naszej bazie.");
+    window.alert("Podany adres '" + searchInput.value + "' nie widnieje w naszej bazie.");
     e.preventDefault();
     return;
   }
