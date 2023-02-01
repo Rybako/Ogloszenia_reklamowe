@@ -35,7 +35,7 @@ class ImageController extends Controller
                         $image->update(['order_position' => 0]);
 
                         DB::commit();
-                        return redirect()->back()->with('success', 'Udało się zmienić obrazek.');
+                        return redirect()->back();
                     }
                     catch(Exception $e){
                         DB::rollback();
@@ -43,7 +43,7 @@ class ImageController extends Controller
                     /////////////////////////////
                 }
                 else{
-                    return redirect()->back()->with('error', 'Masz tylko 1 obrazek.');
+                    return redirect()->back();
                 }
             }
     }
