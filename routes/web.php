@@ -5,6 +5,7 @@ use App\Http\Controllers\ListingItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserPanelController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,14 +62,14 @@ Route::middleware('checkRole:user,admin')->group(function () {
 Route::middleware('checkRole:admin')->group(function () {
     // Panel administratora
     Route::get('/adminpanel/userlist', [UserController::class, 'list'])->name('adminpanel');
-    
+
     // Kasowanie użytkownika
     Route::post('/użytkownik/delete/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
     // Edycja użytkownika
     Route::get('/użytkownik/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/użytkownik/update/{user}', [UserController::class, 'update'])->name('user.update');
-    
+
     // Blokowanie użytkownika
     Route::get('/użytkownik/blokuj/{id}', [UserController::class, 'block'])->name('user.block');
 
@@ -84,3 +85,5 @@ Route::middleware('checkRole:admin')->group(function () {
 
 // Wyświetlanie szczegółów błędów
 Route::get('/response', function(){return view('response');})->name('response');
+
+Route::get('/messages', [MessageController::class,'index'])->name('messages.index');
