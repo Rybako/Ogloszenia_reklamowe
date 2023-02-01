@@ -37,21 +37,21 @@ class ImageService
                     }
                     catch(Exception $e){    
                         DB::rollback();
-                        return redirect()->back()->with('error', 'Coś się nie udało');
+                        return redirect()->back();//->with('error', 'Coś się nie udało');
                     }
                     /////////////////////////////
                 }
                 else{
-                    return redirect()->back()->with('error', 'Nie można skasować ostatniego obrazka.');
+                    return redirect()->back();//->with('error', 'Nie można skasować ostatniego obrazka.');
                 }
                 
             }
-            return redirect()->back()->with('success', 'Skasowano');
+            return redirect()->back();//->with('success', 'Skasowano');
 
             /////////////////////////////////////////////////////
             
         }
-        else redirect()->back()->with('error', 'Brak zgodności id!');
+        else redirect()->back();//->with('error', 'Brak zgodności id!');
 
 
     }

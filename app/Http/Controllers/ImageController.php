@@ -53,7 +53,8 @@ class ImageController extends Controller
         $listing_item= ListingItem::find($image->listing_item_id);
         
         if(  $listing_item['user_id']==Auth::id()){
-        return $imageService->deleteImage($id);
+            $imageService->deleteImage($id);
+        return redirect()->back();
         }
     }
 }
