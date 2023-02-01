@@ -14,4 +14,4 @@ yarn-error.log
 /.vscode
 composer.lock
 public/php_errors.log
-.env
+/.env
