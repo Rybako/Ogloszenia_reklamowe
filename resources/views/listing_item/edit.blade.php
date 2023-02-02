@@ -72,7 +72,7 @@
                                 <label for="address" class="col-md-4 col-form-label text-md-end">Adres</label>
 
                                 <div class="col-md-6">
-                                    <input id="address" type="text" maxlength="70" placeholder="np. ul. Głogowska 260, 60-104 Poznań" class="form-control @error('address') is-invalid @enderror" name="address" value="{{$item['address']}}" required autocomplete="address" autofocus>
+                                    <input id="address_bar" type="text" maxlength="70" placeholder="np. ul. Głogowska 260, 60-104 Poznań" class="form-control @error('address') is-invalid @enderror" name="address" value="{{$item['address']}}" required autocomplete="address" autofocus>
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -186,7 +186,7 @@
                                 </div>
                                 <input type="hidden"  name="position_X" id="position_X" value="{{$item['position_X']}}">
                                 <input type="hidden"  name="position_Y" id="position_Y" value="{{$item['position_Y']}}">
-                                
+
 
                             </div>
                             <div class="row mb-0 mt-3">
@@ -206,17 +206,17 @@
                                         {{ session()->get('error') }}
                                 </div>
                                 @endif
-    
+
                                 @if(session()->has('success'))
 
-    
+
                                     <script>
                                         function closeModal() {
                                             document.getElementById('successModal').style.display = "none";
                                         }
                                     </script>
-    
-    
+
+
                                     <!-- Modal success-->
                                     <div class="modal fade show" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" style="display: block;">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -246,6 +246,34 @@
                         <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
                         <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js"></script>
                         <div id="listing_coords" x="{{$item['position_X']}}" y="{{$item['position_Y']}}" > </div>
+                        <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&region=pl"></script>
+
+                        <script>
+                        var searchInput = document.getElementById('address_bar');
+
+                        var autocomplete = new google.maps.places.Autocomplete(address_bar, {
+                        types: ['address'],
+                        componentRestrictions: { country: 'pl' }
+                        });
+
+                        document.getElementById('submit-button').addEventListener('click', function(e) {
+                        var place = autocomplete.getPlace();
+                        if (!place || !place.geometry) {
+
+                        window.alert("Podany adres '" + searchInput.value + "' nie widnieje w naszej bazie.");
+                        e.preventDefault();
+                        return;
+                        }
+
+
+                        address_bar.value = place.formatted_address;
+                        });
+
+
+
+
+                    </script>
+
                         <script>
 
                             const map = L.map('map', {
