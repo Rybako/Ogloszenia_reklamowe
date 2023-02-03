@@ -1,11 +1,7 @@
-większe funkcjonalności:
-	- chat między użytkownikami
-
-
-mniejsze funkcjonalności:
-
-	- pole adres z wyszukiwaniem konkretnego adresu zamiast wpisywania stringa
-	- pole wyszukaj w odległości od adresu
+niedoróbki:
+	- klikając w znacznik na dużej mapie nie da się przejść z jej poziomu do ogłoszenia
+	- zablokowane ogłoszenia są widoczne dla admina na stronie głównej ale nie widać ich już gdy przejdzie się w widok ogłoszeń od konkretnego uzytkownika
+	- modal przy usuwaniu użytkowników nie działa poprawnie (ten sam problem co zawsze przy modalach...)
 
 
 do usunięcia?pliki tymczasowe:
@@ -31,13 +27,11 @@ walidacja:
 
 ------------------Olgierd------------------
 
-- do poprawy wyświetlanie różnych kształtów zdjęć
-- edycja = success -> modal z powiadomieniem
-
 
 	##DOKUMENTACJA:
         -Prezentacja interfejsu użytkownika
         -Autoewaluacja
+	-Prezentacja bazy 
 
 
 ------------------Marcin------------------

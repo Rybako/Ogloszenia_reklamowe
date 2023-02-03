@@ -134,7 +134,7 @@
 				  <p class="card-text">{{$item['content']}}</p>
 				</div>
 				<div class="card-footer text-muted">
-					Dodano: {{$item['add_date']}}
+					<span class="text-muted date">Dodano: {{$item['add_date']}}, ważne do: {{$item['expiration_date']}}</span>
 				</div>
 			</div>
 
