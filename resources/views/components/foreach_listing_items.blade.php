@@ -33,9 +33,9 @@
 @if(Auth::user()!=null?Auth::user()->role=='admin':false)
 
 	@if(!$item->blocked)
-			<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#blockModal">Zablokuj</button>
+			<button class="btn btn-warning" onclick="document.getElementById('blockModal2').href='{{ route('listing_item.block', $item->id) ;}}';" data-bs-toggle="modal" data-bs-target="#blockModal">Zablokuj</button>
     @else
-			<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#unblockModal">Odblokuj</button>
+			<button class="btn btn-warning" onclick="document.getElementById('unblockModal2').href='{{ route('listing_item.unblock', $item->id) ;}}';" data-bs-toggle="modal" data-bs-target="#unblockModal">Odblokuj</button>
     @endif
 
 	<!-- Modal block-->
@@ -51,7 +51,7 @@
 			</div>
 			<div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-			<a href="{{ route('listing_item.block', $item->id) ;}}">
+			<a href="{{ route('listing_item.block', $item->id) ;}}" id="blockModal2">
 				<button class="btn btn-warning">
 					Zablokuj
 				</button>
@@ -74,7 +74,7 @@
 			</div>
 			<div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-			<a href="{{ route('listing_item.unblock', $item->id) }}">
+			<a href="{{ route('listing_item.unblock', $item->id) }}" id="unblockModal2">
 				<button class="btn btn-warning">
 					Odblokuj
 				</button>
@@ -83,7 +83,8 @@
 		</div>
 		</div>
 	</div>
-
 @endif
+
+
 
 @endforeach

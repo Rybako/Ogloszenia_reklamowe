@@ -48,7 +48,7 @@
                 </td>
                 
                 <td>
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">Usuń</button>
+                    <a href="" onclick="document.getElementById('deleteModalHref').href='{{ route('user.destroy', $user->id) }}" data-bs-target="#deleteModal" class="btn btn-danger btn-sm" data-bs-toggle="modal">Usuń</a>
                 </td>
             </tr>
 
@@ -114,7 +114,7 @@
                     <form action="{{ route('user.destroy', $user->id) }}" method="post">
                         @method('POST')
                         @csrf
-                        <input class="btn btn-danger delete" type="submit" value="Usuń" />
+                        <input class="btn btn-danger delete" type="submit" id="deleteModalHref" value="Usuń" />
                     </form>
                     </div>
                 </div>

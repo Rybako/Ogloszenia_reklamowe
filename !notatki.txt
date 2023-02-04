@@ -1,9 +1,0 @@
-Wymagane komendy do działania bootstrap:
-composer require laravel/ui
-php artisan ui bootstrap --auth
-npm install
-
-bilboard
-baner
-telebim - elektryczny
-gablota - przystanek
