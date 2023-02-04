@@ -6,18 +6,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserPanelController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-|--------------------------------------------------------------------------
-*/
-
 // Dodanie routingu auth dla veryfikacji email
 Auth::routes(['verify' => true]);
 
@@ -32,6 +20,8 @@ Route::get('/użytkownik/{id}', [UserController::class,'view'])->name('user.view
 Route::get('/ogloszenia', [ListingItemController::class,'index'])->name('listing_item.index');
 Route::any('/ogloszenia/szukaj', [ListingItemController::class,'search'])->name('listing_item.search');
 Route::get('/ogloszenia/widok/{id}', [ListingItemController::class,'view'])->where(['id' => '[0-9]{1,5}'])->name('listing_item.view');
+// Wyświetlanie szczegółów błędów
+Route::get('/response', function(){return view('response');})->name('response');
 
 // Sekcja zawierająca routing dozwolony dla ról 'admin' i 'user'
 Route::middleware('checkRole:user,admin')->group(function () {
@@ -82,5 +72,3 @@ Route::middleware('checkRole:admin')->group(function () {
     Route::get('/ogloszenia/odblokuj/{id}', [ListingItemController::class,'unblock'])->name('listing_item.unblock');
 });
 
-// Wyświetlanie szczegółów błędów
-Route::get('/response', function(){return view('response');})->name('response');
