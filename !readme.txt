@@ -2,27 +2,32 @@
 
 1. Aby uruchomić aplikację należy pobrać PHP w wersji 8.1.12 lub wyższej. PHP jest częścią programu Xampp, który również przyda się do uruchomienia aplikacji - https://www.apachefriends.org/pl/download.html
 
-2. Następnie trzeba zainstalować Composer w wersji 2.4.2 lub wyższej - https://getcomposer.org/download/
+2. Instalujemy Node.js w wersji 8.19.2 lub wyższej - https://nodejs.org/en/download/
 
-3. Instalujemy Node.js w wersji 8.19.2 lub wyższej - https://nodejs.org/en/download/
+3. W Xampp uruchamiamy Apache i MySQL.
 
-4. W Xampp uruchamiamy Apache i MySQL.
+4. Otwieramy przeglądarkę i wchodzimy w adres localhost/phpmyadmin/
 
-5. Otwieramy przeglądarkę i wchodzimy w adres localhost/phpmyadmin/
+5. Tworzymy pustą bazę danych o nazwie ogloszenia_reklamowe i importujemy do niej plik ogloszenia_reklamowe.sql.
 
-6. Tworzymy pustą bazę danych o nazwie ogloszenia_reklamowe i importujemy do niej plik ogloszenia_reklamowe.sql.
+6. W korzeniu projektu znajduje się plik .env.example, zmieniamy jego nazwę na .env.
 
-7. W korzeniu projektu znajduje się plik .env.example, zmieniamy jego nazwę na .env.
+7. W folderze projektu przechodzimy do folderu /public i zmieniamy nazwę folderu przykładowe_zdjęcia na images.
 
-8. Do pełnego działania aplikacji zalecane jest dodanie w pliku .env danych konfiguracyjnych do skrzynki pocztowej, z której aplikacja będzie mogła wysyłać wiadomości email. Bez tego aplikacja może wyrzucać błędy przy niektórych akcjach (np. rejestracja i reset hasła). Błędy te można zignorować i zasymulować weryfikację maila poprzez modyfikację użytkownika w bazie danych.
+8. Przechodzimy do zaawansowanych ustawień systemu windows > zmienne środowiskowe > PATH > dodajemy tam wpis ze ścieżką do folderu zawierającego nasz plik php.exe (np. C:\xampp\php)
 
-9. W plikach projektu przechodzimy do folderu /public/przykładowe_zdjęcia i przenosimy jego zawartość do /public/images.
+9. Otwieramy okno terminala w głównym folderze projektu i wpisujemy php artisan key:generate, następnie wpisujemy npm install, a później npm run dev. Pozostawiamy to okno terminala otwarte.
 
-10. Otwieramy 2 okna terminala w głównym folderze projektu. Na jednym wpisujemy komendę "php artisan serve", a na drugim "npm run dev".
+10. Otwieramy drugie okno terminala w głównym folderze projektu i wpisujemy komendę php artisan serve. To okno również trzeba pozostawić otwarte
 
-11. W przeglądarce przechodzimy pod adres localhost:8000/
+11. Do pełnego działania aplikacji zalecane jest dodanie w pliku .env danych konfiguracyjnych do skrzynki pocztowej, z której aplikacja będzie mogła wysyłać wiadomości email. Bez tego aplikacja będzie wyrzucać błędy krytyczne przy niektórych akcjach (rejestracja, próba resetowania hasła i wysyłanie wiadomości weryfikacyjnej).
+Błąd podczas rejestracji można zignorować i wrócić do strony głównej (konto zostanie poprawnie utworzone, jedynie wiadomość weryfikacyjna nie zostanie wysłana). Nie nastąpi automatyczne logowanie więc trzeba zrobić to ręcznie.
+Podobny błąd wystąpi przy próbie resetowania hasła.
+Brak możliwości weryfkacji konta można obejść poprzez modyfikację użytkownika w bazie danych (wpisanie dowolnej daty w polu email_verified_at w tabeli users).
 
-12. Jeśli wszystko zostało ustawione poprawnie powinniśmy zobaczyć stronę główną aplikacji.
+12. W przeglądarce przechodzimy pod adres localhost:8000/
+
+13. Jeśli wszystko zostało ustawione poprawnie powinniśmy zobaczyć stronę główną aplikacji.
 
 ---------------KONTA TESTOWE--------------------
 
