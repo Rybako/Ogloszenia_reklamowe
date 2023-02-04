@@ -4,21 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Auth;
-use Illuminate\Http\Request;
 use App\Models\ListingItem;
-use App\Models\User;
 use App\Models\ListingPictures;
-use Illuminate\Support\Facades\File;
 use App\Services\ImageService;
+
 class ImageController extends Controller
 {
-    //
-   /* function move_left(){
-
-    }
-    function move_rigth(){
-
-    }*/ 
+    // Ustawia obrazek jako główny w ogłoszeniu
     function set_main($id){
         $image = ListingPictures::find($id);
         $listing_item= ListingItem::find($image['listing_item_id']);
@@ -39,6 +31,7 @@ class ImageController extends Controller
                     }
                     catch(Exception $e){
                         DB::rollback();
+                        return redirect()->back();
                     }
                     /////////////////////////////
                 }
@@ -48,6 +41,7 @@ class ImageController extends Controller
             }
     }
     
+    // Usuwa obrazek
     function delete($id, ImageService $imageService){
         $image= ListingPictures::find($id);
         $listing_item= ListingItem::find($image->listing_item_id);

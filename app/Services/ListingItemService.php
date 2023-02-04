@@ -1,12 +1,8 @@
 <?php
 namespace App\Services;
-use Illuminate\Support\Facades\DB;
-use Auth;
-use Illuminate\Http\Request;
 use App\Models\ListingItem;
-use App\Models\User;
 use App\Models\ListingPictures;
-use Illuminate\Support\Facades\File;
+
 class ListingItemService
 {
     public function deleteListingItem($id)

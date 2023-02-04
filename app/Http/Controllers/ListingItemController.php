@@ -23,7 +23,8 @@ class ListingItemController extends Controller
         $this->middleware(['auth','verified'])->only(['create','create_form']);
     }
 
-    function index(){ // Domyślny widok ogłoszeń wyswietla określoną liczbę ostatnio dodanych
+    // Wyświetlanie listy ogłoszeń
+    function index(){ 
         Auth::user()==null?$listing_items=new ListingItem:(Auth::user()->role=='admin'?$listing_items= ListingItem::allListingItems(): $listing_items=new ListingItem);
         $listing_items = $listing_items->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         foreach($listing_items as $key=>$item){
@@ -33,6 +34,8 @@ class ListingItemController extends Controller
         return view('listing_item/search',['listing_items' => $listing_items]);
 
     }
+
+    // Wyszukiwanie ogłoszeń z parametrami i sortowaniem
     function search(Request $search_data){
         $price_minimum = $search_data->has('price_min') ? $search_data->get('price_min') : 0;
         $price_maximum = $search_data->has('price_max') ? $search_data->get('price_max') : 999999;
@@ -40,7 +43,7 @@ class ListingItemController extends Controller
         $width_minimum = $search_data->has('width_min') ? $search_data->get('width_min') : 0;
         $category = $search_data->has('category') ? $search_data->get('category') : 0;
         $sort = $search_data->has('sort') ? $search_data->get('sort') : 'new';
-        //$category ='Wszystkie Kategorie';
+
         Auth::user()==null?$listing_items=new ListingItem:(Auth::user()->role=='admin'?$listing_items= ListingItem::allListingItems(): $listing_items=new ListingItem);
         
         $listing_items = $listing_items->where( [['price', '>=', (int)$price_minimum], ['price', '<=', (int)$price_maximum],
@@ -48,13 +51,6 @@ class ListingItemController extends Controller
                                             );
         if($category!='Wszystkie Kategorie') $listing_items= $listing_items->where('category','=', $category);
 
-
-        //TO je console log list jakbym chciał sobie zobaczyć jak wygląda zapytanie w sql
-        error_log($listing_items->toSql());
-        error_log((string)$listing_items->getBindings()[0]);
-        error_log((string)$listing_items->getBindings()[1]);
-        error_log((string)$listing_items->getBindings()[2]);
-        error_log((string)$listing_items->getBindings()[3]);
         if($sort == 'new') $listing_items= $listing_items ->orderBy('add_date', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         if($sort == 'cheap') $listing_items= $listing_items ->orderBy('price', 'asc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
         if($sort == 'expensive') $listing_items= $listing_items ->orderBy('price', 'desc')->paginate(env('PAGINATION_NUMBER_OF_PAGES'));
@@ -67,6 +63,7 @@ class ListingItemController extends Controller
 
         return view('listing_item/search',['listing_items' => $listing_items,'old' => $search_data]);
     }
+
     function create(){
         return view('listing_item/create');
     }
@@ -160,12 +157,16 @@ class ListingItemController extends Controller
         $user = User::select('id','name','email','phone_number')->where('id',$item['user_id'])->first();
         return view('listing_item/view',['item' => $item,'images' => $images, 'user' => $user]);
     }
+
+    // Edytowanie Ogłoszenia - wyświetlania strony edycji
     function edit($id){
         $item = ListingItem::allListingItems()->where('id', $id)->first();
         $images = ListingPictures::where('listing_item_id','=',$id)->orderBy('order_position', 'asc')->get();
         $user = User::where('id',$item['user_id'])->first();
         return view('listing_item/edit',['item' => $item,'images' => $images, 'user' => $user]);
     }
+
+    // Edytowanie Ogłoszenia - przetwarzanie formularza
     function edit_form(Request $create_data,$id){
         $title = $create_data->has('title') ? $create_data->get('title') : null;
         $price = $create_data->has('price') ? $create_data->get('price') : null;
@@ -235,19 +236,21 @@ class ListingItemController extends Controller
             DB::commit();
         }catch(Exception $e){
             DB::rollback();
-            var_dump($e); die(); //jakby sie wyjebalo to bd wiadomo co
+            var_dump($e); die(); 
             return redirect()->back()->with('error', 'Nie udało się edytować o id '.$id)->with('id',$id);
 
         }
     }
     return redirect()->back()->with('success', 'Poprawnie edytowano ogłoszenie o id '.$id)->with('id',$id);
     }
+
     function delete($id, ListingItemService $listingItemService){
         if(ListingItem::allListingItems()->find($id)['user_id']==Auth::id()){
         $listingItemService->deleteListingItem($id);
         }
     return   redirect()->back();
     }
+
     function add_time($id){
         $date = new DateTime();
         $date->add(new DateInterval('P30D'));
@@ -276,14 +279,7 @@ class ListingItemController extends Controller
     }
 
     public function block($id)
-    {
-        /* example of proper usage of whereHas
-        ListingPictures::whereHas('listing_item',function ($query)  use ($user)  {
-            $query->where('user_id', '=', $user->id);
-   
-       })->delete();    
-       */
-        
+    {   
         $listing_item=ListingItem::allListingItems()->find($id);
         $listing_item->blocked=true;
         $listing_item->save();
@@ -291,14 +287,7 @@ class ListingItemController extends Controller
     }
 
     public function unblock($id)
-    {
-        /* example of proper usage of whereHas
-        ListingPictures::whereHas('listing_item',function ($query)  use ($user)  {
-            $query->where('user_id', '=', $user->id);
-   
-       })->delete();    
-       */
-        
+    {        
         $listing_item=ListingItem::allListingItems()->find($id);
         $listing_item->blocked=false;
         $listing_item->save();
