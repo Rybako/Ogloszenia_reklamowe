@@ -17,7 +17,7 @@
                     Aby dodać ogłoszenie, musisz najpierw potwierdzić adres mailowy. Sprawdź swoją skrzynkę.
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Kliknij tutaj aby wysłać nową wiadomość weryfikacyjną.') }}</button>
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">Kliknij tutaj aby wysłać nową wiadomość weryfikacyjną.</button>
                     </form>
                 </div>
             </div>

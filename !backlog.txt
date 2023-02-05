@@ -3,12 +3,6 @@ niedoróbki:
 	- zablokowane ogłoszenia są widoczne dla admina na stronie głównej ale nie widać ich już gdy przejdzie się w widok ogłoszeń od konkretnego uzytkownika
 	- modal przy usuwaniu użytkowników nie działa poprawnie (ten sam problem co zawsze przy modalach...)
 
-
-do usunięcia?pliki tymczasowe:
-	kontrolery: MapController, HomeController,
-	Mail: MailTest.php
-	views: emails/index.blade.php, home.blade.php, map.php, welcome.blade.php
-
 walidacja:
  rejestracja: - zrobione
 	- imię i nazwisko 30 znaków
