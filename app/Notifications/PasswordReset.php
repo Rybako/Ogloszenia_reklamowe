@@ -76,7 +76,7 @@ class PasswordReset extends Notification
     {
         return (new MailMessage)
             ->subject(Lang::get('Ogłoszenia reklamowe - Zresetuj hasło'))
-            ->line(Lang::get('Wpiadomość została wygenerowana ponieważ otrzymaliśmy Twoją prośbę o zresetowanie hasła.'))
+            ->line(Lang::get('Wiadomość została wygenerowana ponieważ otrzymaliśmy Twoją prośbę o zresetowanie hasła.'))
             ->action(Lang::get('Zresetuj hasło'), $url)
             ->line(Lang::get('Ten link wygaśnie za :count m.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
             ->line(Lang::get('Jeżeli to nie Ty poprosiłeś(aś) o zmianę hasła, zignoruj tą wiadmość.'));
