@@ -56,48 +56,12 @@
 	</a>
     <div class="mb-3 mt-0">
         <a href="{{route('listing_item.edit', $item['id'])}}" href="" class="btn btn-success">Edytuj</a>
-        <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#extendModal">Przedłuż</a>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Usuń</a>
+        <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" onclick="document.getElementById('extendModalHref').href='{{ route('listing_item.add_time', $item['id']) }}'"  data-bs-target="#extendModal">Przedłuż</a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" onclick="document.getElementById('deleteModalHref').href='{{ route('listing_item.delete', $item['id']) }}'" data-bs-target="#deleteModal">Usuń</a>
     </div>
 </div>
 
-<!-- Modal delete-->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="deleteModalLabel">Uwaga</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Czy na pewno chcesz usunąć ogłoszenie?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-          <a href="{{route('listing_item.delete', $item['id'])}}" href="" class="btn btn-danger">Usuń</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Modal extend-->
-<div class="modal fade" id="extendModal" tabindex="-1" aria-labelledby="extendModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="extendModalLabel">Przedłużyć ogłoszenie?</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Termin ważności ogłoszenia zostanie przedłużony o 30 dni, licząc od dzisiaj.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-          <a href="{{route('listing_item.add_time', $item['id'])}}" href="" class="btn btn-primary">Zatwierdź</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
     @if (session()->has('success'))
             <!--<h1>{{ session('success') }}</h1>-->
@@ -107,6 +71,44 @@
     @endif
 
 @endforeach
+
+<!-- Modal delete-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Uwaga</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Czy na pewno chcesz usunąć ogłoszenie?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <a id='deleteModalHref'  href="{{route('listing_item.delete', $item['id'])}}" href="" class="btn btn-danger">Usuń</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal extend-->
+<div class="modal fade" id="extendModal" tabindex="-1" aria-labelledby="extendModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="extendModalLabel">Przedłużyć ogłoszenie?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Termin ważności ogłoszenia zostanie przedłużony o 30 dni, licząc od dzisiaj.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <a id='extendModalHref' href="{{route('listing_item.add_time', $item['id'])}}" href="" class="btn btn-primary">Zatwierdź</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <hr>
 
