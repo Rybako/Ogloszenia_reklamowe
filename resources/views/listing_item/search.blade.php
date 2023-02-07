@@ -85,11 +85,12 @@ crossorigin=""></script>
 	for (const listing of listings) {
 	var marker = L.marker([listing.getAttribute("x"), listing.getAttribute("y")]);
 	const popup = L.popup()
-	.setContent(`<img src="${listing.getAttribute("pic")}" class="img-fluid rounded-start rounded-end mb-3" >
-    <a href="${listing.getAttribute("path")}" style="text-decoration:none; color:inherit; "><h4>${listing.getAttribute("name")}</h4> </a>
+	.setContent(`<a href="${listing.getAttribute("path")}" style="text-decoration:none; color:inherit; ">
+	<div><img src="${listing.getAttribute("pic")}" class="img-fluid rounded-start rounded-end mb-3" >
+    <h4>${listing.getAttribute("name")}</h4> 
     <h5>  <span class="float-end">Typ: ${listing.getAttribute("type")}</span>
     <span>${listing.getAttribute("width")}x${listing.getAttribute("height")}m</span> </h5>
-    <span>${listing.getAttribute("price")} zł/ms</span>`);
+    <span>${listing.getAttribute("price")} zł/ms</span></div></a>`);
 	marker.bindPopup(popup);
 
 	marker.addTo(map);

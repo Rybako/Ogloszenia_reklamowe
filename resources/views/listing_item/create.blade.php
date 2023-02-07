@@ -221,13 +221,8 @@
                     return;
                     }
 
-
                     address_bar.value = place.formatted_address;
                     });
-
-
-
-
                     </script>
 
                     <script>
@@ -236,7 +231,6 @@
                         center: [52, 19],
                         zoom: 6
                         });
-
 
                         var marker = L.marker();
 
@@ -248,8 +242,6 @@
                             const {lat,lng} = marker.getLatLng()
                             document.getElementById("position_X").value=lat
                             document.getElementById("position_Y").value=lng
-
-
                         }
 
                         map.on('click', onMapClick);
@@ -267,9 +259,6 @@
                                 alert("Proszę o dodanie znacznika na mapie.");
                             }
                         });
-
-
-
                     </script>
                 </div>
             </div>
